@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .google img{
+            margin: auto;
+            padding-top: 150px;
+            display: flex;
+            height: 90px;
+            /* border: 1px solid white; */
+        }
+
+        .main {
+            
+            display: flex;
+            justify-content: center;
+            border: none;
+            align-items: center;
+            padding: 10px;
+            /* border: 1px solid white; */
+            
+        }
+
+        input{
+            border-radius: 0px;
+            width: 35%;
+            padding: 10px;
+            margin: 30px 0 30px;
+            outline: none;
+            border: none;
+            
+            
+        }
+
+        .main img{
+            padding: 8px 10px 8px;
+            height: 19px;
+            
+            background-color: white;
+
+        }
+        .search{
+            
+            border-top-left-radius: 45%;
+            border-bottom-left-radius: 45%;
+        }
+
+        .mic{
+            border-top-right-radius: 45%;
+            border-bottom-right-radius: 45%;
+            color: rgb(48, 48, 50);
+        }
+        .item-group{
+            width: 250px;
+            margin: auto;
+            /* border: 1px solid red; */
+            display: flex;
+            flex-wrap: wrap;
+            
+        }
+        .item{
+            width: 58px;
+            /* border: 1px solid blue; */
+            padding: 5px;
+            /* display: flex; */
+            margin: auto;
+            text-align: center;
+            color: white;
+            font-size: small;
+        }
+
+        .item:hover{
+            background-color: rgba(55, 55, 57, 0.9);
+            
+           
+            
+        }
+
+        .item img{
+            
+            height: 20px;
+            width: 20px;
+            /* padding-bottom: 10px; */
+
+        }
+        .box{
+            padding: 15px;
+            background-color: rgb(49, 45, 45);
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+
+    </style>
+</head>
+<!-- <body> -->
+<body style="background-color:#262629">
+    
+    <div class="google">
+        <img src="/img/google_icon.png">
+    </div>
+
+
+    <div class="main">
+        <img src="/img/search.png" class="search">
+        
+        <input type="search" placeholder="搜尋 Google 或輸入網址" >
+        <img src="/img/mics.png" class="mic">
+    </div>
+
+    <div class="item-group">
+        <div class="item">
+            <a href="https://www.youtube.com/">
+                <div class="box"><img src="/img/youtube.png"></div>
+                <caption>youtube</caption>
+            </a>
+
+        </div>
+        <div class="item">
+            <a href="#">
+                <div class="box"><img src="/img/add.png"></div>
+                <caption>新增捷徑</caption>
+            </a>
+
+        </div>
+
+
+
+    </div>
+
+
+</body>
+</html>
