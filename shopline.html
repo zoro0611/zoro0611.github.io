@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        .single-platform{
+            
+            width: 1150px;
+            margin: 80px auto 110px;
+            /* background-color: #ccc; */
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            /* border: 1px solid red; */
+            
+        }
+        .single-platform .head{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+
+        .single-platform .description{
+            width: 820px;
+            margin: auto;
+            padding: 0 100px;
+            font-size: 17px;
+            box-sizing: border-box;
+        }
+
+        .wrap:nth-child(odd){
+            flex-direction: row-reverse;
+        }
+        .wrap{
+            width: 1150px;
+            height: 500px;
+            margin: 50px auto;
+            /* background-color: #ccc; */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgb(225, 225, 225);
+            
+        }
+
+        .wrap .text{
+            width: 575px;
+            height: 400px;
+            /* background-color: red; */
+        }
+        .wrap .pic{
+            width: 575px;
+            height: 370px;
+            /* background-color: #fa0; */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            
+        }
+        .wrap .pic .item{
+            margin: auto;
+        }
+
+        .wrap .pic img{
+            width: 100%;
+            height: auto;
+
+        }
+        .wrap .text{
+            
+        }
+
+        .wrap .text h3{
+            font-size: 30px;
+            /* border: 1px solid #ccc; */
+            display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            margin-bottom: 40px;
+        }
+        .wrap .text p{
+            line-height: 28px;
+        }
+
+        .wrap .text ul{
+            margin: 20px 0;
+            height: 70px;
+            width: 575px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-content: space-between;
+        }
+
+        .wrap .text ul li{
+            width: 50%;
+            list-style: none;
+            justify-content: space-between;
+        }
+        .shop-secret {
+            width: 100%;
+            margin: 25px 0;
+        }
+        .shop-secret p{
+            color: blue;
+        }
+
+        p{
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="single-platform">
+        <div class="head">
+            <h3>單一平台就能助你</h3>
+            <h3>在全通路輕鬆開店創業</h3>
+        </div>
+        <div class="description">
+            <p>
+                從網路商店架站到實體門市管理，只需要一個平台，就能輕鬆實現開店創業，
+                並能同步管理所有銷售管道，SHOPLINE 助你賣得更多、賣得更好！
+            </p>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <div class="wrap">
+        <div class="text">
+            <h3>
+                免寫程式、多款版型<br>輕鬆打造全能電商網站
+            </h3>
+            <p>
+                不會寫程式也能輕鬆架設品牌電商官網！任何產業都能找到合適的專業設計版型，以滑鼠拖曳就能完成網頁編輯，讓架設網站就像堆積木一樣簡單。
+            </p>
+
+            <ul>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    豐富版型主題與自行搭配
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    RWD 響應式網頁設計
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    獨有網址 ＆ SSL 安全憑證
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    SEO 搜尋引擎優化
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    一頁商店
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    開放 HTML／CSS 編輯
+                </li>
+            </ul>
+            <div class="shop-secret">
+                <p>
+                    
+                    <a href="">看看開店秘技→</a>
+                </p>
+            </div>
+        </div>
+        <div class="pic">
+            <div class="item">
+                <img src="https://shoplineimg.com/59c0fd06080f0690b5000cd1/60b0c566ec23b10026db7112/1130x.webp?source_format=png">
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="text">
+            <h3>
+                支持海內外電商<br>金流、物流一次搞定
+            </h3>
+            <p>
+                支持在地及國際金流、物流串接服務，提供海內外顧客最便利的付款及送貨服務，加速消費者完成下單交易，大幅降低購物車放棄率！
+            </p>
+
+            <ul>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    線上信用卡刷卡
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    第三方金流／行動支付整合
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    超商代碼／條碼繳費
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    多溫層宅配並指定運費
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    超商／宅配貨到付款
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    發票開立與串接
+                </li>
+            </ul>
+            <div class="shop-secret">
+                <p>
+                    
+                    <a href="">了解更多金物流→</a>
+                </p>
+            </div>
+        </div>
+        <div class="pic">
+            <div class="item">
+                <img src="https://img.shoplineapp.com/media/image_clips/629831693893500024b7cc23/original.png?1654141289">
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="text">
+            <h3>
+                刺激下單，創造回購<br>行銷導流、促購模組任你玩
+            </h3>
+            <p>
+                多元優惠活動、會員集客機制、網紅分潤以及直播購物等豐富功能，將電商行銷玩法一網打盡，助你成功優化行銷活動成效，刺激顧客下單、吸引鐵粉回購！
+            </p>
+
+            <ul>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    超過 20 種優惠促銷功能
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    社群直播購物系統
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    會員分級／點數／購物金
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    Facebook／Google／LINE 廣告追蹤
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    Instagram 購物功能
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    Facebook／Instagram／LINE 對話式購物
+                </li>
+            </ul>
+            <div class="shop-secret">
+                <p>
+                    
+                    <a href="">看更多優惠模組→</a>
+                </p>
+            </div>
+        </div>
+        <div class="pic">
+            <div class="item">
+                <img src="https://img.shoplineapp.com/media/image_clips/60a4d354df356c0012a8a223/original.png?1621414740">
+            </div>
+        </div>
+    </div>
+    <div class="wrap">
+        <div class="text">
+            <h3>
+                O2O 全通路無縫整併<br>輕鬆管理網店、門市以及其他通路
+            </h3>
+            <p>
+                不論是網店拓展門市，還是門市想發展網路生意，從商品、庫存、訂單等各項虛實店舖的資料都能完善整併，輕鬆實現全通路會員經營到多店營運。
+            </p>
+
+            <ul>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    門市 POS 系統
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    線上線下會員／商品／庫存整合
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    門市快速集客工具
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    O2O 即時銷售報表分析
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    進銷庫存／調撥／多店管理
+                </li>
+                <li>
+                    <img src="https://static.vecteezy.com/system/resources/previews/000/572/885/non_2x/check-mark-icon-vector.jpg" height="15px">
+                    串接 Shopee 蝦皮購物庫存
+                </li>
+            </ul>
+            <div class="shop-secret">
+                <p>
+                    <a href="">了解更多全通路整合→</a>
+                </p>
+            </div>
+        </div>
+        <div class="pic">
+            <div class="item">
+                <img src="https://img.shoplineapp.com/media/image_clips/60a4d3540289ef002f2150cb/original.png?1621414740">
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
