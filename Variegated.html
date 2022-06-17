@@ -8,6 +8,10 @@
     <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./reset.css">
     <style>
+        a{
+            text-decoration: none;
+        }
+        
         .header{
             /* height: 62px; */
             /* padding: 0 20px;
@@ -185,7 +189,7 @@
             height: 25px;
             /* background-color: #fa0; */
             display: flex;
-            flex-wrap: wrap;
+            /* flex-wrap: wrap; */
             justify-content: center;
 
 
@@ -210,7 +214,7 @@
             
             height: 620px;
             background-color: #ccc;
-            background-image: url(https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/slider1.jpg);
+            background-image: url("https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/slider1.jpg");
             position: relative;
         }
         .discount-content,.sale-number,.main-word{
@@ -294,7 +298,7 @@
             display: flex;
             flex-wrap: wrap;
             margin: 0 20px;
-            padding: 10px 20px 20px;
+            padding: 20px 20px 20px;
             justify-content: space-between;
         }
         .coupon-item{
@@ -336,9 +340,10 @@
             flex-wrap: wrap;
             /* background-color: #fa0; */
             position: relative;
-            bottom: 180px;
+            bottom: 200px;
             justify-content: space-around;
             padding: 20px;
+            
         }
         .models-area h3{
             width: 100%;
@@ -349,6 +354,10 @@
         .models-item div{
             display: flex;
             padding: 20px;
+        }
+        .models-item{
+            position: relative;
+            left: 20px;
         }
 
         .models-item a{
@@ -379,29 +388,334 @@
             margin-right: 5px;
 
         }
-        .models-group .fa-solid.fa-angle-right{
+
+        .models-group .fa-solid{
             position: absolute;
-            right: 70px;
             top: 310px;
             bottom: 0;
             font-size: 25px;
             color: white;
-
-
+            display: inline-block;
+        }
+        .models-group .fa-solid.fa-angle-right{ 
+            right: 90px;
         }
         .models-group .fa-solid.fa-angle-left{
-            position: absolute;
-            left: 70px;
-            top: 310px;
-            bottom: 0;
-            font-size: 25px;
-            color: white;
+            left: 90px;
         }
         .fa-solid.fa-angle-right:hover,.fa-solid.fa-angle-left:hover{
             color: black;
             transition: 1s;
         }
             
+        .fav-group{
+            display: flex;
+            margin: 130px 0 60px 0;
+            padding: 0 20px;
+            height: 460px;
+            /* border: 1px solid #fa0; */
+            position: relative;
+
+        }
+        .fav-photo {
+            width: 610px;
+            height: 100%;
+            padding: 0 20px;
+            /* background-color: #fa0; */
+            display: flex;
+            box-sizing: border-box;
+            /* position: absolute; */
+            /* z-index: 1; */
+            
+        }
+        .fav-photo  img{
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .fav-photo.shadow{
+            width: 580px;
+            background-color: #ccc;
+            position: absolute;
+            left: 80px;
+            top: -50px;
+            z-index: -1;
+            opacity: .2;
+        }
+        .fav-content{
+            width: 580px;
+            padding-right: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .text-area{
+            display: flex;
+            flex-wrap: wrap;
+            width: 350px;
+            height: 280px;
+            /* background-color: #fa0; */
+
+        }
+        .text-area h3{
+            font-size: 40px;
+        }
+        .text-area p{
+            color: rgb(137, 132, 132);
+            line-height: 1.5;
+        }
+        .text-area .shop-now-tag{
+            display: flex;
+            height: 40px;
+            padding: 0 30px;
+            background-color: black;
+            font-size: 15px;
+            text-align: center;
+            align-items: center;
+        }
+        .shop-now-tag a{
+            color: white;
+        }
+
+        .text-area .shop-now-tag:hover{
+            background-color: pink;
+            transition: .5s;
+        }
+
+        .popular-area{
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-bottom: 50px;
+        }
+        .popular-area .title{
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            padding-bottom: 24px;
+        }
+        .pop-models-group{
+            width: 100%;
+            /* height: 1000px; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+        .pop-item{
+            width: 270px;
+            padding: 10px;
+            /* border: 1px solid red; */
+        }
+
+        .pop-item .pic{
+            background-color: red;
+            position: relative;
+        }
+
+        .pop-item .pic:hover{
+            cursor: pointer;
+        }
+
+        .pop-item .pic img{
+            vertical-align: top;
+            width: 100%;
+            position: relative;
+        }
+        .pop-item .pic .box{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0004;
+            color: white;
+            opacity: 0;
+            transition: .5s;
+        }
+        .pop-item:hover .box{
+            opacity: 1;
+        }
+
+        .pic .feature{
+            width: 60px;
+            height: 20px;
+            background-color: #fa0;
+            color: white;
+            text-align: center;
+            font-size: 14px;
+            position: absolute;
+            right: 0;top: 20px;
+        }
+
+        .pop-item .txt{
+            padding: 10px 5px;
+            line-height: 1.3;
+            
+        }
+
+        .pop-item .txt p:first-child{
+            font-size: 12px;
+            color: #ccc;
+        }
+        .pop-item .txt p:last-child{
+            font-weight: bold;
+        }
+        .pop-item .txt h3{
+            font-size: 16px;
+        }
+
+        .ratings {
+            position: relative;
+            vertical-align: middle;
+            display: inline-block;
+            color: #ddd; /*背景星星顏色*/
+            overflow: hidden;
+            font-size: 20px; /*調整字體大小可放大縮小星星*/
+            text-shadow: 0px 0px 0 #999;
+        }
+        .full_star {
+            /* width: 90%; 調整寬度可變更星等 */
+            position: absolute;
+            left: 0;
+            top: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            color: rgba(255, 208, 0, 0.831); /*前景星星顏色*/
+        }
+
+        .full_star.two{
+            width: 40%; 
+        }
+        .full_star.three{
+            width: 60%; 
+        }
+        .full_star.four{
+            width: 80%; 
+        }
+
+        .yearly-deals{
+            width: auto;
+            display: flex;
+            height: 600px;
+            background-image: url("https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/banner4.jpg");
+            background-position: 50% 0%;
+            background-repeat:no-repeat;
+            color: white;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .yearly-text-area{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .yearly-text-area div{
+            text-align: center;
+            width: 100%;
+        }
+        .yearly-text-area div p{
+            font-size: 16px;
+        }
+        .yearly-text-area div h3{
+            font-size: 60px;
+            margin: 20px 0;
+        }
+        .yearly-text-area div:last-child{
+            width: 110px;
+            padding: 15px 10px;
+            background-color: rgb(37, 36, 36);
+            margin: 20px auto;
+
+        }
+        .yearly-text-area div:last-child a{
+            text-decoration: none;
+            color: white;
+        }
+        .yearly-text-area div:last-child:hover{
+            background-color: pink;
+            transition: .5s;
+        }
+
+        .latest{
+            height: 450px;
+            padding: 0 20px 100px;
+            /* background-color: #fa0; */
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .latest-title{
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            
+        }
+        .latest-blog-group{
+            width: 100%;
+            height: 500px;
+            display: flex;
+            flex-wrap: wrap;
+            /* background-color: #ccc; */
+            /* display: flex; */
+        }
+        .latest-blog-group .blog-item{
+            width: 50%;
+            /* height: 380px; */
+            box-sizing: border-box;
+            padding: 50px 20px 20px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            bottom: 20px;
+            
+            
+        }
+        .blog-item img{
+            width: 100%;
+        }
+
+        .blog-word{
+            padding: 20px;
+            width: 500px;
+            height: 120px;
+            background-color: rgb(247, 244, 244);
+            position: absolute;
+            right: 5px;
+            bottom: -20px;
+            text-align: left;
+           
+        }
+        .blog-word h3{
+            font-size: 25px;
+            
+        }
+        .blog-word p{
+            padding: 10px 0;
+            line-height: 1.2;
+            color: #ccc;
+        }
+
+        .blog-word p:first-of-type{
+            color: #999;
+        }
+
+        .blog-word a{
+            text-decoration: none;
+            color: #000;
+        }
+        .blog-word p a{
+            color: #ccc;
+        }
+        .blog-word a:hover{
+            color: pink;
+            transition: .5s;
+        }
     </style>
 </head>
 <body>
@@ -568,9 +882,223 @@
 
     </div>
 
+    <div class="fav-group">
+
+        <div class="fav-photo">
+            <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/image.jpg" alt="">
+        </div>
+        <div class="fav-photo shadow">
+
+        </div>
+
+        <div class="fav-content">
+            <div class="text-area">
+                <h3>FAVOURITE<br>BLOUSES</h3>
+                <p>Our new favourite blouses are defined by great all-over patterns and special details. Our new favourite blouses are defined by great all-over patterns and special details.</p>
+                <div class="shop-now-tag">
+                    <a href="">SHOP NOW</a>
+                </div>
+            </div>        
+        </div>
+
+
+    </div>
+
+    <div class="popular-area">
+
+        <div class="title">
+            <h3>MOST RECENT POPULAR MODELS</h3>
+        </div>
+
+        <div class="pop-models-group">
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Buttoned-shirt_2-370x470.jpg">
+                    <div class="box"></div>
+                </div>
+                <div class="txt">
+                    <p>BLAZERS JUMPSUITS</p>
+                    <h3>BUTTONED SHIRT</h3>
+                    <p>59.00$</p>
+                </div>
+            </div>
+
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Checked-tunic_1-370x470.jpg">
+
+                    <div class="box"></div>
+
+                    <div class="feature">
+                        Feature
+                    </div>
+                </div>
+
+                <div class="txt">
+                    <p>TROUSERS-SHORTS BLAZERS DRESSES</p>
+                    <h3>CHECKED TUNIC</h3>
+                    <p>69.00$</p>
+                </div>
+            </div>
+
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Embroidered-shirt_1-370x470.jpg">
+                    <div class="box"></div>
+                    <div class="feature">
+                        Feature
+                    </div>
+                </div>
+                <div class="txt">
+                    <p>TROUSERS-SHORTS BLAZERS DRESSES JUMPSUITS</p>
+                    <h3>EMBROIDERED SHIRT</h3>
+                    <p>36.00$</p>
+                </div>
+            </div>
+
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Faux-leather-jacket-with-flowing-lapels_1-370x470.jpg">
+                    <div class="box"></div>
+                </div>
+                <div class="txt">
+                    <p>TROUSERS-SHORTS BLAZERS NEW ARRIVAL</p>
+                    <h3>FAUX LEATHER JACKET WITH FLOWING LAPELS</h3>
+                    <p>96.00$</p>
+                    <div class="ratings">
+                        <div class="empty_star">★★★★★</div>
+                        <div class="full_star four">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Lightweight-puffer-jacket_2-370x470.jpg">
+                    <div class="box"></div>
+                    <div class="feature">
+                        Feature
+                    </div>
+                </div>
+                <div class="txt">
+                    <p>TROUSERS-SHORTS DRESSES JUMPSUITS</p>
+                    <h3>LIGHTWEIGHT PUFFER JACKET</h3>
+                    <p>54.00$</p>
+                </div>
+            </div>
+
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Polka-dot-shirt-dress_2-370x470.jpg">
+                    <div class="box"></div>
+                </div>
+                <div class="txt">
+                    <p>TROUSERS-SHORTS DRESSES</p>
+                    <h3>POLKA DOT SHIRT DRESS</h3>
+                    <p>66.00$</p>
+                    <div class="ratings">
+                        <div class="empty_star">★★★★★</div>
+                        <div class="full_star two">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Ripped-denim-jacket_2-370x470.jpg">
+                    <div class="box"></div>
+                </div>
+                <div class="txt">
+                    <p>TROUSERS-SHORTS DRESS JUMPSUITS</p>
+                    <h3>RIPPED DENIM JACKET</h3>
+                    <p>35.00$</p>
+                </div>
+            </div>
+
+            <div class="pop-item">
+                <div class="pic">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/Suede-effect-dress_1-370x470.jpg">
+                    <div class="box"></div>
+                    <div class="feature">
+                        Feature
+                    </div>
+                </div>
+                <div class="txt">
+                    <p>TROUSERS-SHORTS DRESSES JUMPSUITS</p>
+                    <h3>SUEDE EFFECT DRESS</h3>
+                    <p>89.00$</p>
+                    <div class="ratings">
+                        <div class="empty_star">★★★★★</div>
+                        <div class="full_star three">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
+    <div class="yearly-deals">
+
+        <div class="yearly-text-area">
+            <div>
+                <p>YEARLY DEALS</p>
+            </div>
+            <div>
+                <h3>MODERN CASUAL<br>ESSENTIALS</h3>
+            </div>
+            <div>
+                <p><a href="">SHOP NOW</a></p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="latest">
+
+        <div class="latest-title">
+            <h3>LATEST FROM BLOG</h3>
+        </div>
+
+        <div class="latest-blog-group">
+            <div class="blog-item">
+                <div class="blog-photo">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/image11-565x382.jpg" alt="">
+                </div>
+                <div class="blog-word">
+                    <a href="">
+                        <h3>WHEN IN DOUBT, WEAR ROSE PUMPS</h3>
+                    </a>
+                    <p>It’s always a good idea to invest in a good pair of nude pumps. It’s a timeless wardrobe staple just…</p>
+                    <p><a href="">22 February, 2018</a> - post by <a href="">admin</a></p>
+                </div>
+            </div>
+            <div class="blog-item">
+                <div class="blog-photo">
+                    <img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/image12-565x382.jpg" alt="">
+                </div>
+                <div class="blog-word">
+                    <a href="">
+                        <h3>HEM YOUR PANTS FOR A SHOE HEIGHT</h3>
+                    </a>
+                    <p>A mistake many people make is wearing pants (or dresses) that are too long or too short for their shoes.…</p>
+                    <p><a href="">22 February, 2018</a> - post by <a href="">admin</a></p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+<!-- 
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque odio repellat, culpa ab nihil et rerum cupiditate atque porro unde vel. Iusto, quaerat. Nihil perspiciatis maxime, ullam sequi facere sint?</p>
     <p>Quis, molestiae magnam? Minima dolores ipsam obcaecati expedita odit, magnam a nobis officia vitae quo at eligendi, optio numquam! Commodi dolores perferendis dignissimos labore eius voluptatum maxime aspernatur. Commodi, perspiciatis?</p>
-    <p>Alias, in mollitia quae nesciunt repellat distinctio nulla dignissimos error perferendis praesentium facere adipisci, unde placeat sit! Hic, repellendus. Quisquam, officia nihil. Vitae amet est nobis maiores alias ab dicta?</p>
+    <p>Alias, in mollitia quae nesciunt repellat distinctio nulla dignissimos error perferendis praesentium facere adipisci, unde placeat sit! Hic, repellendus. Quisquam, officia nihil. Vitae amet est nobis maiores alias ab dicta?</p> -->
 
 </body>
 </html>
