@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variegated</title>
+    <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./reset.css">
+    <style>
+        .header{
+            /* height: 62px; */
+            /* padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; */
+            padding: 0 20px;
+            font-size: 15px;
+            color: rgb(165, 164, 164);
+            /* border: 1px solid rgba(165, 164, 164, .2); */
+        }
+        .row1{
+            /* padding: 0 20px; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            border: 1px solid rgba(165, 164, 164, .2);
+            
+        }
+        .contact-info,ul {
+            display: flex;
+            text-align: center;
+            /* padding: 5px; */
+            align-items: center;
+        } 
+        .contact-info{
+            margin-left: 20px;
+        }
+
+
+        .contact-info .str-line{
+            /* width: 0px; */
+            border: 0.2px solid #ccc;
+            height: 50%;
+            background-color: #ccc;
+            margin: 0 10px;
+            
+        }
+
+        .contact-info .phone a{
+            color: black;
+            text-decoration: none;
+           
+        }
+        .contact-info .phone a:hover{
+            color: pink;
+            transition: .5s;
+        }
+
+        .currency:hover,.shop-cart:hover,.login:hover{
+            border-bottom: 3px solid pink;
+            margin-bottom: -3px;
+        }
+
+
+        .function{
+            margin-right: 20px;
+        }
+        input:focus{
+            outline:none;
+        }
+        input{
+            border: none;
+            outline:none;
+        }
+        .function a{
+            display: inline-block;
+            margin-left: 10px;
+            text-decoration: none;
+            color: rgb(165, 164, 164);
+
+        }
+        .function .fa-solid {
+            color: rgb(165, 164, 164);
+        }
+        .function li{
+            display: flex;
+            height: 20px;
+            padding: 15px;
+            border-right: 1px solid rgba(165, 164, 164, .2);
+            justify-content: center;
+        }
+
+        .function li.shop-cart,.login{
+            width: 50px;
+        }
+        li.search-list{
+            display: flex;
+            align-items: center;
+        }
+        .search-icon{
+            width: 20px;
+            padding: 2px;
+            margin: auto;
+        }
+        .search-icon img{
+            width: 100%;
+        }
+        .search-list .search-icon i:hover{
+            color: pink;
+            cursor: pointer;
+        }
+        .function .box{
+            background-color: pink;
+            padding: 5px;
+            border-radius: 50%;
+            height: 8px;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            position: relative;
+            left: -8px;
+            top: -8px;
+        }
+ 
+        .promote-list
+        {
+            /* border: 1px solid black; */
+            width: 100%;
+            height: 70px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .promote-list .promote-logo{
+            width: 130px;
+            height: 40px;
+            margin-left: 20px;
+            /* background-color: #fa0; */
+        }
+        .promote-list .promote-logo img{
+            width: 100%;
+            height: 100%;
+        }
+        .promote-list .promote-features{
+            width: 880px;
+            
+            /* background-color: #fa0; */
+        }
+        .promote-features ul{
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+
+        }
+        .promote-features li{
+           
+            margin: 0 20px;
+        }
+        .promote-features a{
+            text-decoration: none;
+            color: black;
+        }
+
+        .promote-features li:first-child a{
+            color: pink;
+        }
+
+        .promote-features li a:hover{
+            color: pink;
+            transition: .5s;
+        }
+
+        .promote-features .fa-solid.fa-angle-down{
+            color: rgb(165, 164, 164);
+            position: relative;
+            left: 3px;
+            top: 2px;
+        }
+
+        .promote-list .promote-medias{
+            width: 140px;
+            height: 25px;
+            /* background-color: #fa0; */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+
+
+        }
+        .promote-list .promote-medias a{
+            text-decoration: none;
+            color: rgb(165, 164, 164);
+
+        }
+        .promote-list .promote-medias i{
+            display: inline-block;
+            width: 15px;
+            height: 100%;
+            margin: 0 10px;
+            position: relative;
+            top: 5px;
+            text-decoration: none;
+        }
+        .discount-photo{
+            margin: 0 20px 0 40px;
+            
+            height: 620px;
+            background-color: #ccc;
+            background-image: url(https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/slider1.jpg);
+            position: relative;
+        }
+        .discount-content,.sale-number,.main-word{
+            padding-left: 75px;
+        }
+
+        .discount-photo .discount-content{
+            padding-top: 140px;
+        }
+        
+        .discount-photo .sale-number{
+            width: 110px;
+            background-color: black;
+            color: white;
+            padding: 10px 5px;
+            text-align: center;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+        }
+
+        .discount-photo .main-word{
+            font-size: 50px;
+            line-height: 1.2;
+            padding-bottom: 20px;
+            padding-left: 0;
+            margin-bottom: 35px;
+            font-weight: bolder;
+            /* background-color: #fa0; */
+        }
+        .discount-photo .description{
+            font-size: 20px;
+            line-height: 1.4;
+            color: rgb(137, 132, 132);
+            /* background-color: #faa; */
+        }
+        .discount-photo .readmore{
+            padding-left: 75px;
+
+        }
+        .readmore p a{
+            font-size: 20px;
+            display: inline-block;
+            padding: 12px 0 8px;
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+        }
+        .discount-photo .readmore a:hover{
+            color: pink;
+        }
+        .switch-photo{
+            width: 40px;
+            height: 210px;
+            display: flex;
+            flex-wrap: wrap;
+            /* background-color: #fa0; */
+            align-content: center;
+            position: absolute;
+            right: 40px;
+            bottom: 0;
+            top: 0;
+            margin: auto;
+        }
+        .switcher{
+            width: 100%;
+            height: 40px;
+            font-size: 18px;
+            text-align:end;
+            color: rgb(137, 132, 132);
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            border-bottom: 3px solid black;
+        }
+        
+        .switcher.third,.switcher.second{
+            border: none;
+        }
+        
+        .coupon-group{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 20px;
+            padding: 10px 20px 20px;
+            justify-content: space-between;
+        }
+        .coupon-item{
+            width: 390px;
+            text-align: center;
+            /* background-color: #fa0; */
+            line-height: 1.2;
+            padding: 5px 0;
+        }
+        .coupon-item h3{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .coupon-item p{
+            color: rgb(137, 132, 132);
+        }
+        .coupon-item:nth-child(1){
+            background-color: rgb(253, 224, 228);
+        }
+        .coupon-item:nth-child(2){
+            background-color: rgba(214, 177, 117, 0.406);
+        }
+        .coupon-item:nth-child(3){
+            background-color: rgb(250, 236, 211);
+        }
+
+
+
+        .models-area{
+            width: 100%;
+            height: 400px;
+            margin-top: 230px;
+            background-color: rgba(219, 172, 172, 0.306);
+
+
+        }
+        .models-group{
+            display: flex;
+            flex-wrap: wrap;
+            /* background-color: #fa0; */
+            position: relative;
+            bottom: 180px;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .models-area h3{
+            width: 100%;
+            font-size: 25px;
+            text-align: center;
+            padding: 10px 0 40px; 
+        }
+        .models-item div{
+            display: flex;
+            padding: 20px;
+        }
+
+        .models-item a{
+            text-decoration: none;
+            color: black;
+        }
+        .models-item a:hover{
+            color: pink;
+            
+            transition: 0.5s;
+        }
+        .models-item a .botline:hover{
+            border-top: 1px solid pink;
+            transition: 0.5s;
+        }
+
+        .models-item p{
+            font-size: 18px;
+        }
+        .models-item .botline{
+            width: 3px;
+            height: 0;
+            border-top: 1px solid black;
+            display: inline;
+            position: relative;
+            top: 10px;
+            padding-right: 5px;
+            margin-right: 5px;
+
+        }
+        .models-group .fa-solid.fa-angle-right{
+            position: absolute;
+            right: 70px;
+            top: 310px;
+            bottom: 0;
+            font-size: 25px;
+            color: white;
+
+
+        }
+        .models-group .fa-solid.fa-angle-left{
+            position: absolute;
+            left: 70px;
+            top: 310px;
+            bottom: 0;
+            font-size: 25px;
+            color: white;
+        }
+        .fa-solid.fa-angle-right:hover,.fa-solid.fa-angle-left:hover{
+            color: black;
+            transition: 1s;
+        }
+            
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <div class="row1">
+            <div class="contact-info">
+                <div class="phone">
+                    <p>Call us: <a href="">+3(800) 2345-6789</a></p>
+                </div>
+                <div class="str-line"></div>
+                <div class="office-hour">
+                    <p>7 Days a week from 9:00 am to 7:00 pm</p>
+                </div>
+            </div>
+            <div class="function">
+                <ul>
+                    <li class="currency">
+                        <p>USD, $</p>
+                        <a href="">
+                            <i class="fa-solid fa-angle-down"></i>
+                        </a>
+                    </li>
+                    <li class="shop-cart">
+                        <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                        <div class="box">0</div>
+                    </li>
+                    <li class="login"><a href="">Login</a></li>
+                    <li class="search-list">
+                        <input type="search" placeholder="Search..." size="10">
+                        <div class="search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="promote-list">
+            <div class="promote-logo">
+                <a href=""><img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/themes/variegated/assets/images/logo.png" alt=""></a>
+            </div>
+
+            <div class="promote-features">
+                <ul>
+                    <li>
+                        <a href="">HOME</a>
+                    </li>
+                    <li>
+                        <a href="">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="">FEATURE<i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li>
+                        <a href="">BLOG<i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li>
+                        <a href="">SHOP<i class="fa-solid fa-angle-down"></i></a>
+                    </li>
+                    <li>
+                        <a href="">CONTACTS</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="promote-medias">
+                <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://plus.google.com/"><i class="fa-brands fa-google"></i></a>
+                <a href="https://twitter.com/?lang=zh-Hant"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="discount-photo">
+        <div class="discount-content">
+            <div class="sale-number">
+                <p>-20% SALE</p>
+           </div>
+           <div class="main-word">
+                <h1>BE A CHERRY ON PIE<br> IN ANY SITUATION</h1>
+           </div>
+           <div class="description">
+                <p>Experiment, mix and showcase colors, textures and styles!<br>Be yourself and impress others!</p>
+           </div>
+        </div>
+        <div class="readmore">
+            <p><a href=""><i class="fa-solid fa-arrow-right"></i> Read More</a></p>
+        </div>
+        <div class="switch-photo">
+            <div class="switcher first"><p>01</p></div>
+            <div class="switcher second"><p>02</p></div>
+            <div class="switcher third"><p>03</p></div>
+    
+        </div>
+    </div>
+
+    <div class="coupon-group">
+
+        <div class="coupon-item">
+            <h3>FREE STANDARD DELIVERY</h3>
+            <p>on order over $49</p>
+        </div>
+        <div class="coupon-item">
+            <h3>30% OFF 100’S PANTYS</h3>
+            <p>use code: pantyup 30</p>
+        </div>
+        <div class="coupon-item">
+            <h3>20% STUDENT DISCOUNT PLUS</h3>
+            <p>free next day delivey, excludes sale.</p>
+        </div>
+
+
+    </div>
+    
+    <div class="models-area">
+        <div class="models-group">
+            <h3>SHOP CATEGORIES</h3>
+            
+            <div class="models-item">
+                <a href=""><img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat5-275x376.jpg"></a>
+                <a href="">
+                    <div>
+                        <div class="botline"></div>
+                        <p>Blazers</p>
+                    </div>
+                </a>
+            </div>
+            <div class="models-item">
+                <a href=""><img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat4-275x376.jpg"></a>
+                <a href="">
+                    <div>
+                        <div class="botline"></div>
+                        <p>Dresses</p>
+                    </div>
+                </a>
+            </div>
+            <div class="models-item">
+                <a href=""><img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat3-275x376.jpg"></a>
+                <a href="">
+                    <div>
+                        <div class="botline"></div>
+                        <p>Jumpsuits</p>
+                    </div>
+                </a>
+            </div>
+            <div class="models-item">
+                <a href=""><img src="https://ld-wp.template-help.com/monstroid1/prod-14924/wp-content/uploads/2018/02/cat2-275x376.jpg"></a>
+                <a href="">
+                    <div>
+                        <div class="botline"></div>
+                        <p>New Arrival</p>
+                    </div>
+                </a>
+            </div>
+
+            <a href=""><i class="fa-solid fa-angle-right"></i></a>
+
+            <a href=""><i class="fa-solid fa-angle-left"></i></a>
+        </div>
+
+
+    </div>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque odio repellat, culpa ab nihil et rerum cupiditate atque porro unde vel. Iusto, quaerat. Nihil perspiciatis maxime, ullam sequi facere sint?</p>
+    <p>Quis, molestiae magnam? Minima dolores ipsam obcaecati expedita odit, magnam a nobis officia vitae quo at eligendi, optio numquam! Commodi dolores perferendis dignissimos labore eius voluptatum maxime aspernatur. Commodi, perspiciatis?</p>
+    <p>Alias, in mollitia quae nesciunt repellat distinctio nulla dignissimos error perferendis praesentium facere adipisci, unde placeat sit! Hic, repellendus. Quisquam, officia nihil. Vitae amet est nobis maiores alias ab dicta?</p>
+
+</body>
+</html>
