@@ -74,23 +74,42 @@
     </div>
     
     <script>
+        const mainPic = "https://github.com/zoro0611/zoro0611.github.io/blob/master/javascript-homework/img/selfie.jpg?raw=true";
+        
         let selfieimg = document.querySelector(".form .selfie img");
-        selfieimg.src = "./img/selfie.jpg";
-        let infoname = document.querySelector(".info div:nth-of-type(1)");
-        infoname.innerText = "姓名：Leo";
-        let infoemail = document.querySelector(".info div:nth-of-type(2)");
-        infoemail.innerText = "Email： leo-test@build-school.com";
-        let infoschool = document.querySelector(".info div:nth-of-type(3)");
-        infoschool.innerText = "學校：Build School";
-        let infohobbit = document.querySelector(".info div:nth-of-type(4)");
-        infohobbit.innerText = "興趣：寫Java-Script";
+        selfieimg.src = mainPic;
+
+
+        let InfoName = document.querySelector(".info div:nth-of-type(1)");
+        let InfoEmail = document.querySelector(".info div:nth-of-type(2)");
+        let InfoSchool = document.querySelector(".info div:nth-of-type(3)");
+        let InfoHobbit = document.querySelector(".info div:nth-of-type(4)");
+
+        // //info方法一
+        // InfoName.innerText = "姓名：Leo";
+        // InfoEmail.innerText = "Email：leo-test@build-school.com";
+        // InfoSchool.innerText = "學校：Build School";
+        // InfoHobbit.innerText = "興趣：寫Java-Script";
+
+        //info方法二
+        let person = {
+            name: "Leo",
+            email: "leo-test@build-school.com",
+            school: "Build-School",
+            hobbit: "Write JavaScript",
+        };
+        InfoName.innerText = `姓名：${person.name}`;
+        InfoEmail.innerText = `Email：${person.email}`;
+        InfoSchool.innerText = `學校：${person.school}`;
+        InfoHobbit.innerText = `興趣：${person.hobbit}`;
+
 
         const imgArray = [
             "https://picsum.photos/300/200/?random=1", 
             "https://picsum.photos/300/200/?random=2", 
             "https://picsum.photos/300/200/?random=3"
         ];
-        
+
         ////方法一
         // let picA = document.querySelector(".album img:nth-of-type(1)");
         // let picB = document.querySelector(".album img:nth-of-type(2)");
@@ -108,7 +127,7 @@
 
             let photo = document.querySelector(`.album img:nth-of-type(${index + 1})`);
             photo.src = `${url}`;
-            photo.style = "height: 150px; display:inline-block;";
+            photo.style = "height: 180px; display:inline-block;";
         });
 
     </script>
