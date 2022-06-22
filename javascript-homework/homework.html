@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            width: 600px;
+            height: 900px;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 2px solid black;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .selfie, .info, .album{
+            width: 100%;
+            box-sizing: border-box;
+            border: 2px solid red;
+            height: 288px;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            
+            
+            
+        }
+        .selfie img{
+            width: 100%;
+            
+        }
+
+        .info {
+            align-items: center;
+            padding: 5px;
+            
+            
+        }
+        .info div{
+           width: 100%;
+        }
+        .album img{
+            width: 0;
+            flex-grow: 1;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="form">
+        <div class="selfie">
+            <img src="" alt="">
+        </div>
+
+        <div class="info">
+            <div class="div"></div>
+            <div class="div"></div>
+            <div class="div"></div>
+            <div class="div"></div>
+        </div>
+            
+        <div class="album">
+            <img src="" alt="" id="1">
+            <img src="" alt="" id="2">
+            <img src="" alt="" id="3">
+        </div>
+
+    </div>
+    
+
+    <script>
+        let selfieimg = document.querySelector(".form .selfie img");
+        selfieimg.src = "./img/selfie.jpg";
+        let infoname = document.querySelector(".info div:nth-of-type(1)");
+        infoname.innerText = "姓名：Leo";
+        let infoemail = document.querySelector(".info div:nth-of-type(2)");
+        infoemail.innerText = "Email： leo-test@build-school.com";
+        let infoschool = document.querySelector(".info div:nth-of-type(3)");
+        infoschool.innerText = "學校：Build School";
+        let infohobbit = document.querySelector(".info div:nth-of-type(4)");
+        infohobbit.innerText = "興趣：寫Java-Script";
+
+        const imgArray = [
+            "https://picsum.photos/300/200/?random=1", 
+            "https://picsum.photos/300/200/?random=2", 
+            "https://picsum.photos/300/200/?random=3"
+        ];
+        
+        ////方法一
+        // let picA = document.querySelector(".album img:nth-of-type(1)");
+        // let picB = document.querySelector(".album img:nth-of-type(2)");
+        // let picC = document.querySelector(".album img:nth-of-type(3)");
+        // picA.src = imgArray[0];
+        // picB.src = imgArray[1];
+        // picC.src = imgArray[2];
+        
+        //方法二
+        let album = document.querySelector(".album");
+        // album.setAttribute("style", ";");
+        album.style = "align-items: center;";
+        imgArray.forEach((url,index)=>{
+
+            let photo = document.querySelector(`.album img:nth-of-type(${index + 1})`);
+            photo.src = `${url}`;
+            photo.style = "height: 150px; display:inline-block;";
+        });
+
+    </script>
+</body>
+</html>
