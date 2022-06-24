@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .google{
+            margin: 160px auto 0 ;
+            width: 270px;
+            justify-content: center;
+            /* border: 1px solid white; */
+        }
+        .google img{
+            width: 100%;
+        }
+        .search{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search img{
+            width: 14px;
+            height: 15px;
+            position: relative;
+            left: 15px;
+            top: 13px;
+            background-color: white;
+            /* border: 1px solid red; */
+        }
+
+
+        .search section{
+            width: 50px;
+            height: 40px;
+            background-color: white;
+        }
+
+        .search-icon{
+            border-top-left-radius: 45%;
+            border-bottom-left-radius: 45%;
+        }
+
+        .search-mic{
+            border-top-right-radius: 45%;
+            border-bottom-right-radius: 45%;
+        }
+
+        input{
+            margin: 40px 0;
+            width: 480px;
+            height: 40px;
+            outline: none;
+            border: none;
+            /* border: 1px solid red; */
+        }
+        .wrapbox{
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrap
+        {
+            width: 500px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid red;
+        }
+        .wrap .item{
+            width: 40px;
+            margin: 30px;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 50%;
+            
+            
+        }
+
+        .item img{
+            width: 20px;
+            display: inline-block;
+            position: relative;
+            left: 10px;
+            top: 10px;
+            
+        }
+
+        .box:hover{
+            background-color: rgb(17, 16, 16);
+        }
+
+        .box{
+            
+            border: 1px solid orange;
+            margin: 5px;
+        }
+
+        p{
+            color: rgb(25, 190, 83);
+        }
+
+    </style>
+</head>
+<body style="background-color: rgb(28, 27, 27);">
+
+<div class="google">
+    <img src="https://pluspng.com/img-png/google-logo-png-google-logo-white-2015-png-676.png" alt="">
+</div>    
+
+<div class="search">
+    <section class="search-icon">
+        <img src="/google/img/search.png" alt="">
+    </section>
+
+    <input placeholder="搜尋 Google 或輸入網址">
+    
+    <section class="search-mic"><a href="">
+        <img src="/google/img/mics.png" alt="">
+    </a></section>
+</div>
+
+<div class="wrapbox">
+    <div class="wrap">
+        <div class="box">
+            <div class="item">
+                <a href=""><img src="/google/img/youtube.png" alt=""></a>
+            </div>
+            <h3>123</h3>
+        </div>
+        <div class="box">
+            <div class="item">
+                <a href=""><img src="/google/img/add.png" alt=""></a>
+            </div>
+            <h3>123</h3>
+        </div>
+
+    
+    </div>
+</div>
+
+
+
+</body>
+</html>
