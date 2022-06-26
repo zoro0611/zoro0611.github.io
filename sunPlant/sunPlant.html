@@ -627,6 +627,28 @@
     });
 
 
+    //手機版展開第二層選單，RWD桌機時候，第二層選單會自動關閉
+    let openA = document.getElementById("openA");
+    let openB = document.getElementById("openB");
+    let openC = document.getElementById("openC");
+    let openD = document.getElementById("openD");
+    let openE = document.getElementById("openE");
+
+    var pc = window.matchMedia("(min-width: 768px)");
+    pc.addListener(resizeWidth);
+    resizeWidth(pc);
+
+    function resizeWidth(pMatchMedia){
+        if (pMatchMedia.matches) {
+            openA.checked = false;
+            openB.checked = false;
+            openC.checked = false;
+            openD.checked = false;
+            openE.checked = false;
+        }
+    }
+
+
 
 </script>
 

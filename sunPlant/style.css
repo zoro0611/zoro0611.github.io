@@ -611,10 +611,29 @@ body {
     display: none;
   }
 
-  .menu-group .col-left {
-    overflow-y: hidden;
-    overflow-x: hidden;
-    width: 100%;
+  .col-left {
+    position: relative;
+    left: -100%;
+  }
+
+  .close-menu {
+    display: none;
+  }
+
+  #shadow-mark {
+    position: relative;
+    left: -1000px;
+  }
+
+  .menu-functions {
+    position: relative;
+    left: -1000px;
+  }
+
+  .header .menu-group .col-left {
+    overflow: hidden;
+    position: relative;
+    top: 0px;
   }
 
   .menu-group a {
