@@ -1,104 +1,5 @@
-//Grid CSS Start
-
-/* advanced-grid開始 */
-
-.container{
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    
-}
-
-.row{
-    display: flex;
-    flex-wrap: wrap;
-    
-}
-
-.item{
-    // background-color: blue;
-    // height: 200px;
-}
-.item img{
-    width: 100%;
-    vertical-align: top;
-}
-
-
-
-[class*="cols-"] > .col{
-    padding-left: 15px;
-    padding-right: 15px;
-    box-sizing: border-box;
-   
-}
-
-.row.cols-1 .col{
-    width: 100%;
-}
-.row.cols-2 .col{
-    width: 50%;
-}
-.row.cols-3 .col{
-    width: 33.33333%;
-}
-.row.cols-4 .col{
-    width: 25%; 
-}
-.row.cols-5 .col{
-    width: 20%;
-}
-.row.cols-6 .col{
-    width: 16.6666666%;
-}
-
-@media screen and (min-width:768px) {
-
-    .row.cols-md-1 .col{
-        width: 100%;
-    }
-    .row.cols-md-2 .col{
-        width: 50%;
-    }
-    .row.cols-md-3 .col{
-        width: 33.33333%;
-    }
-    .row.cols-md-4 .col{
-        width: 25%; 
-    }
-    .row.cols-md-5 .col{
-        width: 20%;
-    }
-    .row.cols-md-6 .col{
-        width: 16.6666666%;
-    }
-}
-
-@media screen and (min-width:992px) {
-
-    .row.cols-lg-1 .col{
-        width: 100%;
-    }
-    .row.cols-lg-2 .col{
-        width: 50%;
-    }
-    .row.cols-lg-3 .col{
-        width: 33.33333%;
-    }
-    .row.cols-lg-4 .col{
-        width: 25%; 
-    }
-    .row.cols-lg-5 .col{
-        width: 20%;
-    }
-    .row.cols-lg-6 .col{
-        width: 16.6666666%;
-    }
-}
-//Grid CSS Ends
-
-//Code Starts Here
 *{
+    
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -126,25 +27,25 @@ body{
     padding: 20px 10px;
     position: fixed;
     align-items: center;
-    z-index: 100;
+    z-index: 90;
     #menu-switch{
         position: absolute;
         /* display: none; */
      
     }
 }
-.menu-group{
+.header .menu-group{
     
     .col-left{
         overflow: scroll;
         position: fixed;
         top: 0px;
-        left: -100%;
+        left: -1000px;
         bottom: 0;
         width: 380px;
         background-color: white;
-        z-index: 4;
- 
+        z-index: 40;
+        
     }
     .shadow{
         background-color: #0009;
@@ -153,7 +54,7 @@ body{
         width: 100%;
         height: 100%;
         display: none;
-        z-index: 3;
+        z-index: 30;
     }
 }
 
@@ -216,8 +117,55 @@ body{
 .nav-item > a{
     font-weight: bold;
 }
+
+.nav-item.C,
+.nav-item.E{
+    position: relative;
+    .tag{
+        position: absolute;
+        right: 40px;top: -8px;
+        background-color: #48C8FD ;
+        color: white;
+        font-size: 12px;
+        padding: 1px 10px;
+        font-weight: bold;
+        text-align: center;
+        
+    }
+}
+
+.nav-item.B .lv2,
+.nav-item.C .lv2,
+.nav-item.E .lv2{
+
+    span a{
+        font-size: 14px;
+        line-height: .1;
+    }
+    h3 a:hover{
+        color: #518432;
+    }
+    h3::after{
+        content: '';
+        background-color: #518432;
+        height: .5px;
+        display: block;
+        position: relative;
+        top: -20px;
+        transform: scaleX(.2);
+        left: -125px;
+    }
+
+}
+
+
+
 .menu-links .nav-item li{
     display: none;
+    font-size: 14px;
+    img{
+        display: none;
+    }
 }
  #openA:checked ~ li,
  #openB:checked ~ li,
@@ -227,6 +175,11 @@ body{
 {
     display: block;
 }
+
+
+ 
+
+
 .menu-links input{
     display: none;
 }
@@ -239,6 +192,7 @@ body{
     i{
         font-size: 18px;
     }
+
 }
 
 .close-menu{
@@ -267,7 +221,7 @@ body{
     width: 140px;
     box-sizing: border-box;
     position: relative;
-    left: 0px;
+    left: -30px;
     img{
         width: 100%;
         vertical-align: top;
@@ -672,8 +626,16 @@ body{
         height: 50px;
         margin: 0 -7px;
         display: block;
-        background-color: black;
+        background: black;
+        background-size: 200% 200%;
+        border: 2px solid black;
         border-radius: 50%;
+    }
+    a:hover{
+        
+        background: #518432;
+        transition: 1s;
+
     }
 }
 
@@ -693,144 +655,269 @@ body{
         display: flex;
         justify-content: space-between;
         padding: 30px 10px;//改
-
+        
     }
 
+
 //選單開始
+    .header #header-ham{
+        display: none; //
+    }
 
     .menu-group{
-        
+        // width: 600px;
         .col-left{
-            overflow: scroll;
-            position: fixed;
-            top: 0px;
-            left: -100%;
-            bottom: 0;
-            width: 380px;
-            background-color: white;
-            z-index: 4;
+            overflow-y: hidden;//
+            overflow-x: hidden;//
+            width: 100%;//
+            
+            // position: relative;//
+            // display: flex;
+            
+           
+            // background-color: orange;
+            
     
-        }
-        .shadow{
-            background-color: #0009;
-            position: fixed;
-            top: 0;left: 0;
-            width: 100%;
-            height: 100%;
-            display: none;
-            z-index: 3;
         }
     }
 
     .menu-group a{
         
-        display: block;
-        padding: 10px 30px; 
-        i{
-            color: black;
-        }
+        display: block;//
+        left: -20px;//
+
     }
 
-    .menu-group .menu-functions{
+    .nav-item:hover > a{
+        color: #518432;
+    }
+    .menu-group .lv1{
         display: flex;
-        box-sizing: border-box;
-        a{
-            text-align: center;
-            width: 0;
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #ccc8;
+        position: fixed;
+        left: 30px;top: 30px;
+        font-weight: bold;
+        font-size: 12px;
+        //第一層選單位置
+    }
+    .lv2{
+        //第二層選單位置
+        position: fixed;
+        background-color: #fff;
+        box-shadow: 0 2px 10px -2px #0000004d;
+        // top: 80px; 晚點要調位置
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 15px;
+        li{
+            // display: block;
         }
-        a:first-of-type{
-            background-color: black;
+
+    }
+    .nav-item .lv2 a:hover{
+        color: #518432;
+    }
+
+    .nav-item.C,
+    .nav-item.E{
+        .tag{
+            left: 45px;
+            top: -5px;
+            width: 30px;
         }
     }
 
-    .menu-functions a:first-of-type i, 
-    .menu-functions a:first-of-type span,
-    .menu-group .close-menu span
-    {
-        color: white;
-        
+    //每個nav item調整寬度
+    .nav-item.A .lv2{
+        left: 25px;
+        width: 960px;
+        li{
+            width: 290px;
+            box-sizing: border-box;
+            margin: 0 15px;
+            a{
+                color: #518432;
+                position: relative;
+                top: -10px;
+            }
+            
+        }
+        img{
+            width: 100%;
+            vertical-align: top;
+        }
     }
+    .nav-item.B .lv2{
+        left: 100px;
+        li{
+            margin: 20px;
+        }
+        h3 a{
+            color: #518432;
+            
+        }
+
+        h3::after{
+            height: 2px;
+            display: block;
+            position: relative;
+            top: -5px;
+            transform: scaleX(.4);//
+            left: -40px;
+        }
+
+        span a{
+            font-size: 14px;
+            line-height: .2;
+        }
+    
+    }
+    
+    .nav-item.C .lv2{
+        width: 960px;
+        left: 25px;
+        display: flex;
+        flex-wrap: wrap;
+        
+        li{
+            margin: 20px;
+            width: 240px;
+            box-sizing: border-box;
+            
+        }
+        li:nth-of-type(5){
+            margin-top: -60px;
+        }
+        li:nth-of-type(2){
+            position: relative;
+            left: -30px;
+        }
+        li:nth-of-type(3){
+            position: relative;
+            left: -80px;
+        }
+        h3 a{
+            color: #518432;
+            
+        }
+
+        h3::after{
+            height: 2px;
+            display: block;
+            position: relative;
+            top: -5px;
+            transform: scaleX(.2);//
+            left: -95px;
+        }
+
+        span a{
+            font-size: 14px;
+            line-height: .2;
+        }
+        li#img-place{
+            width: 200px;
+            position: absolute;
+            right: 20px;top: 20px;
+            img{
+                width: 100%;
+                vertical-align: top;
+            }
+        }
+
+    }
+
+
+    .nav-item.D .lv2{
+        width: 200px;
+        left: 290px;
+        box-sizing: border-box;
+        li{
+           position: relative;
+           left: 40px;
+           line-height: .1;
+
+        }
+
+       
+    }
+    .nav-item.E .lv2{
+        background-image: url(https://cdn.shopify.com/s/files/1/0356/8343/4555/files/banner-menu2.png?v=1585551136);
+        width: 600px;
+        left: 160px;
+        li{
+            margin: 20px;
+        }
+        h3 a{
+            color: #518432;
+            
+        }
+
+        h3::after{
+            height: 2px;
+            display: block;
+            position: relative;
+            top: -5px;
+            transform: scaleX(.3);//
+            left: -63px;
+        }
+
+        span a{
+            font-size: 14px;
+            line-height: .2;
+        }
+    }
+
+
+
 
     .menu-links{
         
-        padding: 30px 25px;
-        > a span{
-            display: inline-block;
-            background-color: rgb(2, 216, 253);
-            color: white;
-            font-size: 12px;
-            padding: 0 10px;
-            position: absolute;
-            right: 40px;
-            bottom: 50px;
-        }
-
+        padding: 0px;//
         li{
-            list-style: none;
-        }
-        i{
-            cursor: pointer;
+            font-size: 14px;//
         }
 
+
     }
-    .nav-item > a{
-        font-weight: bold;
-    }
+
+
+
+
     .menu-links .nav-item li{
-        display: none;
+        img{
+            display: block;
+        }
     }
-    #openA:checked ~ li,
-    #openB:checked ~ li,
-    #openC:checked ~ li,
-    #openD:checked ~ li,
-    #openE:checked ~ li
+
+
+    .nav-item.A:hover > .lv2 li,
+    .nav-item.B:hover > .lv2 li,
+    .nav-item.C:hover > .lv2 li,
+    .nav-item.D:hover > .lv2 li,
+    .nav-item.E:hover > .lv2 li
     {
+        
         display: block;
+        
     }
-    .menu-links input{
-        display: none;
-    }
+
 
     .menu-links a{
-        position: relative;
-        padding: 0 0 30px 0;
-        display: flex;
-        justify-content: space-between;
+        
+        padding: 20px;//
+        display: block;//
+        justify-content:center;//
         i{
-            font-size: 18px;
+            display: none;//
         }
     }
 
-    .close-menu{
-        width: 380px;
-        position: fixed;
-        background-color: #518432;
-        bottom: 0;
-        left: -100%;
-        text-align: center;
-        padding: 12px;
-        box-sizing: border-box;
-        cursor: pointer;
-        font-size: 14px;
-        display: block;
-        justify-content: center;
-        span{
-            display: block;
-            padding: 0 10px;
-            color: white;
-        }
-    }
 //選單結束
 
 
     .header .logo{
-        width: 160px;
-        left: -110px;
+        width: 170px;//
+        left: 70px;//
+        z-index: 22;//
     }
 
     .header .icons{
@@ -839,6 +926,7 @@ body{
             color: black;
             margin-left: -15px;
         }
+        
         
         a:nth-of-type(2){
             display: inline-block;
@@ -851,6 +939,9 @@ body{
                 top: 0;
                 color: black;
                 font-size: 12px;
+            }
+            :hover ~ span{
+                color: #518432;
             }
         }
     }
