@@ -275,6 +275,7 @@
         width: 180px;
         font-size: 14px;
     }
+
     
 }
 
@@ -332,6 +333,7 @@
     }
     .title p{
         font-style: italic;
+        text-align: center;
     }
     p{
         text-align: left;
@@ -1091,7 +1093,10 @@
     }
 
     .staff-pick .item .shadow-layer{
-        height: 415px;
+        height: 440px;
+    }
+    .staff-pick .item a{
+        overflow: hidden;
     }
 
 

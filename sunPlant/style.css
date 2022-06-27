@@ -318,6 +318,7 @@
 }
 .benefits .title p {
   font-style: italic;
+  text-align: center;
 }
 .benefits p {
   text-align: left;
@@ -971,7 +972,11 @@
   }
 
   .staff-pick .item .shadow-layer {
-    height: 415px;
+    height: 440px;
+  }
+
+  .staff-pick .item a {
+    overflow: hidden;
   }
 
   .product-video {
