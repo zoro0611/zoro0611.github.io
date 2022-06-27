@@ -11,14 +11,8 @@
   padding: 5px 15px;
 }
 
-body {
-  margin: 0 auto;
-  text-align: center;
-}
-
 .wrap {
   width: 100%;
-  margin: auto;
 }
 
 .header {
@@ -158,6 +152,7 @@ body {
   font-size: 14px;
 }
 .menu-links .nav-item li img {
+  width: 100%;
   display: none;
 }
 
@@ -579,21 +574,35 @@ body {
   font-size: 15px;
   color: white;
   position: relative;
-  top: 13px;
+  top: 9px;
+  right: 3px;
+  z-index: 10;
 }
 .footer-media a {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin: 0 -7px;
   display: block;
   background: black;
   background-size: 200% 200%;
   border: 2px solid black;
   border-radius: 50%;
+  position: relative;
+  overflow: hidden;
 }
-.footer-media a:hover {
-  background: #518432;
+.footer-media a:hover .green {
+  top: 0px;
+  left: 0px;
   transition: 1s;
+}
+
+.footer ul li .green {
+  width: 50px;
+  height: 50px;
+  background-color: #518432;
+  position: absolute;
+  top: 100px;
+  left: 5px;
 }
 
 .footer-copyright p {
