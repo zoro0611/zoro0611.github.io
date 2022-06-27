@@ -292,7 +292,7 @@
         to{transform: scale(1);}
     }
     img{
-        width: 100%;
+        width: 350px;
         vertical-align: bottom;
     }
 }
@@ -347,7 +347,7 @@
         padding-bottom: 10px;
     }
     .display .imgPlacer{
-        width: 100%;
+        width: 80%;
         
         left: 0;
         right: 0;
@@ -379,8 +379,65 @@
     position: relative;
     width: 100%;
     overflow: hidden;
+    > a{
+        position: relative;
+        
+    } 
+    a img:first-of-type{
+        position: absolute;
+        opacity: 0;
+    }
+    :hover a img:first-of-type{
+        opacity: 1;
+    }
+    
+    .shadow-layer{
+        width: 100%;
+        height: 240px;
+        background-color: #fff8;
+        opacity: 0;
+        position: absolute;
+        z-index: 35;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+
+    }
+    :hover .shadow-layer{
+        opacity: 1;
+    }
     // padding-bottom: 25px;
     // RWD再寫
+    .view-list{
+        display: flex;
+        position: absolute;
+        top: 100px;
+        right: 20px;
+        z-index: 40;
+        opacity: 0;
+        pointer-events:none;
+        
+        a{
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: #fff;
+            box-sizing: border-box;
+            margin-right: 10px;
+            border-radius: 50%;
+            position: relative;
+            
+        }
+
+        i{
+            position: relative;
+            top: 5px;
+            right: 3px;
+            
+            color: #000;
+            
+        }
+    }
     h3,span{
         display: block;
         text-align: center;
@@ -984,7 +1041,7 @@
         }
     }
     .intro .plant-img{
-        width: 600px;//改
+        width: 400px;//改
     }
     .intro .line-ctrl{
         display: none;//改
@@ -999,12 +1056,11 @@
             display: flex;
             align-items: center;
         }
-        .display ul, .imgPlacer{
+        .display ul{
             width: 33.33333%; //改
         }
-    }
-//benefit結束
 
+    }
     .staff-pick h2{
         font-size: 30px;
     }
@@ -1015,6 +1071,28 @@
             left: 0px;
             top: 40px;
     }
+
+    .staff-pick .item{
+        .view-list{
+            position: absolute;
+            top: 200px;
+            right: 100px;
+            z-index: 40;
+            opacity: 0;
+        }
+    }
+
+    .staff-pick .item:hover .view-list
+    {
+        opacity: 1;
+    }
+
+    .staff-pick .item .shadow-layer{
+        height: 415px;
+    }
+
+
+
 //staff-pick結束
 
     .product-video{
@@ -1057,11 +1135,16 @@
         }
     }
 
-//shop-ig結束
+    //shop-ig結束
     .footer-service{
         ul li:not(:first-child):before {
             display: inline-block;
         }
     }
-//footer結束
+    //footer結束
+
+
 }
+
+
+   
