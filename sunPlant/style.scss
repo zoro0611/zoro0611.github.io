@@ -1,7 +1,5 @@
 *{
-    #gtx-trans{
-        display: none;
-    }
+    
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -13,8 +11,14 @@
         padding: 5px 15px;
     }
 }
+
+
+// .mainbox{width:998px;height:auto;}
+
 body{
     position: relative;
+    margin:0 auto;
+    text-align:center;
 }
 .wrap{
     width: 100%;
