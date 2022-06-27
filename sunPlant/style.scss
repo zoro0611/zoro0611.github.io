@@ -383,11 +383,11 @@
         position: relative;
         
     } 
-    a img:first-of-type{
+    img:first-of-type{
         position: absolute;
         opacity: 0;
     }
-    :hover a img:first-of-type{
+    :hover img:first-of-type{
         opacity: 1;
     }
     
@@ -415,7 +415,7 @@
         right: 20px;
         z-index: 40;
         opacity: 0;
-        pointer-events:none;
+        display: none;
         
         a{
             display: block;
@@ -1041,7 +1041,7 @@
         }
     }
     .intro .plant-img{
-        width: 400px;//改
+        width: 300px;//改
     }
     .intro .line-ctrl{
         display: none;//改
@@ -1059,6 +1059,9 @@
         .display ul{
             width: 33.33333%; //改
         }
+        .display .imgPlacer{
+            width: 400px;
+        }
 
     }
     .staff-pick h2{
@@ -1074,6 +1077,7 @@
 
     .staff-pick .item{
         .view-list{
+            display: flex;
             position: absolute;
             top: 200px;
             right: 100px;
@@ -1081,6 +1085,7 @@
             opacity: 0;
         }
     }
+
 
     .staff-pick .item:hover .view-list
     {

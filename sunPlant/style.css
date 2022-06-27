@@ -366,11 +366,11 @@
 .staff-pick .item > a {
   position: relative;
 }
-.staff-pick .item a img:first-of-type {
+.staff-pick .item img:first-of-type {
   position: absolute;
   opacity: 0;
 }
-.staff-pick .item :hover a img:first-of-type {
+.staff-pick .item :hover img:first-of-type {
   opacity: 1;
 }
 .staff-pick .item .shadow-layer {
@@ -394,7 +394,7 @@
   right: 20px;
   z-index: 40;
   opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 .staff-pick .item .view-list a {
   display: block;
@@ -922,7 +922,7 @@
   }
 
   .intro .plant-img {
-    width: 400px;
+    width: 300px;
   }
 
   .intro .line-ctrl {
@@ -939,6 +939,9 @@
   .benefits .display ul {
     width: 33.33333%;
   }
+  .benefits .display .imgPlacer {
+    width: 400px;
+  }
 
   .staff-pick h2 {
     font-size: 30px;
@@ -954,6 +957,7 @@
   }
 
   .staff-pick .item .view-list {
+    display: flex;
     position: absolute;
     top: 200px;
     right: 100px;
