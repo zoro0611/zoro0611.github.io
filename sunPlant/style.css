@@ -4,6 +4,9 @@
   text-decoration: none;
   color: black;
 }
+* #gtx-trans {
+  display: none;
+}
 * i {
   color: #518432;
   font-size: 25px;
