@@ -36,7 +36,7 @@
   top: 0px;
   left: -1000px;
   bottom: 0;
-  width: 380px;
+  width: 375px;
   background-color: white;
   z-index: 40;
 }
@@ -179,7 +179,7 @@
 }
 
 .close-menu {
-  width: 380px;
+  width: 375px;
   position: fixed;
   background-color: #518432;
   bottom: 0;
@@ -363,9 +363,13 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 .staff-pick .item > a {
-  position: relative;
+  width: 100%;
 }
 .staff-pick .item img:first-of-type {
   position: absolute;
@@ -376,7 +380,7 @@
 }
 .staff-pick .item .shadow-layer {
   width: 100%;
-  height: 240px;
+  aspect-ratio: 210/240;
   background-color: rgba(255, 255, 255, 0.5333333333);
   opacity: 0;
   position: absolute;
@@ -389,10 +393,8 @@
   opacity: 1;
 }
 .staff-pick .item .view-list {
-  display: flex;
+  width: 100%;
   position: absolute;
-  top: 100px;
-  right: 20px;
   z-index: 40;
   opacity: 0;
   display: none;
@@ -403,14 +405,15 @@
   height: 50px;
   background-color: #fff;
   box-sizing: border-box;
-  margin-right: 10px;
+  margin-right: 20px;
   border-radius: 50%;
   position: relative;
 }
 .staff-pick .item .view-list i {
   position: relative;
-  top: 5px;
-  right: 3px;
+  top: 12px;
+  right: 1px;
+  font-size: 20px;
   color: #000;
 }
 .staff-pick .item h3, .staff-pick .item span {
@@ -441,6 +444,7 @@
   border-bottom-right-radius: 50%;
   font-weight: bold;
   font-size: 14px;
+  z-index: 51;
 }
 
 .col:nth-of-type(5) .sale {
@@ -624,7 +628,7 @@
   color: white;
   position: relative;
   top: 9px;
-  right: 3px;
+  right: 2px;
   z-index: 10;
 }
 .footer-media a {
@@ -642,7 +646,7 @@
 .footer-media a:hover .green {
   top: 0px;
   left: 0px;
-  transition: 1s;
+  transition: 0.3s;
 }
 
 .footer ul li .green {
@@ -961,10 +965,13 @@
   .staff-pick .item .view-list {
     display: flex;
     position: absolute;
-    top: 200px;
-    right: 100px;
-    z-index: 40;
+    justify-content: center;
+    z-index: 41;
     opacity: 0;
+  }
+
+  .view-list:hover ~ a, .shadow-layer {
+    opacity: 1;
   }
 
   .staff-pick .item:hover .view-list {
@@ -972,7 +979,7 @@
   }
 
   .staff-pick .item .shadow-layer {
-    height: 440px;
+    background-color: rgba(255, 255, 255, 0.5333333333);
   }
 
   .staff-pick .item a {
