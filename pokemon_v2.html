@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            position: fixed;
+            background-color: #ccc;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 20px;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 100px;
+            justify-content: flex-start;
+
+
+        }
+
+        ul li {
+            display: block;
+            width: calc(100%/6);
+            list-style: none;
+
+        }
+
+        ul li img {
+            width: 100%;
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="button-group">
+        <p>寶可夢圖鑑大全</p>
+
+        <button id="open-each">逐一打開</button>
+        <button id="open-byStep">漸進全開</button>
+        <button id="open-all">一次全開</button>
+        <button id="clear-all">清除全部</button>
+    </div>
+
+
+
+    <ul id="container">
+
+
+    </ul>
+
+
+    <script>
+
+
+
+
+        function Clear() {
+            container.innerHTML = '';
+            count = 1;
+        }
+
+
+        let btnOpenEach = document.getElementById('open-each');
+        let btnOpenByStep = document.getElementById('open-byStep');
+        let btnOpenAll = document.getElementById('open-all');
+        let btnClearAll = document.getElementById('clear-all');
+
+        let container = document.getElementById('container');
+
+        var urlNum;
+        let count = 1;
+        btnOpenEach.addEventListener('click', () => {
+
+            if (count < 10) {
+                urlNum = "00" + count.toString();
+            }
+            else if (count < 100) {
+                urlNum = "0" + count.toString();
+            }
+            else {
+                urlNum = count.toString();
+            }
+
+            let li = document.createElement("li");
+            let pic = `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${urlNum}.png">`
+            li.innerHTML = pic;
+            li.setAttribute('id', 'pokemon');
+            container.append(li)
+            count++;
+
+
+        });
+
+        //從這開始
+
+        btnOpenByStep.addEventListener('click', () => {
+
+            setInterval(
+                function () {
+                    btnOpenEach.click()
+                    if (countEach > 905) {
+                        clearInterval(interval);
+                    }
+                }, 300)
+
+        });
+
+
+
+
+
+        //
+
+        btnOpenAll.addEventListener('click', () => {
+            Clear();
+            btnOpenEach.setAttribute('disabled', "disabled");
+            for (var i = 1; i <= 905; i++) {
+
+                if (i < 10) {
+                    urlNum = "00" + i.toString();
+                }
+                else if (i < 100) {
+                    urlNum = "0" + i.toString();
+
+                }
+                else {
+                    urlNum = i.toString();
+                }
+
+                let li = document.createElement("li");
+                let pic = `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${urlNum}.png">`
+                li.innerHTML = pic;
+                li.setAttribute('id', 'pokemon');
+                container.append(li)
+            }
+
+            let item = document.querySelectorAll('#pokemon');
+
+
+
+        });
+
+
+
+
+
+        btnClearAll.addEventListener('click', () => {
+            Clear();
+            
+            btnOpenEach.disabled = false;
+            clearInterval(interval);
+        });
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
