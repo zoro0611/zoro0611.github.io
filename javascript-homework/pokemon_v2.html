@@ -65,15 +65,7 @@
 
     <script>
 
-
-
-
-        function Clear() {
-            container.innerHTML = '';
-            count = 1;
-        }
-
-
+        //命名變數
         let btnOpenEach = document.getElementById('open-each');
         let btnOpenByStep = document.getElementById('open-byStep');
         let btnOpenAll = document.getElementById('open-all');
@@ -81,9 +73,15 @@
 
         let container = document.getElementById('container');
 
+
+        
+
+        
+
         var urlNum;
         let count = 1;
         btnOpenEach.addEventListener('click', () => {
+
 
             if (count < 10) {
                 urlNum = "00" + count.toString();
@@ -91,14 +89,17 @@
             else if (count < 100) {
                 urlNum = "0" + count.toString();
             }
-            else {
+            else if (count < 906){
                 urlNum = count.toString();
+            }
+            else{
+                return
+                
             }
 
             let li = document.createElement("li");
             let pic = `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${urlNum}.png">`
             li.innerHTML = pic;
-            li.setAttribute('id', 'pokemon');
             container.append(li)
             count++;
 
@@ -109,14 +110,14 @@
 
         btnOpenByStep.addEventListener('click', () => {
 
-            setInterval(
-                function () {
-                    btnOpenEach.click()
-                    if (countEach > 905) {
+            var interval = setInterval(
+                function() {
+                    btnOpenEach.click();
+                    if ( count > 905){
                         clearInterval(interval);
                     }
-                }, 300)
-
+                }, 1000)
+                btnOpenByStep.disabled = true;
         });
 
 
@@ -128,6 +129,9 @@
         btnOpenAll.addEventListener('click', () => {
             Clear();
             btnOpenEach.setAttribute('disabled', "disabled");
+            btnOpenByStep.setAttribute('disabled', "disabled");
+            btnOpenAll.setAttribute('disabled', "disabled");
+            
             for (var i = 1; i <= 905; i++) {
 
                 if (i < 10) {
@@ -148,10 +152,6 @@
                 container.append(li)
             }
 
-            let item = document.querySelectorAll('#pokemon');
-
-
-
         });
 
 
@@ -161,10 +161,18 @@
         btnClearAll.addEventListener('click', () => {
             Clear();
             
-            btnOpenEach.disabled = false;
-            clearInterval(interval);
+            
+            
         });
 
+        //清除方法
+        function Clear() {
+            container.innerHTML = '';
+            count = 1;
+            btnOpenEach.disabled = false;
+            btnOpenByStep.disabled = false;
+            btnOpenAll.disabled = false;
+        }
 
 
 
