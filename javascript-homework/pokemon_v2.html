@@ -52,6 +52,7 @@
         <button id="open-each">逐一打開</button>
         <button id="open-byStep">漸進全開</button>
         <button id="open-all">一次全開</button>
+        <button id="stop-byStep">停止漸進</button>
         <button id="clear-all">清除全部</button>
     </div>
 
@@ -65,16 +66,22 @@
 
     <script>
 
-        //命名變數
         let container = document.getElementById('container');
 
         let btnOpenEach = document.getElementById('open-each');
         let btnOpenByStep = document.getElementById('open-byStep');
+        let btnStopByStep = document.getElementById('stop-byStep');
         let btnOpenAll = document.getElementById('open-all');
         let btnClearAll = document.getElementById('clear-all');
 
+        //初始畫面限制點擊"停止漸進"
+        btnStopByStep.disabled = true;
+        
+
+        //命名變數
+
         // 單獨button & 全開button => 共同使用  
-        var urlNum; 
+        var urlNum;
 
         /* 
             方法一
@@ -83,10 +90,13 @@
             step-3: container加入list
          */
         function CreatePokemon() {
-            let li = document.createElement("li");
-            let pic = `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${urlNum}.png">`
-            li.innerHTML = pic;
-            container.append(li)
+            if (count != 0 && count <= 905) {
+                let li = document.createElement("li");
+                let pic = `<img src="https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${urlNum}.png">`
+                li.innerHTML = pic;
+                container.append(li)
+            }
+
         }
 
         /* 
@@ -96,49 +106,70 @@
             3. 重設Button(1~3)的點擊功能
          */
         function Clear() {
+
             container.innerHTML = '';
             count = 1;
             btnOpenEach.disabled = false;
             btnOpenByStep.disabled = false;
             btnOpenAll.disabled = false;
+
         }
 
-        //Button1: 逐一打開
-        let count = 1;
-        btnOpenEach.addEventListener('click', () => {
-
+        /* 
+            方法三
+            判斷圖片序號前面是否要有0
+         */
+        function SetLink() {
             if (count < 10) {
                 urlNum = "00" + count.toString();
             }
             else if (count < 100) {
                 urlNum = "0" + count.toString();
-            }
-            else if (count < 906) {
-                urlNum = count.toString();
-            }
-            else {
-                return
 
             }
+            else {
+                urlNum = count.toString();
+            }
+        }
+
+
+        //Button1: 逐一打開
+        let count = 1;
+        btnOpenEach.addEventListener('click', () => {
+
+            SetLink();
 
             CreatePokemon();
 
             count++;
-
+            
 
         });
+
 
         //Button2: 漸進全開
         btnOpenByStep.addEventListener('click', () => {
 
-            var interval = setInterval(
-                function () {
-                    btnOpenEach.click();
-                    if (count > 905) {
-                        clearInterval(interval);
-                    }
-                }, 1000)
+            var interval = setInterval(function () {
+                btnOpenEach.click();
+                if (count > 905) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+
             btnOpenByStep.disabled = true;
+            btnOpenByStep.disabled = true;
+            btnClearAll.disabled = true;
+            btnStopByStep.disabled = false;
+        });
+
+
+        //Button2-1:停止漸進
+        btnStopByStep.addEventListener('click', () => {
+            count = 906;
+            btnClearAll.disabled = false;
+            btnOpenEach.disabled = true;
+            btnStopByStep.disabled = true;
         });
 
 
@@ -152,27 +183,22 @@
             btnOpenByStep.setAttribute('disabled', "disabled");
             btnOpenAll.setAttribute('disabled', "disabled");
 
-            for (var i = 1; i <= 905; i++) {
+            for (count = 1; count < 906; count++) {
 
-                if (i < 10) {
-                    urlNum = "00" + i.toString();
-                }
-                else if (i < 100) {
-                    urlNum = "0" + i.toString();
-
-                }
-                else {
-                    urlNum = i.toString();
-                }
+                SetLink();
 
                 CreatePokemon();
             }
+            btnClearAll.disabled = false;
+            btnStopByStep.disabled = true;
 
         });
 
         //Button4: 清除全部
         btnClearAll.addEventListener('click', () => {
+
             Clear();
+            
         });
 
     </script>
