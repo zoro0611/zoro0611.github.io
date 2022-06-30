@@ -146,19 +146,18 @@
 
         });
 
-
+        var internal = null;
         //Button2: 漸進全開
         btnOpenByStep.addEventListener('click', () => {
 
-            var interval = setInterval(function () {
+            interval = setInterval(function () {
                 btnOpenEach.click();
                 if (count > 905) {
                     clearInterval(interval);
                 }
             }, 1000);
-
             btnOpenByStep.disabled = true;
-            btnOpenByStep.disabled = true;
+            
             btnClearAll.disabled = true;
             btnStopByStep.disabled = false;
         });
@@ -166,9 +165,9 @@
 
         //Button2-1:停止漸進
         btnStopByStep.addEventListener('click', () => {
-            count = 906;
+            clearInterval(interval);
             btnClearAll.disabled = false;
-            btnOpenEach.disabled = true;
+            btnOpenByStep.disabled = false;
             btnStopByStep.disabled = true;
         });
 
