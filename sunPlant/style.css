@@ -950,6 +950,10 @@
   .benefits .display .imgPlacer {
     width: 400px;
   }
+  .benefits .display ul:nth-of-type(1) h3,
+.benefits .display ul:nth-of-type(1) p {
+    text-align: right;
+  }
 
   .staff-pick h2 {
     font-size: 30px;

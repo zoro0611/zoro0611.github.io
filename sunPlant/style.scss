@@ -1069,9 +1069,15 @@
         }
         .display ul{
             width: 33.33333%; //改
+            
         }
         .display .imgPlacer{
             width: 400px;
+        }
+        .display ul:nth-of-type(1) h3,
+        .display ul:nth-of-type(1) p
+        {
+            text-align: right;
         }
     }
     .staff-pick h2{
