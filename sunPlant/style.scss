@@ -286,7 +286,7 @@
     aspect-ratio: 360/353;
     position: absolute;
     bottom: 30px;
-    right: 0;
+    right: 0px;
     animation: appear 2s ease 1;
     @keyframes appear {
         from{transform: scale(.8);}
@@ -1041,6 +1041,7 @@
 
     .intro{
         padding: 100px 0;//改
+        
     }
     .intro .intro-text{
         margin-left: 150px;//改
@@ -1049,7 +1050,9 @@
         }
     }
     .intro .plant-img{
-        width: 300px;//改
+        width: 400px;//改
+        right: 100px;
+        bottom: 100px;
     }
     .intro .line-ctrl{
         display: none;//改

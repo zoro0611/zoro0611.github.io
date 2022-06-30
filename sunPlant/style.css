@@ -260,7 +260,7 @@
   aspect-ratio: 360/353;
   position: absolute;
   bottom: 30px;
-  right: 0;
+  right: 0px;
   -webkit-animation: appear 2s ease 1;
           animation: appear 2s ease 1;
 }
@@ -928,7 +928,9 @@
   }
 
   .intro .plant-img {
-    width: 300px;
+    width: 400px;
+    right: 100px;
+    bottom: 100px;
   }
 
   .intro .line-ctrl {
