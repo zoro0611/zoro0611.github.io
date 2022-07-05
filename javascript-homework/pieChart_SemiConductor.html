@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        table{
+            left: 0;right: 0;
+            margin: auto;
+        }
+        td,
+        th {
+            border: 1px solid black;
+        }
+
+        thead {
+            background-color: #000;
+            color: white;
+            text-align: center;
+        }
+
+        tbody {
+            text-indent: 5px;
+        }
+
+        td {
+            width: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <canvas id="mkShare"></canvas>
+    <table class="table table-bordered table-striped">
+        <!-- <thead>
+            <tr>
+                <th>排名</th>
+                <th>公司名稱</th>
+                <th>國別</th>
+                <th>市佔率</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>台積電</td>
+                <td>台灣</td>
+                <td>53.1%</td>
+            </tr>
+        </tbody> -->
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"
+    integrity="sha512-G8JE1Xbr0egZE5gNGyUm1fF764iHVfRXshIoUWCTPAbKkkItp/6qal5YAHXrxEu4HNfPTQs6HOu3D5vCGS1j3w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <div id="container">
+
+    </div>
+
+    <script>
+
+        var semiRanking = {
+            title:
+                [
+                    '排名', '公司', '國別', '市佔率%'
+                ],
+
+            semiData:
+                [
+                    { no: 1, company: '台積電', country: '台灣', marketShare: 53.1 },
+                    { no: 2, company: '三星電子', country: '韓國', marketShare: 17.3 },
+                    { no: 3, company: '聯電', country: '台灣', marketShare: 7.2 },
+                    { no: 4, company: '格羅方德', country: '美國', marketShare: 6.1 },
+                    { no: 5, company: '中芯國際', country: '中國', marketShare: 5.3 },
+                    { no: 6, company: '華虹半導體', country: '中國', marketShare: 2.6 },
+                    { no: 7, company: '力積電', country: '台灣', marketShare: 1.8 },
+                    { no: 8, company: '世界先進', country: '台灣', marketShare: 1.4 },
+                    { no: 9, company: '高塔半導體', country: '以色列', marketShare: 1.4 },
+                    { no: 10, company: '東部高科', country: '南韓', marketShare: 1 },
+
+                ]
+        }
+        let container;
+        let table, thead, tbody;
+        let headInfo = semiRanking.title;
+        let bodyInfo = semiRanking.semiData;
+
+        let companies = [], data = [];
+
+
+        window.onload = function () {
+            container = document.getElementById('container');
+            table = document.createElement('table');
+            thead = document.createElement('thead');
+            tbody = document.createElement('tbody');
+            drawPieChart(companies, data);
+            CreateTHead();
+            CreateTBody();
+
+            bodyInfo.forEach(corp => {
+                companies.push(corp.company);
+                data.push(corp.marketShare)
+
+            });
+
+            
+        }
+
+        function drawPieChart(companyArray, dataArray) {
+            //Pie Chart圓餅圖
+            let ctxPie = document.getElementById("mkShare");
+            var pieChart = new Chart(ctxPie, {
+                type: 'pie',
+                data: {
+                    labels: companyArray,
+                    datasets: [{
+                        data: dataArray,
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255,75,50)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)',
+                            'rgb(255, 138, 64)',
+                            'rgb(142, 65, 64)',
+                            'rgb(59, 72, 64)'
+                        ]
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        fontSize: 26,
+                        text: '2021年全球晶圓代工市佔率%'
+                    },
+                    tooltips: {
+                        mode: 'point',
+                        intersect: true,
+                    },
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            fontColor: 'black',
+                        }
+                    }
+                }
+            });
+        }
+
+
+        function CreateTHead() {
+            var tr = document.createElement('tr');
+            headInfo.forEach((item) => {
+
+                var th = document.createElement('th');
+                th.innerText = item;
+                tr.append(th);
+
+            });
+            thead.append(tr);
+            table.append(thead);
+            container.append(table);
+        }
+
+        function CreateTBody() {
+            bodyInfo.forEach((eachItem) => {
+                var tr = document.createElement('tr');
+                var values = Object.values(eachItem);
+                values.forEach((data) => {
+                    var td = document.createElement('td');
+                    td.innerText = data;
+                    tr.append(td);
+
+                });
+                tbody.append(tr);
+                table.append(tbody);
+
+
+            });
+
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
