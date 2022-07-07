@@ -9,7 +9,7 @@
     <style>
         .hintArea {
 
-            
+
             text-align: center;
             left: 0;
             right: 0;
@@ -102,7 +102,7 @@
     <div class="hintArea">
         <h1></h1>
     </div>
-    <button id="randomBtn" onclick="answer.innerText = getRndInteger(0, 101), this.disabled=true;">產生數字</button>
+    <button id="randomBtn" onclick="answer.innerText = getRndInteger(0, 101), this.disabled=true, input.disabled = false;">產生數字</button>
     <input type="text" id="input" placeholder="請輸入兩位數字">
 
     <div class="numberArea">
@@ -130,6 +130,9 @@
 
 
     <script>
+
+
+
         let answer = document.getElementById('answer');
         let input = document.getElementById('input');
         // console.log(input);
@@ -156,24 +159,38 @@
         btns.forEach((btn, index) => {
 
             //缺乏判斷式
-                btn.addEventListener('click', (event) => {
-                    // if(parseInt(input.value)<100 && parseInt(input.value)>0){
-                    //     input.value += this.event.target.innerText;
-                    // }
-                    input.value += this.event.target.innerText;
-                    // if(input.value.length > 2){
-                    //     alert('請勿輸入超過二位數字');
-                    //     input.value = '';
-                    // }
-                    if(parseInt(input.value)>100){
-                        alert('請勿輸入超過100');
-                        input.value = '';
-                    }
+            btn.addEventListener('click', (event) => {
+                // if(parseInt(input.value)<100 && parseInt(input.value)>0){
+                //     input.value += this.event.target.innerText;
+                // }
+                input.value += this.event.target.innerText;
+                // if(input.value.length > 2){
+                //     alert('請勿輸入超過二位數字');
+                //     input.value = '';
+                // }
+                if (parseInt(input.value) > 100) {
+                    alert('請勿輸入超過100');
+                    input.value = '';
+                }
+                if (input.value.toString() == '00') {
+                    alert('輸入「00」無效，請重新輸入');
+                    input.value = '';
+                }
+                if(answer.innerText == ''){
+                    input.value = '';
+                    alert('請先產生隨機數字');
+                }
 
-                });
+            });
+
 
 
         });
+
+        window.onload = function () {
+            input.disabled = true;
+            
+        }
 
         clearBtn.addEventListener('click', () => {
             input.value = '';
@@ -195,7 +212,7 @@
         hintArea.innerText = (`提示: ${bottomLimit} ~ ${topLimit}`);
 
         function JudgeInput() {
-            if(parseInt(input.value)>topLimit || parseInt(input.value)<bottomLimit){
+            if (parseInt(input.value) > topLimit || parseInt(input.value) < bottomLimit) {
                 alert('請輸入範圍內的數字');
                 input.value = '';
                 return;
