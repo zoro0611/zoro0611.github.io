@@ -9,7 +9,7 @@
     <style>
         .hintArea {
 
-            padding: 30px 100px;
+            padding: 30px 50px;
             text-align: center;
             left: 0;
             right: 0;
@@ -192,7 +192,7 @@
         var bottomLimit = 0;
         let hintArea = document.querySelector('.hintArea > h1');
         // console.log(hintArea);
-        hintArea.innerText = (`${bottomLimit} ~ ${topLimit}`);
+        hintArea.innerText = (`提示: ${bottomLimit} ~ ${topLimit}`);
 
         function JudgeInput() {
             if(parseInt(input.value)>topLimit || parseInt(input.value)<bottomLimit){
@@ -232,7 +232,7 @@
                     input.value = '';
                 }
 
-                hintArea.innerText = (`${bottomLimit} ~ ${topLimit}`);
+                hintArea.innerText = (`提示: ${bottomLimit} ~ ${topLimit}`);
 
 
             }
