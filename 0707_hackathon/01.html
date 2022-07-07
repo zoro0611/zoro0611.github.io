@@ -213,7 +213,7 @@
 
         function JudgeInput() {
             if (parseInt(input.value) > topLimit || parseInt(input.value) < bottomLimit) {
-                alert('請輸入範圍內的數字');
+                alert(`請輸入${bottomLimit}~${topLimit}之間的數字`);
                 input.value = '';
                 return;
             }
