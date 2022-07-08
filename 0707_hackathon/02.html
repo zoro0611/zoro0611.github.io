@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .btn-group {
+            margin: 20px 20px;
+            display: flex;
+            justify-content: center;
+
+        }
+
+
+        button {
+            flex-grow: 1;
+            height: 40px;
+            cursor: pointer;
+            border-style: none;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        ul {
+            height: 300px;
+            list-style: none;
+            border: 1px solid #ccc;
+            overflow-y: auto;
+
+            margin: 20px 20px;
+        }
+
+        ul li {
+            height: 58px;
+            border: 1px solid #ccc;
+
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        ul span {
+            display: inline-block;
+
+            margin-right: 5px;
+            background-color: #f00;
+            padding: 2px 5px;
+            border-radius: 10%;
+            margin-left: 15px;
+            color: white;
+
+        }
+
+
+        .inputArea {
+
+            height: 40px;
+            margin: 0 20px;
+            display: flex;
+
+            border: 1px solid #ccc;
+        }
+
+        .inputArea span {
+            display: inline-block;
+            width: 15%;
+            background-color: #ccc8;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+        .inputArea input {
+            width: 75%;
+            border: none;
+            outline: none;
+        }
+
+        #guessBtn {
+            width: 10%;
+
+        }
+
+        #guessInput {
+
+            outline: none;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="btn-group">
+        <button id="startBtn">開始</button>
+        <button id="redoBtn">放棄重來</button>
+        <button id="showAnsBtn">看答案</button>
+    </div>
+
+    <ul id="inputList">
+
+        <!-- <li>
+            <p>
+                <span style="background-color: green;">1A1B</span>
+                1234
+            </p>
+        </li> -->
+
+
+    </ul>
+
+    <div class="inputArea">
+        <span>猜答案</span>
+        <input type="text" id="inputNumber" maxlength="4" placeholder=" 輸入4個不重複數字">
+        <button id="guessBtn">猜!</button>
+
+
+    </div>
+
+
+    <script>
+
+
+
+        window.onload = () => {
+            let startBtn = document.getElementById('startBtn');
+            let redoBtn = document.getElementById('redoBtn');
+            let showAnsBtn = document.getElementById('showAnsBtn');
+            let guessBtn = document.getElementById('guessBtn');
+
+            //輸入欄位
+            let inputNumber = document.getElementById('inputNumber');
+
+            //輸入後的ul集合，裏頭裝list
+            let inputList = document.getElementById('inputList');
+
+
+        }
+
+        // 玩家輸入值轉數字陣列
+
+
+
+
+        //放答案的變數answer
+        var answerArray;
+
+        //開始&生成答案的按鈕
+        startBtn.addEventListener('click', () => {
+            //開始按鈕功能
+            alert('遊戲開始囉~在下方輸入4個不重複數字');
+            //隨機產生四個不重複數字
+            answerArray = randomGenerator();
+            startBtn.disabled = true;
+            // console.log(answerArray);
+        });
+        function randomGenerator() {
+            var arr = [];
+            for (i = 0; i < 4; i++) {
+                var num = Math.floor(Math.random() * 10);
+                for (j = 0; j < arr.length; j++) {
+                    if (arr[j] == num) {
+                        arr.splice(j, 1);
+                        i--;
+                    }
+                }
+                arr.push(num);
+            }
+            return arr;
+            // alert(arr);
+        }
+
+        //重來的按鈕
+        redoBtn.addEventListener('click', () => {
+            //放棄重來按鈕功能
+            inputNumber.value = '';
+            alert('遊戲重啟');
+            window.location.reload();
+
+        });
+
+        //看答案的按鈕
+        showAnsBtn.addEventListener('click', () => {
+            //看答案按鈕功能
+            if (answerArray == null) {
+                alert('遊戲尚未開始，請先按下【開始】按鈕!!')
+
+            }
+            else {
+                var answerStr = '';
+                answerArray.forEach((i) => {
+                    answerStr += i.toString();
+                });
+                console.log(answerStr);
+                alert('答案是: ' + answerStr);
+            }
+
+        });
+
+
+
+        guessBtn.addEventListener('click', () => {
+            var A = 0;
+            var B = 0;
+            let li = document.createElement('li');
+            let p = document.createElement('p');
+            let numberArray = [];
+            inputNumber.value.split('').forEach((str) => {
+
+                numberArray.push(parseInt(str));
+            });
+
+            function onlyUnique(value, index, self) {
+                return self.indexOf(value) === index;
+            }
+            var unique = numberArray.filter(onlyUnique);
+            console.log(unique);
+            if (unique.length != 4) {
+                inputNumber.value = '';
+                alert('輸入不正確，請重新輸入4個不重複數字!!');
+            }
+
+            else {
+                // 2. 判斷玩家輸入跟答案
+                //  答案的int陣列: answerArray
+                //  玩家的int陣列: numberArray
+
+                //判斷輸入是否重複
+
+
+                //判斷交集相同數 ，變數用same
+                let result = answerArray.filter((e) => {
+                    return numberArray.indexOf(e) > -1
+                })
+                var same = result.length;
+
+                //判斷A有幾個
+                for (i = 0; i < 4; i++) {
+                    if (numberArray[i] == answerArray[i]) {
+                        A++;
+                    }
+                }
+                //B: 用交集相同數 減去 A 得出
+                B = same - A;
+
+                console.log(same);
+                console.log('A: ' + A);
+                console.log('B: ' + B);
+
+
+                // 3. 產生list
+                // <li>
+                //     <p>
+                //         <span>1A1B</span>
+                //         1234
+                //     </p>
+                // </li>
+
+                
+                if (A == 4) {
+                    p.innerHTML = `<span style="background-color: green;">${A}A${B}B</span> ${inputNumber.value}`;
+                    
+                    guessBtn.disabled = true;
+                    startBtn.disabled = false;
+                    inputNumber.value = '';
+                    alert('你贏囉!!要再次遊玩請按下【開始】按鈕');
+
+                }
+                else {
+                    p.innerHTML = `<span>${A}A${B}B</span> ${inputNumber.value}`;
+                }
+                li.append(p);
+                inputList.append(li);
+                inputNumber.value = '';
+            }
+
+
+
+
+        });
+
+    </script>
+
+</body>
+
+</html>
