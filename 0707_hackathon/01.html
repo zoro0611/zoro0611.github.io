@@ -102,7 +102,8 @@
     <div class="hintArea">
         <h1></h1>
     </div>
-    <button id="randomBtn" onclick="answer.innerText = getRndInteger(0, 101), this.disabled=true, input.disabled = false;">產生數字</button>
+    <button id="randomBtn"
+        onclick="answer.innerText = getRndInteger(0, 101), this.disabled=true, input.disabled = false;">產生數字</button>
     <input type="text" id="input" placeholder="請輸入兩位數字">
 
     <div class="numberArea">
@@ -154,7 +155,23 @@
         let btns = document.querySelectorAll('.numberArea > button');
         // console.log(btns);
 
-
+        function inputBtnNum(event) {
+            input.value += event.target.innerText;
+        }
+        function judgeError() {
+            if (parseInt(input.value) > 100) {
+                alert('請勿輸入超過100');
+                input.value = '';
+            }
+            if (input.value.toString() == '00') {
+                alert('輸入「00」無效，請重新輸入');
+                input.value = '';
+            }
+            if (answer.innerText == '') {
+                input.value = '';
+                alert('請先產生隨機數字');
+            }
+        }
 
         btns.forEach((btn, index) => {
 
@@ -163,23 +180,12 @@
                 // if(parseInt(input.value)<100 && parseInt(input.value)>0){
                 //     input.value += this.event.target.innerText;
                 // }
-                input.value += this.event.target.innerText;
+                inputBtnNum(event);
                 // if(input.value.length > 2){
                 //     alert('請勿輸入超過二位數字');
                 //     input.value = '';
                 // }
-                if (parseInt(input.value) > 100) {
-                    alert('請勿輸入超過100');
-                    input.value = '';
-                }
-                if (input.value.toString() == '00') {
-                    alert('輸入「00」無效，請重新輸入');
-                    input.value = '';
-                }
-                if(answer.innerText == ''){
-                    input.value = '';
-                    alert('請先產生隨機數字');
-                }
+                judgeError();
 
             });
 
@@ -189,7 +195,7 @@
 
         window.onload = function () {
             input.disabled = true;
-            
+
         }
 
         clearBtn.addEventListener('click', () => {
@@ -212,8 +218,8 @@
         hintArea.innerText = (`提示: ${bottomLimit} ~ ${topLimit}`);
 
         function JudgeInput() {
-            if (parseInt(input.value) > topLimit || parseInt(input.value) < bottomLimit) {
-                alert(`請輸入${bottomLimit}~${topLimit}之間的數字`);
+            if (parseInt(input.value) > topLimit-1 || parseInt(input.value) < bottomLimit+1) {
+                alert(`請輸入${bottomLimit+1}~${topLimit-1}之間的數字`);
                 input.value = '';
                 return;
             }
@@ -231,7 +237,7 @@
                     location.reload();
                 }
                 if (parseInt(input.value) > parseInt(answer.innerText)) {
-                    alert('輸入比答案大!');
+                    alert(`您輸入的是${input.value}，比正確答案大!`);
                     // 二. else 答案不正確
                     // #1. guess > answer
                     //     bottomLimit == guess
@@ -244,12 +250,12 @@
                 // #2. guess < answer
                 //     topLimit == guess
                 if (parseInt(input.value) < parseInt(answer.innerText)) {
-                    alert('輸入比答案小!');
+                    alert(`您輸入的是${input.value}，比正確答案小!`);
                     bottomLimit = parseInt(input.value);
                     input.value = '';
                 }
 
-                hintArea.innerText = (`提示: ${bottomLimit} ~ ${topLimit}`);
+                hintArea.innerText = (`提示: ${bottomLimit+1} ~ ${topLimit-1}`);
 
 
             }
