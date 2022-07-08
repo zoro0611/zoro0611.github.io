@@ -182,11 +182,14 @@
             return arr;
             // alert(arr);
         }
+        function resetInput(){
+            inputNumber.value = '';
+        }
 
         //重來的按鈕
         redoBtn.addEventListener('click', () => {
             //放棄重來按鈕功能
-            inputNumber.value = '';
+            resetInput();
             alert('遊戲重啟');
             window.location.reload();
 
@@ -204,7 +207,7 @@
                 answerArray.forEach((i) => {
                     answerStr += i.toString();
                 });
-                console.log(answerStr);
+                // console.log(answerStr);
                 alert('答案是: ' + answerStr);
             }
 
@@ -217,6 +220,7 @@
             var B = 0;
             let li = document.createElement('li');
             let p = document.createElement('p');
+
             let numberArray = [];
             inputNumber.value.split('').forEach((str) => {
 
@@ -228,8 +232,10 @@
             }
             var unique = numberArray.filter(onlyUnique);
             console.log(unique);
+
+            // 1. 判斷玩家輸入數字是否重複 
             if (unique.length != 4) {
-                inputNumber.value = '';
+                resetInput();
                 alert('輸入不正確，請重新輸入4個不重複數字!!');
             }
 
@@ -238,22 +244,20 @@
                 //  答案的int陣列: answerArray
                 //  玩家的int陣列: numberArray
 
-                //判斷輸入是否重複
-
-
-                //判斷交集相同數 ，變數用same
+                //判斷輸入是否重複(3個step)
+                //step1 判斷交集相同數 ，變數用same
                 let result = answerArray.filter((e) => {
                     return numberArray.indexOf(e) > -1
                 })
                 var same = result.length;
 
-                //判斷A有幾個
+                //step2 判斷A有幾個: 兩個array同index是否相等?
                 for (i = 0; i < 4; i++) {
                     if (numberArray[i] == answerArray[i]) {
                         A++;
                     }
                 }
-                //B: 用交集相同數 減去 A 得出
+                //step3 判斷B: 用交集相同數 減去 A 得出
                 B = same - A;
 
                 console.log(same);
@@ -261,7 +265,7 @@
                 console.log('B: ' + B);
 
 
-                // 3. 產生list
+                // 3. 產生list，並加入獲勝條件
                 // <li>
                 //     <p>
                 //         <span>1A1B</span>
@@ -270,21 +274,25 @@
                 // </li>
 
                 
+                //如果全部答對，alert獲勝提醒 && 0A0B的color變綠色
                 if (A == 4) {
                     p.innerHTML = `<span style="background-color: green;">${A}A${B}B</span> ${inputNumber.value}`;
                     
                     guessBtn.disabled = true;
                     
-                    inputNumber.value = '';
+                    resetInput();
                     alert('你贏囉!!要再次遊玩請按下【放棄重來】按鈕');
 
                 }
+                //如果錯誤，顯示0A0B是預設的color是紅色
                 else {
                     p.innerHTML = `<span>${A}A${B}B</span> ${inputNumber.value}`;
                 }
+
+                //將產生li結果加入ul裏頭
                 li.append(p);
                 inputList.append(li);
-                inputNumber.value = '';
+                resetInput();
             }
 
 
