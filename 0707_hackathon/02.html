@@ -157,10 +157,14 @@
         //開始&生成答案的按鈕
         startBtn.addEventListener('click', () => {
             //開始按鈕功能
+
             alert('遊戲開始囉~在下方輸入4個不重複數字');
+            
             //隨機產生四個不重複數字
             answerArray = randomGenerator();
             startBtn.disabled = true;
+            guessBtn.disabled = false;
+            
             // console.log(answerArray);
         });
         function randomGenerator() {
@@ -270,9 +274,9 @@
                     p.innerHTML = `<span style="background-color: green;">${A}A${B}B</span> ${inputNumber.value}`;
                     
                     guessBtn.disabled = true;
-                    startBtn.disabled = false;
+                    
                     inputNumber.value = '';
-                    alert('你贏囉!!要再次遊玩請按下【開始】按鈕');
+                    alert('你贏囉!!要再次遊玩請按下【放棄重來】按鈕');
 
                 }
                 else {
