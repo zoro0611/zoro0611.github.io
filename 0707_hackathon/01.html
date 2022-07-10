@@ -218,11 +218,14 @@
         hintArea.innerText = (`提示: ${bottomLimit} ~ ${topLimit}`);
 
         function JudgeInput() {
-            if (parseInt(input.value) > topLimit-1 || parseInt(input.value) < bottomLimit+1) {
-                alert(`請輸入${bottomLimit+1}~${topLimit-1}之間的數字`);
+            if (parseInt(input.value) > topLimit || parseInt(input.value) < bottomLimit) {
+
+
+                alert(`請輸入${bottomLimit}~${topLimit}之間的數字`);
                 input.value = '';
                 return;
             }
+
 
 
             if (answer.innerText != '' && input.value != '') {
@@ -244,7 +247,7 @@
                     topLimit = parseInt(input.value);
                     input.value = '';
 
-
+                    hintArea.innerText = (`提示: ${bottomLimit} ~ ${topLimit}之間`);
 
                 }
                 // #2. guess < answer
@@ -253,9 +256,10 @@
                     alert(`您輸入的是${input.value}，比正確答案小!`);
                     bottomLimit = parseInt(input.value);
                     input.value = '';
+                    hintArea.innerText = (`提示: ${bottomLimit } ~ ${topLimit}之間`);
                 }
 
-                hintArea.innerText = (`提示: ${bottomLimit+1} ~ ${topLimit-1}`);
+
 
 
             }

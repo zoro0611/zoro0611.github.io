@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
+  <title>Document</title>
+  <link rel="stylesheet" href="./reset.css">
+  <style>
+    :root {
+      --h1Fz: 40px;
+      --optBorder: 1px solid #ccc;
+      --borderRadius: 12px;
+      --borderHover: 1px solid rgb(150, 150, 150);
+    }
+
+    #i13-mini {
+      position: absolute;
+      left: 30px;
+    }
+
+    header {
+      background-color: #000;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+    }
+
+    header span {
+
+      color: white;
+      line-height: 2.5;
+      display: block;
+      padding: 0px 10px;
+      cursor: pointer;
+    }
+
+    .navbar {
+      width: 100%;
+      display: block;
+      color: black;
+
+    }
+
+    .d-block {
+      font-size: 16px;
+    }
+
+    .container-fluid {
+
+      font-size: 21px;
+
+    }
+
+    .credit-remind {
+      margin-top: 80px;
+      font-size: 12px;
+      line-height: 50px;
+      background-color: #ccc4;
+      text-align: center;
+    }
+
+    .credit-remind a {
+      text-decoration: none;
+    }
+
+    .credit-remind a:hover {
+      text-decoration: underline;
+    }
+
+    .main-product {
+      padding: 0 15px;
+    }
+    .productArea.pic{
+      width: 453.5px;
+    }
+
+    .productArea.pic img {
+      width: 100%;
+      vertical-align: top;
+    }
+
+    .styleOptions .opt-Description h1 {
+      font-size: var(--h1Fz);
+      font-family: SF Pro TC, SF Pro Display, SF Pro Icons, AOS Icons, PingFang TC, Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-weight: bolder;
+    }
+
+    .styleOptions .opt-Description h1::before {
+      content: '全新';
+      font-size: 17px;
+      line-height: 1.5;
+      font-weight: 500;
+      display: block;
+      color: #bf4800;
+    }
+
+    .styleOptions .opt-Description a {
+      text-decoration: none;
+    }
+
+    .styleOptions .opt-Description a:hover {
+      text-decoration: underline;
+    }
+
+    .opt.phone-type {
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+      border-bottom: var(--optBorder);
+
+
+    }
+
+    .opt.phone-type h2 {
+      letter-spacing: .1px;
+
+    }
+
+    .phone-type .phone {
+      border: var(--optBorder);
+      border-radius: 12px;
+      /* cursor: pointer; */
+      width: calc(100% - 16px);
+      box-sizing: border-box;
+      margin-left: 8px;
+      margin-right: 8px;
+      text-align: left;
+
+    }
+
+    .phone-type .phone:hover {
+      border: var(--borderHover);
+    }
+
+    .phone .typeName h3 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .phone .typeName span {
+      font-size: 12px;
+    }
+
+    .phone .typePrice {
+      line-height: 30px;
+    }
+
+    .opt.phone-color {
+      padding-bottom: 20px;
+      border-bottom: var(--optBorder);
+      margin-bottom: 20px;
+    }
+
+    .opt .colorway {
+      padding: 60px 50px 20px;
+    }
+
+
+    .opt button {
+
+      border-radius: var(--borderRadius);
+      background-color: #fff;
+      border: var(--optBorder);
+      font-size: 12px;
+      padding: 20px 50px;
+      width: calc(50% - 16px);
+      margin: 8px;
+      background-repeat: no-repeat;
+      background-size: 32px 32px;
+      background-position: 50% 40%;
+
+    }
+
+    .opt button:hover {
+      border: var(--borderHover);
+    }
+
+    /* .opt button:active{
+      outline: 2px solid blue;
+    } */
+
+    .opt .colorway:nth-child(1) {
+      background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-finish-green-202203?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1645218698057');
+    }
+
+    .opt .colorway:nth-child(2) {
+      background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-finish-pink-202108?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1630016970000');
+    }
+
+    .opt .colorway:nth-child(3) {
+      background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-finish-blue-202108?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1630016970000');
+    }
+
+    .opt .colorway:nth-child(4) {
+      background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-finish-midnight-202108?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1630016969000');
+    }
+
+    .opt .colorway:nth-child(5) {
+      background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-finish-starlight-202108?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1630016970000');
+    }
+
+    .opt .colorway:nth-child(6) {
+      background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-finish-product-red-202108?wid=204&amp;hei=204&amp;fmt=jpeg&amp;qlt=90&amp;.v=1630016971000');
+    }
+
+
+    .red-promote {
+      font-size: 12px;
+      color: #1d1d1f;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .red-promote .img {
+      width: 140px;
+
+      display: flex;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    .red-promote img {
+      width: 100%;
+      vertical-align: top;
+    }
+
+    .opt .storageType {
+      font-size: 28px;
+
+    }
+
+    .opt .storageType span {
+      font-size: 12px;
+      display: block;
+      padding-top: 10px;
+    }
+
+    .opt.phone-storage {
+      padding-bottom: 20px;
+      border-bottom: var(--optBorder);
+      margin-bottom: 20px;
+      color: blue;
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <span>iPhone12</span>
+    <span>iPhone13</span>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid d-flex">
+        <a class="navbar-brand" href="#">iPhone 13</a>
+
+        <p class="d-block m-0">NT$22,900 起</p>
+      </div>
+    </nav>
+  </header>
+
+
+
+  <div class="credit-remind">
+    <span>可申請最長達12個月的零利率分期付款</span>
+    <a href="#">
+      <span>進一步了解</span>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+
+  </div>
+
+  <div class="main-product d-flex flex-wrap justify-content-center">
+    <div class="productArea pic">
+      <img
+        src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-2022-gallery-5?wid=4056&hei=2400&fmt=jpeg&qlt=90&.v=1645484990466"
+        id="product-img">
+    </div>
+    <div class="prodcutArea styleOptions">
+
+      <div class="opt-Description pt-4 pb-4">
+        <h1>購買 iPhone 13</h1>
+        <p class="mt-3 mb-2">以 iPhone 8 或後續機型換購，獲享最高達 NT$2,700 –<br> NT$18,200 折抵優惠**</p>
+        <a href="#">
+          <span>了解「Apple Trade In 換購方案」的運作方式</span>
+        </a>
+
+
+      </div>
+
+      <div class="opt phone-type">
+        <h2 class="d-block py-2 fw-bolder">選擇機型。</h2>
+        <div class="Group phoneType">
+          <input type="checkbox" id="i13-mini">
+
+          <button class="phone mini13 d-flex justify-content-between px-4 py-4" value="NT$22,900 起">
+            <div class="typeName">
+              <h3>iPhone 13 mini</h3>
+              <span>5.4 吋顯示器</span>
+            </div>
+
+            <div class="typePrice">
+              NT$22,900 起
+            </div>
+
+
+          </button>
+          <!-- <input type="checkbox" id="i13-normal"> -->
+
+          <button class="phone normal13 d-flex justify-content-between px-4 py-4" value="NT$25,900 起">
+            <div class="typeName">
+              <h3>iPhone 13</h3>
+              <span>6.1 吋顯示器</span>
+            </div>
+
+            <div class="typePrice">
+              NT$25,900 起
+            </div>
+
+
+          </button>
+
+        </div>
+      </div>
+
+      <div class="opt phone-color" id="phone-color">
+
+        <h2 class="d-block py-2 fw-bolder">選擇外觀。</h2>
+
+        <div class="colorBox d-flex flex-wrap">
+
+
+          <button class="colorway color-green" onclick="changeColor(0)">綠色</button>
+
+
+          <button class="colorway color-pink" onclick="changeColor(1)">粉紅色</button>
+
+
+          <button class="colorway color-blue" onclick="changeColor(2)">藍色</button>
+
+
+          <button class="colorway color-midnight" onclick="changeColor(3)">午夜色</button>
+
+
+          <button class="colorway color-starlight" onclick="changeColor(4)">星光色</button>
+
+
+          <button class="colorway color-red" onclick="changeColor(5)">(PRODUCT)RED</button>
+
+
+        </div>
+        <div class="red-promote d-flex">
+          <div class="img">
+            <img
+              src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-8-red-logo-201809?wid=170&hei=48&fmt=png-alpha&.v=1568912469853">
+          </div>
+          <span>購買每部 iPhone 13 (PRODUCT)RED，不僅能貢獻一己之力，對抗愛滋病，同時還能減輕 COVID-19 造成的衝擊 註腳◊◊◊。</span>
+        </div>
+
+      </div>
+      <div class="opt phone-storage">
+
+        <h2 class="d-block py-2 fw-bolder">選擇儲存容量。</h2>
+
+        <div class="storageBox d-flex flex-wrap">
+
+
+          <button class="storageType color-green">128GB<span>NT$22,900</span></button>
+
+
+          <button class="storageType color-pink">256GB<span>NT$22,900</span></button>
+
+
+          <button class="storageType color-blue">512GB<span>NT$22,900</span></button>
+
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+
+  <script>
+
+    const iPhone_mini =
+    {
+
+      colors://key
+        [
+          { colorWay: 'green', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-mini-green-select?wid=940&hei=1112&fmt=png-alpha&.v=1645036275894' },
+          { colorWay: 'pink', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-mini-pink-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315655' },
+          { colorWay: 'blue', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-mini-blue-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315986' },
+          { colorWay: 'midnight', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-mini-midnight-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315770' },
+          { colorWay: 'starlight', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-mini-starlight-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315872' },
+          { colorWay: 'red', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-mini-product-red-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315893' },
+        ],
+
+      storages://key
+        [
+
+          { storageSize: '128GB', storagePrice: 'NT$22,900' },
+          { storageSize: '256GB', storagePrice: 'NT$26,400' },
+          { storageSize: '512GB', storagePrice: 'NT$33,400' },
+
+        ],
+
+    }
+
+    const iPhone_Normal =
+    {
+
+      colors: //key
+        [
+          { colorWay: 'green', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-green-select?wid=940&hei=1112&fmt=png-alpha&.v=1645036275538' },
+          { colorWay: 'pink', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pink-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315935' },
+          { colorWay: 'blue', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-blue-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572386470' },
+          { colorWay: 'midnight', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315913' },
+          { colorWay: 'starlight', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315205' },
+          { colorWay: 'red', colorUrl: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-product-red-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315758' },
+        ],
+
+      storages: //key
+        [
+
+          { storageSize: '128GB', storagePrice: 'NT$25,900' },
+          { storageSize: '256GB', storagePrice: 'NT$29,400' },
+          { storageSize: '512GB', storagePrice: 'NT$36,400' },
+
+        ],
+
+    }
+    let miniColors = iPhone_mini.colors;
+    // console.log(miniColors);
+    // console.log(miniColors[0].colorUrl);
+    let normalColors = iPhone_Normal.colors;
+    
+    let changeImg = document.getElementById('product-img');
+    // console.log(changeImg);
+
+    let checkType = document.getElementById('i13-mini');
+
+    window.onload = () => {
+
+
+      let phoneTypeBtns = document.querySelectorAll('.phone-type .phone');
+
+      let hdPrice = document.querySelector('.navbar p');
+      
+
+      
+
+      phoneTypeBtns[0].onclick = function () {
+        changeImg.src='https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-2022-gallery-5?wid=4056&hei=2400&fmt=jpeg&qlt=90&.v=1645484990466';
+
+        document.querySelectorAll('.colorBox .colorway').forEach((color)=>{
+          color.style.outline = 'var(--optBorder)';
+        });
+        
+        
+
+
+        checkType.checked = false;
+        hdPrice.innerText = phoneTypeBtns[0].value;
+        this.style.outline = '6px ridge rgba(0,0,255,.8)';
+        phoneTypeBtns[1].style.outline = 'var(--optBorder)';
+
+
+      };
+      phoneTypeBtns[1].onclick = function (event) {
+        changeImg.src='https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-2022-gallery-5?wid=4056&hei=2400&fmt=jpeg&qlt=90&.v=1645484990466';
+
+        document.querySelectorAll('.colorBox .colorway').forEach((color)=>{
+          color.style.outline = 'var(--optBorder)';
+        });
+
+        checkType.checked = true;
+        hdPrice.innerText = phoneTypeBtns[1].value;
+
+        this.style.outline = '6px ridge rgba(0,0,255,.8)';
+        phoneTypeBtns[0].style.outline = 'var(--optBorder)';
+      };
+
+
+
+
+
+    }
+
+
+    let phoneColorBtns = document.querySelectorAll('.colorway');
+    // console.log(phoneColorBtns);
+
+
+    function changeColor(x){
+      if(!checkType.checked){
+        changeImg.src = miniColors[x].colorUrl;
+      }
+      else if(checkType.checked){
+        changeImg.src = normalColors[x].colorUrl;
+      }
+
+      event.target.style.outline = '6px ridge rgba(0,0,255,.8)';
+      //缺少 取消其他按鈕outline的功能
+      let otherColors = document.querySelectorAll(`.colorBox .colorway:not(:nth-of-type(${x+1}))`);
+      // otherColors.style.outline = '2px solid red';
+      otherColors.forEach((color)=>{
+        color.style.outline = 'var(--optBorder)';
+      });
+
+    }
+
+
+    let miniStorage = iPhone_mini.storages;
+    console.log(miniStorage);
+    console.log(miniStorage[1].storagePrice);
+    let normalStorage = iPhone_Normal.storages;
+
+
+
+
+  </script>
+
+
+
+
+
+
+
+
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
