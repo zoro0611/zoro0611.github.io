@@ -1,0 +1,42 @@
+{
+    "colors": [
+        {
+            "colorWay": "green",
+            "colorUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-green-select?wid=940&hei=1112&fmt=png-alpha&.v=1645036275538"
+        },
+        {
+            "colorWay": "pink",
+            "colorUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-pink-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315935"
+        },
+        {
+            "colorWay": "blue",
+            "colorUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-blue-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572386470"
+        },
+        {
+            "colorWay": "midnight",
+            "colorUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-midnight-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315913"
+        },
+        {
+            "colorWay": "starlight",
+            "colorUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-starlight-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315205"
+        },
+        {
+            "colorWay": "red",
+            "colorUrl": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-13-product-red-select-2021?wid=940&hei=1112&fmt=png-alpha&.v=1645572315758"
+        }
+    ],
+    "storages": [
+        {
+            "storageSize": "128GB",
+            "storagePrice": "NT$25,900"
+        },
+        {
+            "storageSize": "256GB",
+            "storagePrice": "NT$29,400"
+        },
+        {
+            "storageSize": "512GB",
+            "storagePrice": "NT$36,400"
+        }
+    ]
+}
