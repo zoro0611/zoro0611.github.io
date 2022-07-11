@@ -279,13 +279,13 @@
         padding: 0 15px;
         width: 100%;
         display: flex;
-        height: 500px;
+        height: 600px;
 
       }
 
       .productArea.pic {
         width: 50%;
-        height: 100%;
+        
         justify-content: center;
 
       }
@@ -293,7 +293,6 @@
       .productArea.pic img {
         display: block;
         width: 80%;
-        
         position: relative;
         left: 15%;
 
@@ -685,11 +684,11 @@
       for (x = 0; x < 3; x++) {
         if (!checkType.checked) {
 
-          storageBtnSpan[x].innerText = `NT$${miniStorage[x].storagePrice}`;
+          storageBtnSpan[x].innerText = `NT$${miniStorage[x].storagePrice.toString('N')}`;
           // storageBtnSpan[x].parentNode.value = miniStorage[x].storagePrice;
         }
         else if (checkType.checked) {
-          storageBtnSpan[x].innerText = `NT$${normalStorage[x].storagePrice}`;
+          storageBtnSpan[x].innerText = `NT$${normalStorage[x].storagePrice.toString('N')}`;
           // storageBtnSpan[x].parentNode.value = normalStorage[x].storagePrice;
         }
         hdPrice.innerText = storageBtnSpan[0].innerText;
@@ -751,11 +750,10 @@
       else if (checkType.checked) {
         monthlyBill = Math.round((normalStorage[x].storagePrice) / 12);
       }
-      
         
 
         document.querySelector('.finalPrice').innerHTML = (`總價：${hdPrice.innerText}<br>0利率分期付款，每月 NT$${monthlyBill} 起，共12個月`);
-        document.querySelector('.finalPrice').className = 'fs-3';
+        // document.querySelector('.finalPrice').className = 'fs-3';
 
       }
 
