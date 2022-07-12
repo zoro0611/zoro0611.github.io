@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
-  <title>Document</title>
+  <title>iPhone Shop</title>
   <link rel="stylesheet" href="./reset.css">
   <style>
     :root {
@@ -36,13 +36,17 @@
       z-index: 100;
     }
 
-    header span {
+    header a {
 
       color: white;
       line-height: 2.5;
       display: block;
       padding: 0px 10px;
-      cursor: pointer;
+      
+      text-decoration: none;
+    }
+    header a:hover{
+      color: white;
     }
 
     .navbar {
@@ -50,6 +54,9 @@
       display: block;
       color: black;
 
+    }
+    .navbar-brand{
+      margin: -17px;
     }
 
     #title {
@@ -312,8 +319,9 @@
 
 <body>
   <header>
-    <span>iPhone</span>
-    <span>iPad</span>
+    <a href="./apple-iPhone.html"><span>iPhone</span></a>
+    <a href="#"><span>iPad</span></a>
+    <a href="./apple-mac.html"><span>Mac</span></a>
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid d-flex">
         <a class="navbar-brand" href="#">iPhone 13</a>
