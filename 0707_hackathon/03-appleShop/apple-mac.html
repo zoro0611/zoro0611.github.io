@@ -19,11 +19,7 @@
       --borderHover: 1px solid rgb(150, 150, 150);
     }
 
-    #i13-mini {
-      position: absolute;
-      left: 30px;
-      display: none;
-    }
+
 
     header {
       background-color: #000;
@@ -67,9 +63,10 @@
       color: black;
     }
 
-    .sideNav{
+    .sideNav {
       display: none;
     }
+
     .navbar-brand a,
     .sideNav a {
       color: #000;
@@ -137,55 +134,64 @@
       width: 453.5px;
       position: relative;
       top: 100px;
-      
+
       padding-bottom: 100px;
     }
+
+    /* .productArea.pic .img {} */
 
     .productArea.pic img {
       width: 100%;
       vertical-align: top;
 
-      
+
     }
+
     /* #product-img{
       position: relative;
       left: 60px;
     } */
 
-    .productArea.pic .changeColor{
+    .productArea.pic .changeColor {
       margin: 50px;
       font-size: 12px;
     }
 
-    .productArea.pic .changeColor .color{
+    .productArea.pic .changeColor .color {
       padding: 0 20px;
       width: 80px;
       height: 80px;
       text-align: center;
       line-height: 100px;
     }
-    .productArea.pic .changeColor .color{
-      
-      background-repeat:no-repeat ;
+
+    .productArea.pic .changeColor .color {
+
+      background-repeat: no-repeat;
       background-size: 30px 30px;
       background-position: 25px 0px;
     }
-    .changeColor .color span{
+
+    .changeColor .color span {
       cursor: pointer;
 
     }
-    .changeColor .color span:hover{
-      border: 1px solid red;
+
+    .changeColor .color span:hover {
+      color: blue;
+      font-weight: bold;
     }
 
-    .productArea.pic .changeColor .color:nth-of-type(1){
+    .productArea.pic .changeColor .color:nth-of-type(1) {
       background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-space-gray-select-201810_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903806');
-      bg
+
     }
-    .productArea.pic .changeColor .color:nth-of-type(2){
+
+    .productArea.pic .changeColor .color:nth-of-type(2) {
       background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903806');
     }
-    .productArea.pic .changeColor .color:nth-of-type(3){
+
+    .productArea.pic .changeColor .color:nth-of-type(3) {
       background-image: url('https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-silver-select-201810_SW_COLOR?wid=64&hei=64&fmt=jpeg&qlt=90&.v=1654147903776');
     }
 
@@ -206,7 +212,7 @@
       color: #bf4800;
     } */
 
-    .opt-Description p{
+    .opt-Description p {
       line-height: 2;
       font-size: 14px;
     }
@@ -219,7 +225,7 @@
       text-decoration: underline;
     } */
 
-    .opt.mac-type {
+    .opt.mac-ram {
       padding-bottom: 20px;
       margin-bottom: 20px;
       border-bottom: var(--optBorder);
@@ -227,12 +233,13 @@
 
     }
 
-    .opt.mac-type h2 {
+    .opt.mac-ram h2 {
       letter-spacing: .1px;
 
     }
 
-    .mac-type .mac {
+    .mac-ram .mac,
+    .mac-storage .mac{
       border: var(--optBorder);
       border-radius: 12px;
       /* cursor: pointer; */
@@ -248,12 +255,12 @@
       border: var(--borderHover);
     }
 
-    .mac h3{
+    .mac h3 {
       font-size: 16px;
       font-weight: 600;
     }
 
-    .mac span{
+    .mac span {
       font-size: 12px;
     }
 
@@ -295,47 +302,61 @@
     .opt button:hover {
       border: var(--borderHover);
     }
-
-
-
-
-    .red-promote {
-      font-size: 12px;
-      color: #1d1d1f;
-      line-height: 1.2;
-      letter-spacing: -0.5px;
+    .mac-storage{
+      margin-bottom: 110px;
     }
 
-    .red-promote .img {
-      width: 140px;
 
-      display: flex;
-      align-items: center;
-      margin-right: 10px;
-    }
-
-    .red-promote img {
+    .finalPrice{
+      position: fixed;
+      bottom: 0;
+      background-color: rgb(247, 247, 247);
       width: 100%;
-      vertical-align: top;
+      height: 100px;
+      padding: 20px;
+      
+      
     }
-
-    .opt .storageType {
-      font-size: 28px;
-
-    }
-
-    .opt .storageType span {
+    .finalPrice .col-1{
+      
       font-size: 12px;
-      display: block;
-      padding-top: 10px;
+      display: flex;
+      justify-content: center;
+      
     }
 
-    .opt.mac-storage {
+    .finalPrice .col-2{
+      padding-right: 40px;
+    }
+    .addToCart{
+      display: inline-block;
+      background-color: blue;
+      color: white;
+      padding: 10px 10px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    .addToCart:hover{
+      color: white;
+    }
+    .finalPrice .fa-solid{
+      position: relative;
+      top: 15px;
+      left: 5px;
+    }
+
+
+    
+
+    
+   
+
+    /* .opt.mac-storage {
       padding-bottom: 20px;
       border-bottom: var(--optBorder);
       margin-bottom: 20px;
 
-    }
+    } */
 
     @media screen and (min-width:768px) {
       .main-product {
@@ -345,9 +366,10 @@
         height: 600px;
 
       }
-      .sideNav{
-      display: inline-block;
-    }
+
+      .sideNav {
+        display: inline-block;
+      }
 
       .productArea.pic {
         width: 50%;
@@ -355,11 +377,11 @@
         justify-content: center;
 
       }
-      
-    #product-img{
-      position: relative;
-      left: 60px;
-    }
+
+      #product-img {
+        position: relative;
+        left: 60px;
+      }
 
 
       .productArea.pic img {
@@ -376,7 +398,9 @@
 
       }
 
-
+      .mac-storage{
+      margin-bottom: 30px;
+    }
 
     }
   </style>
@@ -417,13 +441,14 @@
         src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-space-gray-config-201810?wid=1078&hei=624&fmt=jpeg&qlt=90&.v=1633033424000"
         id="product-img">
 
-        <div class="changeColor d-flex justify-content-center">
-          <div class="color Space"><span></span></div>
-          <div class="color Gold"><span></span></div>
-          <div class="color Grey"><span></span></div>
+      <div class="changeColor d-flex justify-content-center">
+        <div class="color Space"><span></span></div>
+        <div class="color Gold"><span></span></div>
+        <div class="color Grey"><span></span></div>
 
-        </div>
+      </div>
     </div>
+
     <div class="prodcutArea styleOptions">
 
       <div class="opt-Description pt-5 pb-4">
@@ -447,35 +472,35 @@
 
 
       <!-- 記憶體 -->
-      <div class="opt mac-type">
+      <div class="opt mac-ram">
         <div class="title" id="title">
           <h2 class="d-block py-2 fw-bolder">記憶體</h2>
-          
-        </div>
-        <div class="Group macType">
-          <input type="checkbox" id="i13-mini">
 
-          <button class="mac d-flex justify-content-between px-4 py-4" value="">
+        </div>
+        <div class="Group macRam">
+
+
+          <button class="mac d-flex justify-content-between px-4 py-4">
             <div class="ramName">
               <h3></h3>
             </div>
 
             <div class="ram Price">
-              
+
             </div>
 
 
           </button>
-          
 
-          <button class="mac d-flex justify-content-between px-4 py-4" value="">
+
+          <button class="mac d-flex justify-content-between px-4 py-4">
             <div class="ramName">
               <h3></h3>
-              
+
             </div>
 
             <div class="ram Price">
-              
+
             </div>
 
 
@@ -486,59 +511,58 @@
 
 
       <!-- 儲存裝置 -->
-      <div class="opt mac-type">
+      <div class="opt mac-storage">
         <div class="title" id="title">
           <h2 class="d-block py-2 fw-bolder">儲存裝置</h2>
-          
+
         </div>
-        <div class="Group macType">
-          <input type="checkbox" id="i13-mini">
+        <div class="Group macStorage">
 
-          <button class="mac d-flex justify-content-between px-4 py-4" value="">
+          <button class="mac d-flex justify-content-between px-4 py-4">
             <div class="storageName">
               <h3></h3>
             </div>
 
             <div class="storage Price">
-              
+
             </div>
 
 
           </button>
-          
 
-          <button class="mac d-flex justify-content-between px-4 py-4" value="">
+
+          <button class="mac d-flex justify-content-between px-4 py-4">
             <div class="storageName">
               <h3></h3>
-              
+
             </div>
 
             <div class="storage Price">
-              
+
             </div>
 
 
           </button>
-          <button class="mac d-flex justify-content-between px-4 py-4" value="">
+          <button class="mac d-flex justify-content-between px-4 py-4">
             <div class="storageName">
               <h3></h3>
-              
+
             </div>
 
             <div class="storage Price">
-              
+
             </div>
 
 
           </button>
-          <button class="mac d-flex justify-content-between px-4 py-4" value="">
+          <button class="mac d-flex justify-content-between px-4 py-4">
             <div class="storageName">
               <h3></h3>
-              
+
             </div>
 
             <div class="storage Price">
-              
+
             </div>
 
 
@@ -550,8 +574,26 @@
 
 
 
-      <div class="finalPrice fs-3">
+
+    </div>
+
+    <div class="finalPrice fs-3 d-flex w-100">
+      <div class="col-1 w-50">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <p class="m-3">立即訂購。店內取貨<br>明天，地點:<a class=" text-decoration-none" href="#">Apple 台北 101</a>
+        </p>
+
+        <i class="fa-solid fa-box"></i>
+        <p class="m-3">今天訂購。運送至<a class=" text-decoration-none" href="">220↑</a><br>週四 2022/07/14 -免額外付費</p>
       </div>
+      <div class="col-2  w-50">
+        <p class="text-end">
+          NT$
+          <span class="priceBottom">30900</span>
+          <a href="#" class="addToCart d-inline-block text-decoration-none">加入購物袋</a>
+        </p>
+      </div>
+      
     </div>
 
   </div>
@@ -563,49 +605,119 @@
 
 
 
-<script>
-
-let mac = {
-  COLORs:
-  [
-    '太空灰', '金色', '銀色'
-  ],
-
-  RAMs:
-  [
-    '8GB 統一記憶體' , '16GB 統一記憶體'
-  ],
-
-  SSDs:
-  [
-    '256GB SSD 儲存裝置', 
-    '512GB SSD 儲存裝置', 
-    '1TB SSD 儲存裝置', 
-    '2TB SSD 儲存裝置'
-  ]
-
-}
-
-let colorNames = document.querySelectorAll('.changeColor .color span');
-console.log(colorNames);
-let macKeys = Object.keys(mac);
-console.log(mac[macKeys[0]]);
-mac[macKeys[0]].forEach((color,index) => {
-  colorNames[index].innerText = color;
-});
-
-let ramNames = document.querySelectorAll('.ramName h3');
-mac[macKeys[1]].forEach((ram,index) => {
-  ramNames[index].innerText = ram;
-});
-let storageNames = document.querySelectorAll('.storageName h3');
-mac[macKeys[2]].forEach((storage,index) => {
-  storageNames[index].innerText = storage;
-});
+  <script>
+    //宣告 *用let 只宣告變數名稱
+    let basePrice = 30900;
+    let ramFit = 0; 
+    let ssdFit = 0;
 
 
+    let mac = {
+      COLORs:
+        [
+          { name: '太空灰', url: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-space-gray-config-201810?wid=1078&hei=624&fmt=jpeg&qlt=90&.v=1633033424000' },
+          { name: '金色', url: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-gold-select-201810?wid=1078&hei=624&fmt=jpeg&qlt=90&.v=1633027804000' },
+          { name: '銀色', url: 'https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/macbook-air-silver-config-201810?wid=1078&hei=624&fmt=jpeg&qlt=90&.v=1633033423000' },
+        ],
 
-</script>
+      RAMs:
+        [
+          { name: '8GB 統一記憶體', fit: 0 },
+          { name: '16GB 統一記憶體', fit: 6000 }
+        ],
+
+      SSDs:
+        [
+          { name: '256GB SSD 儲存裝置', fit: 0 },
+          { name: '512GB SSD 儲存裝置', fit: 6000 },
+          { name: '1TB SSD 儲存裝置', fit: 12000 },
+          { name: '2TB SSD 儲存裝置', fit: 24000 },
+        ]
+
+    }
+
+    let colorNames = document.querySelectorAll('.changeColor .color span');
+
+    //DOM物件 *用const 選取DOM物件
+    const ramBtns = document.querySelectorAll('.macRam button');
+    const storageBtns = document.querySelectorAll('.macStorage button');
+    const finalPrice = document.querySelector('.finalPrice'); 
+
+    //window.onload *
+    window.onload = () => {
+      loadData();
+      setBtn();
+
+    }
+
+
+    //function *所有方法function()的定義
+
+    function loadData(){
+      mac.COLORs.forEach((color, index) => {
+        colorNames[index].innerText = color.name;
+      });
+
+      let ramNames = document.querySelectorAll('.ramName h3');
+      mac.RAMs.forEach((ram, index) => {
+        ramNames[index].innerText = ram.name;
+      });
+      let storageNames = document.querySelectorAll('.storageName h3');
+      mac.SSDs.forEach((storage, index) => {
+        storageNames[index].innerText = storage.name;
+      });
+
+      let productImg = document.getElementById('product-img');
+      colorNames.forEach((color, index) => {
+        color.addEventListener('click', () => {
+          productImg.src = mac.COLORs[index].url;
+        });
+      });
+      let ramPrices = document.querySelectorAll('.ram.Price');
+      mac.RAMs.forEach((ram,index)=>{
+        ramPrices[index].innerText = `+ NT$${ram.fit}`;
+        ramBtns[index].setAttribute('fit',ram.fit);
+      });
+
+      let storagePrices = document.querySelectorAll('.storage.Price');
+      mac.SSDs.forEach((storage,index)=>{
+        storagePrices[index].innerText = `+ NT$${storage.fit}`;
+        storageBtns[index].setAttribute('fit',storage.fit);
+      });
+
+    }
+
+    //取得每個button上面'fit'屬性的值(=加的錢)
+    // console.log(ramBtns[index].getAttribute('fit'))
+    function setBtn(){
+      ramBtns.forEach((btn)=>{
+        btn.onclick = ()=>{
+          ramFit = btn.getAttribute('fit');
+          console.log(ramFit);
+          changePrice();
+        }
+      });
+      
+      storageBtns.forEach((btn)=>{
+        btn.onclick = ()=>{
+          ssdFit = btn.getAttribute('fit');
+          console.log(ssdFit);
+          changePrice();
+        }
+      });
+      
+    }
+
+    function changePrice(){
+      let totalPrice = basePrice + parseInt(ramFit) + parseInt(ssdFit);
+      let finalPriceSpan = document.querySelector('.finalPrice .priceBottom');
+      finalPriceSpan.innerText = totalPrice;
+      
+    }
+
+
+
+  </script>
 
 
 
