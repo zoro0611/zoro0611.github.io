@@ -239,7 +239,7 @@
     }
 
     .mac-ram .mac,
-    .mac-storage .mac{
+    .mac-storage .mac {
       border: var(--optBorder);
       border-radius: 12px;
       /* cursor: pointer; */
@@ -302,33 +302,36 @@
     .opt button:hover {
       border: var(--borderHover);
     }
-    .mac-storage{
+
+    .mac-storage {
       margin-bottom: 110px;
     }
 
 
-    .finalPrice{
+    .finalPrice {
       position: fixed;
       bottom: 0;
       background-color: rgb(247, 247, 247);
       width: 100%;
       height: 100px;
       padding: 20px;
-      
-      
+
+
     }
-    .finalPrice .col-1{
-      
+
+    .finalPrice .col-1 {
+
       font-size: 12px;
       display: flex;
       justify-content: center;
-      
+
     }
 
-    .finalPrice .col-2{
+    .finalPrice .col-2 {
       padding-right: 40px;
     }
-    .addToCart{
+
+    .addToCart {
       display: inline-block;
       background-color: blue;
       color: white;
@@ -336,20 +339,35 @@
       border-radius: 10px;
       font-size: 16px;
     }
-    .addToCart:hover{
+
+    .addToCart:hover {
       color: white;
     }
-    .finalPrice .fa-solid{
+
+    .finalPrice .fa-solid {
       position: relative;
       top: 15px;
       left: 5px;
     }
 
+    .mac {
+      border: 2px solid #dee2e6;
+      position: relative;
+    }
 
-    
+    [selected="true"]::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      bottom: -2px;
+      left: -2px;
+      right: -2px;
+      border: 5px solid #0071e3;
+      border-radius: 12px;
+    }
 
-    
-   
+
+
 
     /* .opt.mac-storage {
       padding-bottom: 20px;
@@ -398,9 +416,9 @@
 
       }
 
-      .mac-storage{
-      margin-bottom: 30px;
-    }
+      .mac-storage {
+        margin-bottom: 30px;
+      }
 
     }
   </style>
@@ -573,8 +591,6 @@
 
 
 
-
-
     </div>
 
     <div class="finalPrice fs-3 d-flex w-100">
@@ -583,7 +599,7 @@
         <p class="m-3">立即訂購。店內取貨<br>明天，地點:<a class=" text-decoration-none" href="#">Apple 台北 101</a>
         </p>
 
-        
+
         <i class="fa-solid fa-box"></i>
         <p class="m-3">今天訂購。運送至<a class=" text-decoration-none" href="">220↑</a><br>週四 2022/07/14 -免額外付費</p>
       </div>
@@ -594,7 +610,7 @@
           <a href="#" class="addToCart d-inline-block text-decoration-none">加入購物袋</a>
         </p>
       </div>
-      
+
     </div>
 
   </div>
@@ -609,7 +625,7 @@
   <script>
     //宣告 *用let 只宣告變數名稱
     let basePrice = 30900;
-    let ramFit = 0; 
+    let ramFit = 0;
     let ssdFit = 0;
 
 
@@ -642,7 +658,7 @@
     //DOM物件 *用const 選取DOM物件
     const ramBtns = document.querySelectorAll('.macRam button');
     const storageBtns = document.querySelectorAll('.macStorage button');
-    const finalPrice = document.querySelector('.finalPrice'); 
+    const finalPrice = document.querySelector('.finalPrice');
 
     //window.onload *
     window.onload = () => {
@@ -654,7 +670,7 @@
 
     //function *所有方法function()的定義
 
-    function loadData(){
+    function loadData() {
       mac.COLORs.forEach((color, index) => {
         colorNames[index].innerText = color.name;
       });
@@ -675,47 +691,70 @@
         });
       });
       let ramPrices = document.querySelectorAll('.ram.Price');
-      mac.RAMs.forEach((ram,index)=>{
+      mac.RAMs.forEach((ram, index) => {
         ramPrices[index].innerText = `+ NT$${ram.fit}`;
-        ramBtns[index].setAttribute('fit',ram.fit);
+        ramBtns[index].setAttribute('fit', ram.fit);
       });
 
       let storagePrices = document.querySelectorAll('.storage.Price');
-      mac.SSDs.forEach((storage,index)=>{
+      mac.SSDs.forEach((storage, index) => {
         storagePrices[index].innerText = `+ NT$${storage.fit}`;
-        storageBtns[index].setAttribute('fit',storage.fit);
+        storageBtns[index].setAttribute('fit', storage.fit);
       });
 
     }
 
     //取得每個button上面'fit'屬性的值(=加的錢)
     // console.log(ramBtns[index].getAttribute('fit'))
-    function setBtn(){
-      ramBtns.forEach((btn)=>{
-        btn.onclick = ()=>{
+    function setBtn() {
+
+      ramBtns.forEach((btn) => {
+
+        btn.onclick = () => {
+          ramBtns.forEach((b) => {
+            b.setAttribute('selected', 'false');
+          });
+          btn.setAttribute('selected', 'true');
+          console.log(btn.getAttribute('selected'));
+
           ramFit = btn.getAttribute('fit');
           console.log(ramFit);
           changePrice();
+
         }
       });
-      
-      storageBtns.forEach((btn)=>{
-        btn.onclick = ()=>{
+
+      storageBtns.forEach((btn) => {
+        btn.onclick = () => {
+          //建構被選擇的按鈕
+          storageBtns.forEach((b) => {
+            b.setAttribute('selected', 'false');
+          });
+          btn.setAttribute('selected', 'true');
+          console.log(btn.getAttribute('selected'));
+          //
           ssdFit = btn.getAttribute('fit');
           console.log(ssdFit);
           changePrice();
+
         }
       });
-      
+
     }
 
-    function changePrice(){
+    function changePrice() {
       let totalPrice = basePrice + parseInt(ramFit) + parseInt(ssdFit);
       let finalPriceSpan = document.querySelector('.finalPrice .priceBottom');
       finalPriceSpan.innerText = totalPrice;
-      
+
+
     }
 
+    // function btnIsSelected(){
+
+    //   event.target.setAttribute('selected','true');
+
+    // }
 
 
   </script>
