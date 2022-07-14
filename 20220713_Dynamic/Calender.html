@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calender</title>
+
+    <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .calendar {
+            /* width: 100%;
+            height: 350px; */
+            background: #fff;
+            /* box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1); */
+            text-align: center;
+            position: relative;
+            left: 0;
+            right: 0;
+
+            margin-top: 10px;
+
+            /* border: 10px solid grey; */
+        }
+
+
+        .title {
+            position: relative;
+
+        }
+
+        #prev {
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #565656;
+        }
+
+        #next {
+            position: absolute;
+            top: 20px;
+            right: 50px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #565656;
+        }
+
+
+
+
+        .body-list ul {
+            width: 100%;
+            font-family: arial;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 10px 20px;
+
+        }
+
+        .body-list ul li {
+            width: 14.28%;
+            height: 60px;
+            line-height: 60px;
+            list-style-type: none;
+            display: block;
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+
+
+        }
+
+        #days li {
+            cursor: pointer;
+            text-align: left;
+            line-height: normal;
+            padding: 10px;
+            height: 100px;
+        }
+
+        .lightgrey {
+            color: #a8a8a8;
+            /* border: 2px solid #a8a8a8; */
+            /*浅灰色*/
+
+        }
+
+        .lightgrey li {
+            background-color: #fa0;
+            border: 1px solid #565656;
+            color: white;
+        }
+
+        .darkgrey {
+            color: #565656;
+            /*深灰色*/
+        }
+
+        .green {
+            color: #6ac13c;
+            /*绿色*/
+        }
+
+        .greenbox {
+            border: 1px solid #6ac13c;
+            background: #e9f8df;
+            /*浅绿色背景*/
+        }
+
+        #titleInput {
+            outline: none;
+            border: none;
+            border-bottom: 2px solid blue;
+            font-size: 30px;
+        }
+
+
+        #map {
+            width: 400px;
+            height: 320px;
+            left: 0;right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="calendar">
+        <div class="title">
+            <h1 class="darkgrey fw-bolder" id="calendar-month">{{Month}}</h1>
+            <h2 class="darkgrey small fw-bolder" id="calendar-year">{{Year}}</h2>
+            <div id="prev"><i class="fa-solid fa-angle-left"></i></div>
+            <div id="next"><i class="fa-solid fa-angle-right"></i></div>
+        </div>
+        <div class="body">
+            <div class="lightgrey body-list">
+                <ul>
+                    <li>SUN</li>
+                    <li>MON</li>
+                    <li>TUE</li>
+                    <li>WED</li>
+                    <li>THU</li>
+                    <li>FRI</li>
+                    <li>SAT</li>
+                </ul>
+            </div>
+            <div class="darkgrey body-list">
+                <ul id="days">
+                    <!-- <li></li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        id="modal-btn">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">行程安排</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- 主要Input放這 -->
+                <div class="modal-body">
+                    <p><input type="text" placeholder="新增標題" id="titleInput"></p>
+                    <p><span>行程日期: </span><input type="date" id="date"></p>
+
+                    <p><span>行程時間: </span><input type="time" id="time"></p>
+                    <div id="map"></div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">儲存行程</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        //宣告常數
+
+        // //閏年的天數
+        // const month_olympic = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        // //非閏年天數
+        // const month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        let dateObj, year, month, day, weekday, firstWeekday, totalDays, lastMonthDay;
+
+        //月份名字
+        const monthName = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
+
+
+        //DOM
+        const holder = document.getElementById("days");
+        const prev = document.getElementById("prev");
+
+        const next = document.getElementById("next");
+
+        const cMonth = document.getElementById("calendar-month");
+        const cYear = document.getElementById("calendar-year");
+
+
+
+
+
+        //window.onload
+        window.onload = () => {
+            //設定物件date
+            dateObj = new Date();
+
+            // 當年
+            year = dateObj.getFullYear();
+            // 當月 (#月份從0開始)
+            month = dateObj.getMonth();
+            // 當天
+            day = dateObj.getDate();
+            // 當天是星期(?)
+            weekday = dateObj.getDay();
+            // 當月的第一天是星期幾
+            firstWeekday = new Date(year, month, 1).getDay();
+
+            //得到當月總天數
+            totalDays = new Date(year, month + 1, 0).getDate();
+
+
+
+            setTitle(year, month);
+            insertDate();
+            prev.addEventListener('click', () => {
+                month--;
+                if (month < 0) {
+                    month = month + 12;
+                    year--;
+                }
+
+                resetData();
+            });
+            next.addEventListener('click', () => {
+                month++;
+                if (month > 11) {
+                    month = month - 12;
+                    year++;
+                }
+
+                resetData();
+            });
+        }
+        //function()
+
+        //每個日期按下去會跳出Modal視窗
+        function clickModal() {
+            const modalBtn = document.getElementById('modal-btn');
+            modalBtn.click();
+
+        }
+
+        //對於表頭年份&日期插入文字
+        function setTitle(year, month) {
+            cYear.innerText = year;
+            cMonth.innerText = monthName[month];
+        }
+
+        //依據當月總天數&當月day1是周(?)，新增內容
+        function insertDate() {
+
+            //前方空白
+            for (i = 0; i < firstWeekday; i++) {
+                let blankLi = document.createElement('li');
+                lastMonthDay = new Date(year, month, 0).getDate();
+                blankLi.innerText = lastMonthDay - firstWeekday + i + 1;
+                blankLi.setAttribute('class', 'blank-list');
+                blankLi.style.color = '#ccc';
+                blankLi.style.border = '1px solid darkgrey'
+                holder.append(blankLi);
+                blankLi.onclick = () => {
+                    clickModal();
+                }
+            }
+            //中間日期
+            for (j = 1; j <= totalDays; j++) {
+                let dayLi = document.createElement('li');
+                dayLi.innerText = j;
+                dayLi.setAttribute('class', 'dayList');
+                dayLi.setAttribute('seq', j);
+                dayLi.style.border = '1px solid darkgrey'
+                holder.append(dayLi);
+                dayLi.onclick = () => {
+                    clickModal();
+                }
+            }
+            //後方空白
+            for (k = 1; k <= 42 - (firstWeekday + totalDays); k++) {
+                let blankLi = document.createElement('li');
+                blankLi.innerText = k;
+                blankLi.setAttribute('class', 'blank-list');
+                blankLi.style.color = '#ccc';
+                blankLi.style.border = '1px solid darkgrey'
+                holder.append(blankLi);
+                blankLi.onclick = () => {
+                    clickModal();
+                }
+            }
+
+        }
+
+        //更改月份的時候，重設表單內容
+        function resetData() {
+            firstWeekday = new Date(year, month, 1).getDay();
+            totalDays = new Date(year, month + 1, 0).getDate();
+            holder.innerHTML = '';
+            setTitle(year, month);
+            insertDate();
+        }
+
+
+
+
+        //google地圖
+        let map;
+
+        // 設置定位按鈕
+        function mapCenterControl(map, clickButton) {
+            let centerControlDiv = document.createElement('div');
+
+            // Set CSS for the control border.
+            let controlUI = document.createElement('button');
+            controlUI.style.backgroundColor = '#fff';
+            controlUI.style.border = 'none';
+            controlUI.style.outline = 'none';
+            controlUI.style.width = '40px';
+            controlUI.style.height = '40px';
+            controlUI.style.borderRadius = '2px';
+            controlUI.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+            controlUI.style.cursor = 'pointer';
+            controlUI.style.marginRight = '10px';
+            controlUI.style.padding = '0';
+            controlUI.title = 'Your Location';
+            centerControlDiv.appendChild(controlUI);
+
+            // Set CSS for the control interior.
+            let controlText = document.createElement('div');
+            controlText.style.margin = '10px';
+            controlText.style.width = '30px';
+            controlText.style.height = '30px';
+            controlText.style.backgroundImage = 'url(\'./pic/myLocation.png\')';
+            controlText.style.backgroundSize = '20px 20px';
+            controlText.style.backgroundPosition = '0px 0px';
+            controlText.style.backgroundRepeat = 'no-repeat';
+            controlUI.appendChild(controlText);
+
+            // constructor passing in this DIV.
+            centerControlDiv.index = 1; // 排列優先度
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv); // 設定按鈕加入地圖的位置
+
+            // Setup the click event listeners.
+            controlUI.addEventListener('click', () => clickButton());
+        }
+
+
+        // 取得使用者位置
+        function gettingPosition() {
+            if (navigator.geolocation) {
+                return new Promise((resolve, reject) => {
+                    let option = {
+                        enableAcuracy: false, // 提高精確度
+                        maximumAge: 0, // 設定上一次位置資訊的有效期限(毫秒)
+                        timeout: 10000 // 逾時計時器(毫秒)
+                    };
+                    navigator.geolocation.getCurrentPosition(resolve, reject, option);
+                })
+            } else {
+                alert("Does not support positioning!");
+            }
+        }
+        function successCallback(position) {
+            map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+        }
+        function errorCallback(error) {
+            alert(error.message); //error.code
+        }
+
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: { lat: 25.033708, lng: 121.564899 }
+            });
+            mapCenterControl(map,
+                () => gettingPosition()
+                    .then(position => successCallback(position))
+                    .catch(error => errorCallback(error))
+            )
+        }
+
+    </script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiZuGVy1Z1AaWigyVUjik6CrFxpSOuFQk&callback=initMap"></script>
+</body>
+
+</html>
