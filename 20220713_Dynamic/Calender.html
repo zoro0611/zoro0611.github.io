@@ -130,7 +130,8 @@
         #map {
             width: 400px;
             height: 320px;
-            left: 0;right: 0;
+            left: 0;
+            right: 0;
             margin: auto;
         }
     </style>
@@ -142,8 +143,8 @@
 
     <div class="calendar">
         <div class="title">
-            <h1 class="darkgrey fw-bolder" id="calendar-month">{{Month}}</h1>
-            <h2 class="darkgrey small fw-bolder" id="calendar-year">{{Year}}</h2>
+            <h1 class="darkgrey fw-bolder" id="calendar-month"></h1>
+            <h2 class="darkgrey small fw-bolder" id="calendar-year"></h2>
             <div id="prev"><i class="fa-solid fa-angle-left"></i></div>
             <div id="next"><i class="fa-solid fa-angle-right"></i></div>
         </div>
@@ -190,15 +191,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">行程安排</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <!-- 主要Input放這 -->
                 <div class="modal-body">
-                    <p><input type="text" placeholder="新增標題" id="titleInput"></p>
-                    <p><span>行程日期: </span><input type="date" id="date"></p>
+                    <p>
+                        <input type="text" placeholder="新增標題" id="titleInput">
+                    </p>
+                    <!-- <p><span>行程日期: </span>
+                        <input type="date" id="date">
+                    </p> -->
 
-                    <p><span>行程時間: </span><input type="time" id="time"></p>
+                    <p><span>行程時間: </span>
+                        <input type="time" id="time">
+                    </p>
                     <div id="map"></div>
 
                 </div>
@@ -225,6 +232,11 @@
         const monthName = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
 
 
+
+        let seqNumDay;
+        let seqNumMonth;
+
+
         //DOM
         const holder = document.getElementById("days");
         const prev = document.getElementById("prev");
@@ -234,9 +246,13 @@
         const cMonth = document.getElementById("calendar-month");
         const cYear = document.getElementById("calendar-year");
 
-
-
-
+        let dayP_group;
+        const doTitle = document.getElementById('titleInput');
+        console.log(JSON.stringify(doTitle.value));
+        // const doDate = document.getElementById('date');
+        // console.log(JSON.stringify(doDate.value));
+        const doTime = document.getElementById('time');
+        console.log(doTime.value.toString());
 
         //window.onload
         window.onload = () => {
@@ -261,6 +277,7 @@
 
             setTitle(year, month);
             insertDate();
+
             prev.addEventListener('click', () => {
                 month--;
                 if (month < 0) {
@@ -298,41 +315,90 @@
         //依據當月總天數&當月day1是周(?)，新增內容
         function insertDate() {
 
+
+            // seqNumDay;
+            // seqNumMonth;
+            // blankNumDay;
+            // blankNumMonth;
+
             //前方空白
             for (i = 0; i < firstWeekday; i++) {
                 let blankLi = document.createElement('li');
                 lastMonthDay = new Date(year, month, 0).getDate();
                 blankLi.innerText = lastMonthDay - firstWeekday + i + 1;
                 blankLi.setAttribute('class', 'blank-list');
+                blankLi.setAttribute('seqNumMonth', month);
+                blankLi.setAttribute('seqNumDay', lastMonthDay - firstWeekday + i + 1);
                 blankLi.style.color = '#ccc';
                 blankLi.style.border = '1px solid darkgrey'
                 holder.append(blankLi);
                 blankLi.onclick = () => {
                     clickModal();
+                    seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
+
+                    seqNumDay = event.currentTarget.getAttribute('seqNumDay');
+
+                    console.log(seqNumMonth + '/' + seqNumDay);
+
+                    document.getElementById('exampleModalLabel').innerText = `${year}/${month}/${seqNumDay} 行事曆`;
                 }
             }
+
             //中間日期
             for (j = 1; j <= totalDays; j++) {
                 let dayLi = document.createElement('li');
                 dayLi.innerText = j;
+                let dayP = document.createElement('p');
+                dayP.setAttribute('class', 'dayP');
+                dayP.style.fontSize = '12px';
+                dayP.innerText = 'today: work';
+                dayLi.append(dayP);
                 dayLi.setAttribute('class', 'dayList');
-                dayLi.setAttribute('seq', j);
+                dayLi.setAttribute('seqNumMonth', month+1);
+                dayLi.setAttribute('seqNumDay', j);
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
                     clickModal();
+                    seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
+                    //點擊時候把seqNum設定為日期的index(從0開始算)
+                    seqNumDay = event.currentTarget.getAttribute('seqNumDay');
+
+                    console.log(seqNumMonth+'/'+seqNumDay);
+                    
+                    document.getElementById('exampleModalLabel').innerText = `${year}/${month + 1}/${seqNumDay } 行事曆`;
                 }
+
             }
+
+            //抓到每個日期內的標籤<p>
+            dayP_group = document.querySelectorAll('.dayP');
+            // console.log(dayP_group);
+
+
+
+
+
             //後方空白
             for (k = 1; k <= 42 - (firstWeekday + totalDays); k++) {
                 let blankLi = document.createElement('li');
                 blankLi.innerText = k;
                 blankLi.setAttribute('class', 'blank-list');
+                blankLi.setAttribute('seqNumMonth', month+2);
+                blankLi.setAttribute('seqNumDay', k);
                 blankLi.style.color = '#ccc';
                 blankLi.style.border = '1px solid darkgrey'
                 holder.append(blankLi);
                 blankLi.onclick = () => {
                     clickModal();
+                    seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
+
+                    seqNumDay = event.currentTarget.getAttribute('seqNumDay');
+
+                    console.log(seqNumMonth + '/' + seqNumDay);
+
+                    document.getElementById('exampleModalLabel').innerText = `${year}/${month + 2}/${seqNumDay} 行事曆`;
+
                 }
             }
 
@@ -434,8 +500,8 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
 
-    <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiZuGVy1Z1AaWigyVUjik6CrFxpSOuFQk&callback=initMap"></script>
+    <!-- <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiZuGVy1Z1AaWigyVUjik6CrFxpSOuFQk&callback=initMap"></script> -->
 </body>
 
 </html>
