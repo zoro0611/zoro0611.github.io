@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <p data-year="2002" data-month="08" data-day="22">測試</p>
+        <h1 data-id="2002-08-22">測試2</h1>
+        <script>
+            let test =  document.querySelector('p').dataset;
+            console.log(test);
+
+            let test2 = document.querySelector('h1').dataset;
+            console.log(test2);
+
+        </script>
+
+</body>
+</html>

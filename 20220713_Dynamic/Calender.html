@@ -127,13 +127,13 @@
         }
 
 
-        #map {
+        /* #map {
             width: 400px;
             height: 320px;
             left: 0;
             right: 0;
             margin: auto;
-        }
+        } */
     </style>
 </head>
 
@@ -206,12 +206,16 @@
                     <p><span>行程時間: </span>
                         <input type="time" id="time">
                     </p>
-                    <div id="map"></div>
+                    <p><span>標記顏色: </span>
+                        <input type="color" id="color">
+                    </p>
+
+                    <!-- <div id="map"></div> -->
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">儲存行程</button>
+                    <button type="button" class="btn btn-primary" id="save-localStorage">儲存行程</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                 </div>
             </div>
@@ -231,11 +235,10 @@
         //月份名字
         const monthName = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
 
-
-
         let seqNumDay;
         let seqNumMonth;
 
+        let datasetID;
 
         //DOM
         const holder = document.getElementById("days");
@@ -247,12 +250,23 @@
         const cYear = document.getElementById("calendar-year");
 
         let dayP_group;
+
+        //新增事件中的"活動事項名稱" @input button
         const doTitle = document.getElementById('titleInput');
-        console.log(JSON.stringify(doTitle.value));
+
         // const doDate = document.getElementById('date');
         // console.log(JSON.stringify(doDate.value));
+
+        //新增事件中的"活動事件時間" @input button
         const doTime = document.getElementById('time');
-        console.log(doTime.value.toString());
+
+        const doColor = document.getElementById('color');
+
+        const saveEventBtn = document.getElementById('save-localStorage');
+        // console.log(saveEventBtn);
+
+        //用來儲存local-storage的key
+        let storageKey;
 
         //window.onload
         window.onload = () => {
@@ -286,6 +300,7 @@
                 }
 
                 resetData();
+                WriteEvent();
             });
             next.addEventListener('click', () => {
                 month++;
@@ -295,14 +310,30 @@
                 }
 
                 resetData();
+                WriteEvent();
             });
+
+
+            saveEventBtn.addEventListener('click', () => {
+
+                SaveEventToStorage();
+
+
+            });
+
+            WriteEvent();
         }
+
+
         //function()
 
         //每個日期按下去會跳出Modal視窗
         function clickModal() {
+
             const modalBtn = document.getElementById('modal-btn');
             modalBtn.click();
+            datasetID = event.currentTarget.dataset.id;
+            console.log(datasetID);
 
         }
 
@@ -329,6 +360,7 @@
                 blankLi.setAttribute('class', 'blank-list');
                 blankLi.setAttribute('seqNumMonth', month);
                 blankLi.setAttribute('seqNumDay', lastMonthDay - firstWeekday + i + 1);
+                blankLi.setAttribute('data-id', `${year}-${month}-${lastMonthDay - firstWeekday + i + 1}`)
                 blankLi.style.color = '#ccc';
                 blankLi.style.border = '1px solid darkgrey'
                 holder.append(blankLi);
@@ -348,14 +380,16 @@
             for (j = 1; j <= totalDays; j++) {
                 let dayLi = document.createElement('li');
                 dayLi.innerText = j;
-                let dayP = document.createElement('p');
-                dayP.setAttribute('class', 'dayP');
-                dayP.style.fontSize = '12px';
-                dayP.innerText = 'today: work';
-                dayLi.append(dayP);
+                // let dayP = document.createElement('p');
+                // dayP.setAttribute('class', 'dayP');
+                // dayP.style.fontSize = '12px';
+                // // dayP.innerText = 'today: work';
+                // dayLi.append(dayP);
                 dayLi.setAttribute('class', 'dayList');
-                dayLi.setAttribute('seqNumMonth', month+1);
+                dayLi.setAttribute('seqNumMonth', month + 1);
                 dayLi.setAttribute('seqNumDay', j);
+                dayLi.setAttribute('data-id', `${year}-${month + 1}-${j}`)
+                // console.log(dayLi.dataset);
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
@@ -364,16 +398,16 @@
                     //點擊時候把seqNum設定為日期的index(從0開始算)
                     seqNumDay = event.currentTarget.getAttribute('seqNumDay');
 
-                    console.log(seqNumMonth+'/'+seqNumDay);
-                    
-                    document.getElementById('exampleModalLabel').innerText = `${year}/${month + 1}/${seqNumDay } 行事曆`;
+                    console.log(seqNumMonth + '/' + seqNumDay);
+
+                    document.getElementById('exampleModalLabel').innerText = `${year}/${month + 1}/${seqNumDay} 行事曆`;
                 }
 
             }
 
-            //抓到每個日期內的標籤<p>
-            dayP_group = document.querySelectorAll('.dayP');
-            // console.log(dayP_group);
+
+            //抓到每個日期內的標籤<p> 需要重寫!!
+            //等待更新ing
 
 
 
@@ -384,8 +418,9 @@
                 let blankLi = document.createElement('li');
                 blankLi.innerText = k;
                 blankLi.setAttribute('class', 'blank-list');
-                blankLi.setAttribute('seqNumMonth', month+2);
+                blankLi.setAttribute('seqNumMonth', month + 2);
                 blankLi.setAttribute('seqNumDay', k);
+                blankLi.setAttribute('data-id', `${year}-${month + 2}-${k}`)
                 blankLi.style.color = '#ccc';
                 blankLi.style.border = '1px solid darkgrey'
                 holder.append(blankLi);
@@ -413,85 +448,154 @@
             insertDate();
         }
 
+        //新增事件的儲存按鈕，按下去要做的事情
 
 
-
-        //google地圖
-        let map;
-
-        // 設置定位按鈕
-        function mapCenterControl(map, clickButton) {
-            let centerControlDiv = document.createElement('div');
-
-            // Set CSS for the control border.
-            let controlUI = document.createElement('button');
-            controlUI.style.backgroundColor = '#fff';
-            controlUI.style.border = 'none';
-            controlUI.style.outline = 'none';
-            controlUI.style.width = '40px';
-            controlUI.style.height = '40px';
-            controlUI.style.borderRadius = '2px';
-            controlUI.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
-            controlUI.style.cursor = 'pointer';
-            controlUI.style.marginRight = '10px';
-            controlUI.style.padding = '0';
-            controlUI.title = 'Your Location';
-            centerControlDiv.appendChild(controlUI);
-
-            // Set CSS for the control interior.
-            let controlText = document.createElement('div');
-            controlText.style.margin = '10px';
-            controlText.style.width = '30px';
-            controlText.style.height = '30px';
-            controlText.style.backgroundImage = 'url(\'./pic/myLocation.png\')';
-            controlText.style.backgroundSize = '20px 20px';
-            controlText.style.backgroundPosition = '0px 0px';
-            controlText.style.backgroundRepeat = 'no-repeat';
-            controlUI.appendChild(controlText);
-
-            // constructor passing in this DIV.
-            centerControlDiv.index = 1; // 排列優先度
-            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv); // 設定按鈕加入地圖的位置
-
-            // Setup the click event listeners.
-            controlUI.addEventListener('click', () => clickButton());
-        }
+        function SaveEventToStorage() {
+            // //儲存時間的變數
+            // let eventtimeInput = doTime.value; 
+            // //儲存事件名稱的變數
+            // let eventNameInput = doTitle.value;
 
 
-        // 取得使用者位置
-        function gettingPosition() {
-            if (navigator.geolocation) {
-                return new Promise((resolve, reject) => {
-                    let option = {
-                        enableAcuracy: false, // 提高精確度
-                        maximumAge: 0, // 設定上一次位置資訊的有效期限(毫秒)
-                        timeout: 10000 // 逾時計時器(毫秒)
-                    };
-                    navigator.geolocation.getCurrentPosition(resolve, reject, option);
-                })
-            } else {
-                alert("Does not support positioning!");
+            //事情一: 儲存到local-storage
+
+            let event = {
+                title: doTitle.value,
+                time: doTime.value,
+                color: doColor.value
             }
-        }
-        function successCallback(position) {
-            map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-        }
-        function errorCallback(error) {
-            alert(error.message); //error.code
+
+            //仍需想辦法寫出多筆
+            storageKey = `${datasetID}`;
+
+            localStorage.setItem(storageKey, JSON.stringify(event));
+
+            doTitle.value = '';
+            doTime.value = '';
+            doColor.value = '';
+
+            //事情二: 將storage中資料寫入每一日期內
+
+            let val = JSON.parse(localStorage.getItem(storageKey));
+            let p = document.createElement('p');
+            p.style.color = `${val.color}`;
+            p.innerText = `${val.time} ${val.title}`;
+            document.querySelector(`[data-id="${datasetID}"]`).append(p);
+
         }
 
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
-                center: { lat: 25.033708, lng: 121.564899 }
+        //網頁關掉重開，會先抓出local-storage資料再次寫入
+        function WriteEvent() {
+            //找出當月每一天的data-id集合
+            let keyArray = [];
+            document.querySelectorAll('li[data-id]').forEach((li) => {
+                let b = li.getAttribute('data-id')
+                keyArray.push(b);
             });
-            mapCenterControl(map,
-                () => gettingPosition()
-                    .then(position => successCallback(position))
-                    .catch(error => errorCallback(error))
-            )
+
+            // console.log(idArray);
+
+            keyArray.forEach((key, index) => {
+                let val = JSON.parse(localStorage.getItem(key));
+                if (localStorage.getItem(key) != null) {
+                    let p = document.createElement('p');
+                    p.style.color = `${val.color}`;
+                    p.innerText = `${val.time} ${val.title}`;
+                    document.querySelector(`[data-id="${key}"]`).append(p);
+                }
+
+
+            })
+
+
         }
+
+
+
+
+
+
+
+
+
+
+        // //google地圖
+        // let map;
+
+        // // 設置定位按鈕
+        // function mapCenterControl(map, clickButton) {
+        //     let centerControlDiv = document.createElement('div');
+
+        //     // Set CSS for the control border.
+        //     let controlUI = document.createElement('button');
+        //     controlUI.style.backgroundColor = '#fff';
+        //     controlUI.style.border = 'none';
+        //     controlUI.style.outline = 'none';
+        //     controlUI.style.width = '40px';
+        //     controlUI.style.height = '40px';
+        //     controlUI.style.borderRadius = '2px';
+        //     controlUI.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
+        //     controlUI.style.cursor = 'pointer';
+        //     controlUI.style.marginRight = '10px';
+        //     controlUI.style.padding = '0';
+        //     controlUI.title = 'Your Location';
+        //     centerControlDiv.appendChild(controlUI);
+
+        //     // Set CSS for the control interior.
+        //     let controlText = document.createElement('div');
+        //     controlText.style.margin = '10px';
+        //     controlText.style.width = '30px';
+        //     controlText.style.height = '30px';
+        //     controlText.style.backgroundImage = 'url(\'./pic/myLocation.png\')';
+        //     controlText.style.backgroundSize = '20px 20px';
+        //     controlText.style.backgroundPosition = '0px 0px';
+        //     controlText.style.backgroundRepeat = 'no-repeat';
+        //     controlUI.appendChild(controlText);
+
+        //     // constructor passing in this DIV.
+        //     centerControlDiv.index = 1; // 排列優先度
+        //     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv); // 設定按鈕加入地圖的位置
+
+        //     // Setup the click event listeners.
+        //     controlUI.addEventListener('click', () => clickButton());
+        // }
+
+
+        // // 取得使用者位置
+        // function gettingPosition() {
+        //     if (navigator.geolocation) {
+        //         return new Promise((resolve, reject) => {
+        //             let option = {
+        //                 enableAcuracy: false, // 提高精確度
+        //                 maximumAge: 0, // 設定上一次位置資訊的有效期限(毫秒)
+        //                 timeout: 10000 // 逾時計時器(毫秒)
+        //             };
+        //             navigator.geolocation.getCurrentPosition(resolve, reject, option);
+        //         })
+        //     } else {
+        //         alert("Does not support positioning!");
+        //     }
+        // }
+        // function successCallback(position) {
+        //     map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
+        // }
+        // function errorCallback(error) {
+        //     alert(error.message); //error.code
+        // }
+
+
+        // function initMap() {
+        //     map = new google.maps.Map(document.getElementById('map'), {
+        //         zoom: 15,
+        //         center: { lat: 25.033708, lng: 121.564899 }
+        //     });
+        //     mapCenterControl(map,
+        //         () => gettingPosition()
+        //             .then(position => successCallback(position))
+        //             .catch(error => errorCallback(error))
+        //     )
+        // }
 
     </script>
 
