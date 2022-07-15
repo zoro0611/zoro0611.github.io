@@ -57,8 +57,8 @@
             color: #565656;
         }
 
-        ul li p{
-            
+        ul li p {
+
             line-height: 0;
         }
 
@@ -219,6 +219,7 @@
                 </div>
 
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="ClearLocalStorage()">清除所有行程</button>
                     <button type="button" class="btn btn-primary" id="save-localStorage">儲存行程</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                 </div>
@@ -271,6 +272,10 @@
 
         //用來儲存local-storage的key
         let storageKey;
+
+
+
+
 
         //window.onload
         window.onload = () => {
@@ -358,17 +363,17 @@
 
             //前方空白
             for (i = 0; i < firstWeekday; i++) {
-                let blankLi = document.createElement('li');
+                let dayLi = document.createElement('li');
                 lastMonthDay = new Date(year, month, 0).getDate();
-                blankLi.innerText = lastMonthDay - firstWeekday + i + 1;
-                blankLi.setAttribute('class', 'blank-list');
-                blankLi.setAttribute('seqNumMonth', month);
-                blankLi.setAttribute('seqNumDay', lastMonthDay - firstWeekday + i + 1);
-                blankLi.setAttribute('data-id', `${year}-${month}-${lastMonthDay - firstWeekday + i + 1}`)
-                blankLi.style.color = '#ccc';
-                blankLi.style.border = '1px solid darkgrey'
-                holder.append(blankLi);
-                blankLi.onclick = () => {
+                dayLi.innerText = lastMonthDay - firstWeekday + i + 1;
+                dayLi.setAttribute('class', 'dayList');
+                dayLi.setAttribute('seqNumMonth', month);
+                dayLi.setAttribute('seqNumDay', lastMonthDay - firstWeekday + i + 1);
+                dayLi.setAttribute('data-id', `${year}-${month}-${lastMonthDay - firstWeekday + i + 1}`)
+                dayLi.style.color = '#ccc';
+                dayLi.style.border = '1px solid darkgrey'
+                holder.append(dayLi);
+                dayLi.onclick = () => {
                     clickModal();
                     seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
 
@@ -419,16 +424,16 @@
 
             //後方空白
             for (k = 1; k <= 42 - (firstWeekday + totalDays); k++) {
-                let blankLi = document.createElement('li');
-                blankLi.innerText = k;
-                blankLi.setAttribute('class', 'blank-list');
-                blankLi.setAttribute('seqNumMonth', month + 2);
-                blankLi.setAttribute('seqNumDay', k);
-                blankLi.setAttribute('data-id', `${year}-${month + 2}-${k}`)
-                blankLi.style.color = '#ccc';
-                blankLi.style.border = '1px solid darkgrey'
-                holder.append(blankLi);
-                blankLi.onclick = () => {
+                let dayLi = document.createElement('li');
+                dayLi.innerText = k;
+                dayLi.setAttribute('class', 'dayList');
+                dayLi.setAttribute('seqNumMonth', month + 2);
+                dayLi.setAttribute('seqNumDay', k);
+                dayLi.setAttribute('data-id', `${year}-${month + 2}-${k}`)
+                dayLi.style.color = '#ccc';
+                dayLi.style.border = '1px solid darkgrey'
+                holder.append(dayLi);
+                dayLi.onclick = () => {
                     clickModal();
                     seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
 
@@ -489,7 +494,7 @@
             doTime.value = '';
             doColor.value = '';
 
-           
+
             //事情二: 將storage中資料寫入每一日期內
 
             let val = JSON.parse(localStorage.getItem(storageKey));
@@ -517,7 +522,7 @@
 
                 for (i = 0; i <= 100; i++) {
                     let val = JSON.parse(localStorage.getItem(`${key}-${i}`));
-                    
+
 
                     if (localStorage.getItem(`${key}-${i}`) != null) {
                         let p = document.createElement('p');
@@ -535,6 +540,18 @@
             })
 
 
+        }
+
+        function ClearLocalStorage() {
+            localStorage.clear();
+            let dayList_Group = document.querySelectorAll('.dayList');
+            dayList_Group.forEach((li)=>{
+                li.innerHTML = '';
+                li.innerText = li.getAttribute('seqNumDay');
+            });
+
+            
+            
         }
 
 
