@@ -489,11 +489,13 @@
             doTime.value = '';
             doColor.value = '';
 
+           
             //事情二: 將storage中資料寫入每一日期內
 
             let val = JSON.parse(localStorage.getItem(storageKey));
             let p = document.createElement('p');
             p.style.color = `${val.color}`;
+            p.style.marginTop = '20px';
             p.innerText = `${val.time} ${val.title}`;
             document.querySelector(`[data-id="${datasetID}"]`).append(p);
 
