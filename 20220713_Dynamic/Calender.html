@@ -57,7 +57,10 @@
             color: #565656;
         }
 
-
+        ul li p{
+            
+            line-height: 0;
+        }
 
 
         .body-list ul {
@@ -82,12 +85,13 @@
 
         }
 
+
         #days li {
             cursor: pointer;
             text-align: left;
             line-height: normal;
             padding: 10px;
-            height: 100px;
+            height: 150px;
         }
 
         .lightgrey {
@@ -466,8 +470,18 @@
                 color: doColor.value
             }
 
+
             //仍需想辦法寫出多筆
-            storageKey = `${datasetID}`;
+            let key_tail = 0;
+            while (localStorage.getItem(`${datasetID}-${key_tail}`) != null) {
+                key_tail++
+            }
+            storageKey = `${datasetID}-${key_tail}`;
+
+
+
+
+
 
             localStorage.setItem(storageKey, JSON.stringify(event));
 
@@ -490,20 +504,30 @@
             //找出當月每一天的data-id集合
             let keyArray = [];
             document.querySelectorAll('li[data-id]').forEach((li) => {
-                let b = li.getAttribute('data-id')
-                keyArray.push(b);
+                let id = li.getAttribute('data-id')
+                keyArray.push(id);
             });
 
             // console.log(idArray);
 
+            //用key集合去搜尋local-storage是否儲存此key，若有則執行
             keyArray.forEach((key, index) => {
-                let val = JSON.parse(localStorage.getItem(key));
-                if (localStorage.getItem(key) != null) {
-                    let p = document.createElement('p');
-                    p.style.color = `${val.color}`;
-                    p.innerText = `${val.time} ${val.title}`;
-                    document.querySelector(`[data-id="${key}"]`).append(p);
+
+                for (i = 0; i <= 100; i++) {
+                    let val = JSON.parse(localStorage.getItem(`${key}-${i}`));
+                    
+
+                    if (localStorage.getItem(`${key}-${i}`) != null) {
+                        let p = document.createElement('p');
+                        p.style.color = `${val.color}`;
+                        p.style.marginTop = '20px';
+                        p.innerText = `${val.time} ${val.title}`;
+                        document.querySelector(`[data-id="${key}"]`).append(p);
+                    }
+
                 }
+
+
 
 
             })
