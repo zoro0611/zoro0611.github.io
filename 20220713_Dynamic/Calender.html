@@ -107,21 +107,21 @@
             color: white;
         }
 
-        .darkgrey {
+        /* .darkgrey {
             color: #565656;
-            /*深灰色*/
+
         }
 
         .green {
             color: #6ac13c;
-            /*绿色*/
+
         }
 
         .greenbox {
             border: 1px solid #6ac13c;
             background: #e9f8df;
-            /*浅绿色背景*/
-        }
+
+        } */
 
         #titleInput {
             outline: none;
@@ -229,7 +229,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="ClearLocalStorage()">清除所有行程</button>
-                    <button type="button" class="btn btn-primary" id="save-localStorage">儲存行程</button>
+                    <button type="button" class="btn btn-primary" id="save-localStorage" data-toggle="modal" data-bs-dismiss="modal">儲存行程</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onclick="eventBox.innerHTML=''">關閉</button>
                 </div>
@@ -453,6 +453,8 @@
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
+                    eventBox.innerHTML='';
+
                     clickModal();
                     seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
 
