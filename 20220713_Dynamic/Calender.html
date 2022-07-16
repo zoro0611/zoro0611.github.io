@@ -631,6 +631,7 @@
         }
 
         function ClearLocalStorage() {
+            eventBox.innerHTML='';
             localStorage.clear();
             let dayList_Group = document.querySelectorAll('.dayList');
             dayList_Group.forEach((li) => {
