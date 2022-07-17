@@ -137,8 +137,10 @@
 
 
             #myHammer {
+                position: relative;
                 width: 80px;
                 height: 80px;
+                z-index: 100;
             }
 
             @keyframes fadeInOut {
@@ -760,6 +762,18 @@
         window.onload = () => {
 
 
+            document.querySelector('.container').addEventListener('mouseenter',()=>{
+                document.querySelector('.container').style.cursor= 'none';
+                document.querySelector('#myHammer').style.display = 'block';
+
+            });
+
+            document.querySelector('.container').addEventListener('mouseleave',()=>{
+                document.querySelector('.container').style.cursor= 'auto';
+                document.querySelector('#myHammer').style.display = 'none';
+
+            });;
+
             //設定開始按鈕要做的事情
             startBtn.onclick = () => {
 
@@ -818,7 +832,7 @@
 
             img.setAttribute("src", monster.pic);
             img.setAttribute('score', hole.monsters[rdnPic].score);
-            img.style.cursor = 'pointer';
+            // img.style.cursor = 'pointer';
             img.onclick = () => {
                 hitScore = img.getAttribute('score');
                 console.log(hitScore);
@@ -857,7 +871,7 @@
             var x = e.pageX;
             var y = e.pageY;
             // 選用圖片大小為100*100像素，讓滑鼠居中在它中間，x左移25px，y上移25px
-            pic.style.left = x + 10 + 'px';
+            pic.style.left = x + 5 + 'px';
             pic.style.top = y - 50 + 'px';
         });
     </script>
