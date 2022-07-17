@@ -184,7 +184,7 @@
 
 <body>
     <div class="gameTitle text-center">
-        <h1>打地鼠</h1>
+        <h1>不可以打柴柴</h1>
         <span id="totalScore">目前分數: 0分</span>
         <span id="timeLeft">時間剩下： 0秒</span>
     </div>
@@ -765,6 +765,9 @@
         let totalScore;
         let gameStart;
         let timeCount;
+        let totalSecond = 60;
+
+
         //DOM
         let holeGroup = document.querySelectorAll('[hole-id]');
         holeGroup = Array.from(holeGroup);
@@ -775,14 +778,14 @@
         let showTotal = document.getElementById('totalScore');
 
         let showTimeLeft = document.querySelector('#timeLeft');
-        let totalSecond;
+       
 
 
 
         //window.onload
         window.onload = () => {
             totalScore = 0;
-            totalSecond = 10;
+            totalSecond = 60;
             showTimeLeft.innerText = `時間剩下：${totalSecond}秒`
             document.querySelector('.container').addEventListener('mouseenter', () => {
                 document.querySelector('.container').style.cursor = 'none';
@@ -909,7 +912,7 @@
 
                 }
                 if (totalScore >= 40) {
-                    alert`恭喜您過關，下次再來喔`
+                    alert(`恭喜您過關，總成績: ${totalScore}，所花秒數是: ${60 - totalSecond}秒`)
                     clearInterval(gameStart);
                     clearInterval(timeCount);
                     totalSecond = 60;
