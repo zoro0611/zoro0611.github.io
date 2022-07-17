@@ -108,6 +108,65 @@
             width: 100px;
             height: 100px;
         }
+
+        @media screen and (max-width: 992px) {
+            .active img {
+                width: 80px;
+                height: 80px;
+                left: 40px;
+            }
+        }
+
+        @media screen and (max-width: 767.9px) {
+            .hole {
+                background-size: 100px 70px;
+
+            }
+
+
+
+            button {
+                height: 50px;
+            }
+
+            .active img {
+                width: 50px;
+                height: 50px;
+                left: 25px;
+            }
+
+
+            #myHammer {
+                width: 80px;
+                height: 80px;
+            }
+
+            @keyframes fadeInOut {
+
+                0% {
+                    display: block;
+                    opacity: 1;
+                    top: 30px;
+                }
+
+                30% {
+                    opacity: 1;
+                    top: 10px;
+                }
+
+                50% {
+                    opacity: 0;
+                    top: 50px;
+                }
+
+                100% {
+                    top: 70px;
+                    opacity: 0;
+                    display: none;
+                }
+            }
+
+        }
     </style>
 
 </head>
@@ -699,11 +758,11 @@
 
         //window.onload
         window.onload = () => {
-            
+
 
             //設定開始按鈕要做的事情
             startBtn.onclick = () => {
-                
+
                 alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分50即可過關，低於0分會導致遊戲失敗!!')
                 totalScore = 0;
                 showTotal.innerText = `目前分數: ${totalScore}分`;
@@ -791,17 +850,17 @@
 
     </script>
 
-<script>
-    var pic = document.querySelector('#myHammer');
-    document.addEventListener('mousemove', function(e) {
-        // 獲取當前滑鼠到頁面的距離
-        var x = e.pageX;
-        var y = e.pageY;
-        // 選用圖片大小為100*100像素，讓滑鼠居中在它中間，x左移25px，y上移25px
-        pic.style.left = x + 10 + 'px';
-        pic.style.top = y - 50 + 'px';
-    });
-</script>
+    <script>
+        var pic = document.querySelector('#myHammer');
+        document.addEventListener('mousemove', function (e) {
+            // 獲取當前滑鼠到頁面的距離
+            var x = e.pageX;
+            var y = e.pageY;
+            // 選用圖片大小為100*100像素，讓滑鼠居中在它中間，x左移25px，y上移25px
+            pic.style.left = x + 10 + 'px';
+            pic.style.top = y - 50 + 'px';
+        });
+    </script>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
