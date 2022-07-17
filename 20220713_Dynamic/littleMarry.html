@@ -30,8 +30,16 @@
 
         }
 
-        #totalScore {
+        #totalScore,
+        #timeLeft {
             color: red;
+            font-size: 20px;
+        }
+
+        #timeLeft {
+            display: inline-block;
+            margin-left: 20px;
+
         }
 
         .container {
@@ -127,6 +135,7 @@
 
             button {
                 height: 50px;
+
             }
 
             .active img {
@@ -175,7 +184,16 @@
 
 <body>
     <div class="gameTitle text-center">
-        <h1>打地鼠</h1><span id="totalScore">目前分數: 0分 </span>
+        <h1>打地鼠</h1>
+        <span id="totalScore">目前分數: 0分</span>
+        <span id="timeLeft">時間剩下： 0秒</span>
+    </div>
+
+    <div class="button-group d-flex justify-content-center mt-1 mb-1">
+        <div class="startGame col-3 col-md-3 col-xl-3"><button class="btn btn-primary w-100" id="startBtn">開始遊戲</button>
+        </div>
+        <div class="cancelGame col-3 col-md-3 col-xl-3"><button class="btn btn-primary w-100"
+                id="cancelBtn">中止遊戲</button></div>
     </div>
 
     <div class="container">
@@ -240,8 +258,7 @@
 
     </div>
 
-    <div class="startGame col-12"><button class="btn btn-primary w-100" id="startBtn">開始遊戲</button></div>
-    <div class="cancelGame col-12"><button class="btn btn-primary w-100" id="cancelBtn">中止遊戲</button></div>
+
 
     <img src="./pic/hammer.png" id="myHammer">
 
@@ -745,8 +762,9 @@
 
         let hitScore;
 
-        let totalScore = 0;
+        let totalScore;
         let gameStart;
+        let timeCount;
         //DOM
         let holeGroup = document.querySelectorAll('[hole-id]');
         holeGroup = Array.from(holeGroup);
@@ -756,28 +774,37 @@
 
         let showTotal = document.getElementById('totalScore');
 
+        let showTimeLeft = document.querySelector('#timeLeft');
+        let totalSecond;
+
 
 
         //window.onload
         window.onload = () => {
-
-
-            document.querySelector('.container').addEventListener('mouseenter',()=>{
-                document.querySelector('.container').style.cursor= 'none';
+            totalScore = 0;
+            totalSecond = 10;
+            showTimeLeft.innerText = `時間剩下：${totalSecond}秒`
+            document.querySelector('.container').addEventListener('mouseenter', () => {
+                document.querySelector('.container').style.cursor = 'none';
                 document.querySelector('#myHammer').style.display = 'block';
 
             });
 
-            document.querySelector('.container').addEventListener('mouseleave',()=>{
-                document.querySelector('.container').style.cursor= 'auto';
+            document.querySelector('.container').addEventListener('mouseleave', () => {
+                document.querySelector('.container').style.cursor = 'auto';
                 document.querySelector('#myHammer').style.display = 'none';
 
             });;
+            
+
+
 
             //設定開始按鈕要做的事情
             startBtn.onclick = () => {
+                alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分40即可過關，低於0分會導致遊戲失敗!!')
 
-                alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分50即可過關，低於0分會導致遊戲失敗!!')
+                timeCount = setInterval(timeCountDown, 1000);
+
                 totalScore = 0;
                 showTotal.innerText = `目前分數: ${totalScore}分`;
                 gameStart = setInterval(setMouseOut, 3000);
@@ -794,23 +821,55 @@
             }
 
             cancelBtn.onclick = () => {
+                holeGroup.forEach(hole => {
+                    hole.classList.remove('active');
+                });
                 clearInterval(gameStart);
+                clearInterval(timeCount);
+                totalSecond = 60;
                 totalScore = 0;
                 showTotal.innerText = `目前分數: ${totalScore}分`;
                 startBtn.disabled = false;
             }
 
+            function timeCountDown() {
+                // if (totalScore < 0){
+                //     alert('時間到了，遊戲結束');
+                    
+                //     clearInterval(timeCount);
+                    
+                //     startBtn.disabled = false;
+                // }
+                if (totalSecond <= 0) {
+                    
+                    alert('時間到了，遊戲結束');
+                    clearInterval(gameStart);
+                    clearInterval(timeCount);
+                    totalSecond = 60;
+                    startBtn.disabled = false;
+                }
+
+                else {
+
+                    totalSecond--;
+                    console.log(totalSecond);
+                    showTimeLeft.innerText = `時間剩下：${totalSecond}秒`;
+                }
 
 
 
+            }
+
+        
         }
 
 
         //function()
 
+
         function getRandomBox() {
             let random = Math.floor(Math.random() * (holeData.length));
-            console.log("random = " + random);
+            // console.log("random = " + random);
             return random;
 
         }
@@ -821,7 +880,7 @@
         function setMouseOut() {
             holeGroup[rdnHoleId].classList.remove('active');
             rdnHoleId = getRandomBox();
-            console.log(rdnHoleId);
+            // console.log(rdnHoleId);
 
             let hole = holeData.find(hole => (parseInt(hole.id)) == rdnHoleId + 1)
 
@@ -835,7 +894,7 @@
             // img.style.cursor = 'pointer';
             img.onclick = () => {
                 hitScore = img.getAttribute('score');
-                console.log(hitScore);
+                // console.log(hitScore);
                 holeGroup[rdnHoleId].classList.remove('active');
                 totalScore += parseInt(hitScore);
                 showTotal.innerText = `目前分數: ${totalScore}分`;
@@ -843,13 +902,17 @@
 
                     alert`您的分數低於0分，遊戲失敗，不可以打柴柴!!`;
                     clearInterval(gameStart);
+                    clearInterval(timeCount);
+                    totalSecond = 60;
                     totalScore = 0;
                     startBtn.disabled = false;
 
                 }
-                if (totalScore >= 50) {
+                if (totalScore >= 40) {
                     alert`恭喜您過關，下次再來喔`
                     clearInterval(gameStart);
+                    clearInterval(timeCount);
+                    totalSecond = 60;
                     totalScore = 0;
                     startBtn.disabled = false;
                 }
