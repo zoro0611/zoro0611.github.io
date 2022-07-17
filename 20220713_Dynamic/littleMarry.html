@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .row {
+            width: 100%;
+        }
+
+        .gameTitle {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: white;
+            background-color: #000;
+
+
+        }
+
+        #totalScore {
+            color: red;
+        }
+
+        .container {
+            height: 400px;
+            background-color: yellowgreen;
+        }
+
+        #cancelBtn {
+            background-color: red;
+        }
+
+        .hole {
+            height: 100px;
+            /* border: 1px solid red; */
+            position: relative;
+            background-image: url(./pic/hole.png);
+            background-repeat: no-repeat;
+            background-size: 150px 100px;
+            background-position: center;
+        }
+
+        .hole img {
+            display: none;
+        }
+
+        button {
+            height: 50px;
+        }
+
+        .active img {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            display: block;
+
+            top: 0;
+            left: 70px;
+            opacity: 0;
+            position: relative;
+            animation: fadeInOut 7s;
+
+        }
+
+
+
+        @keyframes fadeInOut {
+
+            0% {
+                display: block;
+                opacity: 1;
+                top: 10px;
+            }
+
+            30% {
+                opacity: 1;
+                top: -10px;
+            }
+
+            50% {
+                opacity: 0;
+                top: 50px;
+            }
+
+            100% {
+                top: 100px;
+                opacity: 0;
+                display: none;
+            }
+        }
+
+        #myHammer {
+            /* 因為圖片不能影響頁面其他的布局，所以用絕對定位 */
+            position: absolute !important;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="gameTitle text-center">
+        <h1>打地鼠</h1><span id="totalScore">目前分數: 0分 </span>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="hole col-3 text-center" hole-id="1">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="2">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="3">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="4">
+                <img src="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="hole col-3 text-center" hole-id="5">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="6">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="7">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="8">
+                <img src="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="hole col-3 text-center" hole-id="9">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="10">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="11">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="12">
+                <img src="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="hole col-3 text-center" hole-id="13">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="14">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="15">
+                <img src="">
+            </div>
+            <div class="hole col-3 text-center" hole-id="16">
+                <img src="">
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="startGame col-12"><button class="btn btn-primary w-100" id="startBtn">開始遊戲</button></div>
+    <div class="cancelGame col-12"><button class="btn btn-primary w-100" id="cancelBtn">中止遊戲</button></div>
+
+    <img src="./pic/hammer.png" id="myHammer">
+
+    <script>
+        //宣告變數
+        let holeData = [
+            {
+                id: '1',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '2',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+
+            },
+            {
+                id: '3',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '4',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '5',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '6',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '7',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '8',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '9',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '10',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '11',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '12',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '13',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '14',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '15',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+            {
+                id: '16',
+                monsters:
+                    [
+                        {
+                            name: 'one',
+                            pic: './pic/oneMouse.png',
+                            score: '2'
+                        },
+                        {
+                            name: 'three',
+                            pic: './pic/threeMouse.png',
+                            score: '5'
+                        },
+                        {
+                            name: 'dog',
+                            pic: './pic/inu.png',
+                            score: '-10'
+                        },
+                    ],
+                showScore: function () {
+                    let scoreList = [];
+                    let scores = Object.values(monsters).forEach(monster => {
+                        scoreList.push(monster.score);
+                    });
+                    return scoreList;
+                }
+
+
+            },
+
+
+
+
+        ]
+
+        //選出要出現地鼠的洞
+        let rdnHoleId = 0;
+
+        //選出多久地鼠會出現
+        let rdnSpeed;
+
+        let monsterHitScore;
+
+        let hitScore;
+
+        let totalScore = 0;
+        let gameStart;
+        //DOM
+        let holeGroup = document.querySelectorAll('[hole-id]');
+        holeGroup = Array.from(holeGroup);
+        // console.log(holeGroup);
+        let startBtn = document.getElementById('startBtn');
+        let cancelBtn = document.getElementById('cancelBtn');
+
+        let showTotal = document.getElementById('totalScore');
+
+
+
+        //window.onload
+        window.onload = () => {
+            // alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分50即可過關，低於0分會導致遊戲失敗!!')
+
+            //設定開始按鈕要做的事情
+            startBtn.onclick = () => {
+                totalScore = 0;
+                showTotal.innerText = `目前分數: ${totalScore}分`;
+                gameStart = setInterval(setMouseOut, 3000);
+
+                holeGroup.forEach(hole => {
+                    hole.classList.remove('active');
+
+                });
+
+
+
+
+
+            }
+
+            cancelBtn.onclick = () => {
+                clearInterval(gameStart);
+                totalScore = 0;
+                showTotal.innerText = `目前分數: ${totalScore}分`;
+
+            }
+
+
+
+
+        }
+
+
+        //function()
+
+        function getRandomBox() {
+            let random = Math.floor(Math.random() * (holeData.length));
+            console.log("random = " + random);
+            return random;
+
+        }
+        function getRandomPic(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function setMouseOut() {
+            holeGroup[rdnHoleId].classList.remove('active');
+            rdnHoleId = getRandomBox();
+            console.log(rdnHoleId);
+
+            let hole = holeData.find(hole => (parseInt(hole.id)) == rdnHoleId + 1)
+
+            let img = holeGroup[rdnHoleId].querySelector('img');
+            img.setAttribute("src", "");
+            rdnPic = getRandomPic(3);
+            let monster = hole.monsters[rdnPic];
+
+            img.setAttribute("src", monster.pic);
+            img.setAttribute('score', hole.monsters[rdnPic].score);
+            img.style.cursor = 'pointer';
+            img.onclick = () => {
+                hitScore = img.getAttribute('score');
+                console.log(hitScore);
+                holeGroup[rdnHoleId].classList.remove('active');
+                totalScore += parseInt(hitScore);
+                showTotal.innerText = `目前分數: ${totalScore}分`;
+                if (totalScore < 0) {
+
+                    alert`您的分數低於0分，遊戲失敗，不可以打柴柴!!`;
+                    clearInterval(gameStart);
+                    totalScore = 0;
+
+
+                }
+                if (totalScore >= 50) {
+                    alert`恭喜您過關，下次再來喔`
+                    clearInterval(gameStart);
+                    totalScore = 0;
+                }
+
+            }
+
+            holeGroup[rdnHoleId].classList.add('active');
+
+
+        }
+
+
+    </script>
+
+<script>
+    var pic = document.querySelector('#myHammer');
+    document.addEventListener('mousemove', function(e) {
+        // 獲取當前滑鼠到頁面的距離
+        var x = e.pageX;
+        var y = e.pageY;
+        // 選用圖片大小為100*100像素，讓滑鼠居中在它中間，x左移25px，y上移25px
+        pic.style.left = x + 10 + 'px';
+        pic.style.top = y - 50 + 'px';
+    });
+</script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
