@@ -699,10 +699,11 @@
 
         //window.onload
         window.onload = () => {
-            alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分50即可過關，低於0分會導致遊戲失敗!!')
+            
 
             //設定開始按鈕要做的事情
             startBtn.onclick = () => {
+                alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分50即可過關，低於0分會導致遊戲失敗!!')
                 totalScore = 0;
                 showTotal.innerText = `目前分數: ${totalScore}分`;
                 gameStart = setInterval(setMouseOut, 3000);
