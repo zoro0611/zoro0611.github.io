@@ -703,6 +703,7 @@
 
             //設定開始按鈕要做的事情
             startBtn.onclick = () => {
+                
                 alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分50即可過關，低於0分會導致遊戲失敗!!')
                 totalScore = 0;
                 showTotal.innerText = `目前分數: ${totalScore}分`;
@@ -713,7 +714,7 @@
 
                 });
 
-
+                startBtn.disabled = true;
 
 
 
@@ -723,7 +724,7 @@
                 clearInterval(gameStart);
                 totalScore = 0;
                 showTotal.innerText = `目前分數: ${totalScore}分`;
-
+                startBtn.disabled = false;
             }
 
 
@@ -770,13 +771,14 @@
                     alert`您的分數低於0分，遊戲失敗，不可以打柴柴!!`;
                     clearInterval(gameStart);
                     totalScore = 0;
-
+                    startBtn.disabled = false;
 
                 }
                 if (totalScore >= 50) {
                     alert`恭喜您過關，下次再來喔`
                     clearInterval(gameStart);
                     totalScore = 0;
+                    startBtn.disabled = false;
                 }
 
             }
