@@ -301,6 +301,7 @@
             month = dateObj.getMonth();
             // 當天
             day = dateObj.getDate();
+            
             // 當天是星期(?)
             weekday = dateObj.getDay();
             // 當月的第一天是星期幾
@@ -505,11 +506,15 @@
                 // dayP.style.fontSize = '12px';
                 // // dayP.innerText = 'today: work';
                 // dayLi.append(dayP);
+
                 dayLi.setAttribute('class', 'dayList');
                 dayLi.setAttribute('seqNumMonth', month + 1);
                 dayLi.setAttribute('seqNumDay', j);
                 dayLi.setAttribute('data-id', `${year}-${month + 1}-${j}`)
                 // console.log(dayLi.dataset);
+                if(j == day){
+                    dayLi.style.color = 'red';
+                }
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
@@ -567,6 +572,7 @@
 
 
         function SaveEventToStorage() {
+            eventBox.innerHTML=''
             // //儲存時間的變數
             // let eventtimeInput = doTime.value; 
             // //儲存事件名稱的變數
