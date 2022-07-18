@@ -804,7 +804,7 @@
 
             //設定開始按鈕要做的事情
             startBtn.onclick = () => {
-                alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分40即可過關，低於0分會導致遊戲失敗!!')
+                alert('遊戲說明：地鼠每隻+2分；三地鼠每隻+5分；柴柴倒扣10分，滿分100即可過關，低於0分會導致遊戲失敗!!')
 
                 timeCount = setInterval(timeCountDown, 1000);
 
@@ -942,7 +942,7 @@
                         startBtn.disabled = false;
 
                     }
-                    if (totalScore >= 40) {
+                    if (totalScore >= 100) {
                         alert(`恭喜您過關，總成績: ${totalScore}，所花秒數是: ${60 - totalSecond}秒`)
                         clearInterval(gameStart);
                         clearInterval(timeCount);
