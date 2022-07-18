@@ -229,7 +229,8 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="ClearLocalStorage()">清除所有行程</button>
-                    <button type="button" class="btn btn-primary" id="save-localStorage" data-toggle="modal" data-bs-dismiss="modal">儲存行程</button>
+                    <button type="button" class="btn btn-primary" id="save-localStorage" data-toggle="modal"
+                        data-bs-dismiss="modal">儲存行程</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onclick="eventBox.innerHTML=''">關閉</button>
                 </div>
@@ -338,7 +339,7 @@
             saveEventBtn.addEventListener('click', () => {
 
                 SaveEventToStorage();
-                
+
                 在這新增儲存後要顯示
                 for (i = 0; i <= 100; i++) {
                     // step1: 找local-storage中是否有此key
@@ -384,13 +385,42 @@
         //每個日期按下去會跳出Modal視窗
         function clickModal() {
 
-            
+
             modalBtn.click();
             datasetID = event.currentTarget.dataset.id;
             // console.log(datasetID);
 
 
             //
+            // let i = 0;
+            // while(localStorage.getItem(`${datasetID}-${i}`) != null){
+            //     let val = JSON.parse(localStorage.getItem(`${datasetID}-${i}`));
+            //     let p = document.createElement('p');
+            //         p.style.color = `${val.color}`;
+            //         p.style.cursor = 'pointer';
+            //         p.style.textDecoration = 'underline';
+            //         p.style.width = 'fit-content';
+            //         p.setAttribute('data-id', `${datasetID}-${i}`);
+            //         // p.style.marginTop = '20px';
+            //         p.innerText = `${val.time} ${val.title}`;
+
+            //         //當modal中的代辦事項被點擊，在modal中被刪除，同時刪除月曆上的事項
+            //         p.addEventListener('click', () => {
+            //             let dataID = p.getAttribute('data-id');
+            //             eventBox.removeChild(p);
+            //             localStorage.removeItem(dataID);
+            //             let this_list = document.querySelector(`[data-id='${datasetID}']`)
+            //             console.log(this_list);
+            //             let this_p = document.querySelector(`[data-id='${dataID}']`);
+            //             this_list.removeChild(this_p);
+
+            //         });
+
+            //         eventBox.append(p);
+
+            // }
+
+
             for (i = 0; i <= 100; i++) {
                 // step1: 找local-storage中是否有此key
                 let val = JSON.parse(localStorage.getItem(`${datasetID}-${i}`));
@@ -453,7 +483,7 @@
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
-                    eventBox.innerHTML='';
+                    eventBox.innerHTML = '';
 
                     clickModal();
                     seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
@@ -607,21 +637,30 @@
             //用key集合去搜尋local-storage是否儲存此key，若有則執行
             keyArray.forEach((key, index) => {
 
-                for (i = 0; i <= 100; i++) {
+                // for (i = 0; i <= 100; i++) {
+                //     let val = JSON.parse(localStorage.getItem(`${key}-${i}`));
+
+                //     if (localStorage.getItem(`${key}-${i}`) != null) {
+                //         let p = document.createElement('p');
+                //         p.style.color = `${val.color}`;
+                //         p.setAttribute('data-id',`${key}-${i}`);
+                //         p.style.marginTop = '20px';
+                //         p.innerText = `${val.time} ${val.title}`;
+                //         document.querySelector(`[data-id="${key}"]`).append(p);
+                //     }
+
+                // }
+                let i = 0;
+                while (localStorage.getItem(`${key}-${i}`) != null) {
                     let val = JSON.parse(localStorage.getItem(`${key}-${i}`));
-
-
-                    if (localStorage.getItem(`${key}-${i}`) != null) {
-                        let p = document.createElement('p');
-                        p.style.color = `${val.color}`;
-                        p.setAttribute('data-id',`${key}-${i}`);
-                        p.style.marginTop = '20px';
-                        p.innerText = `${val.time} ${val.title}`;
-                        document.querySelector(`[data-id="${key}"]`).append(p);
-                    }
-
+                    let p = document.createElement('p');
+                    p.style.color = `${val.color}`;
+                    p.setAttribute('data-id', `${key}-${i}`);
+                    p.style.marginTop = '20px';
+                    p.innerText = `${val.time} ${val.title}`;
+                    document.querySelector(`[data-id="${key}"]`).append(p);
+                    i++;
                 }
-
 
 
 
@@ -631,7 +670,7 @@
         }
 
         function ClearLocalStorage() {
-            eventBox.innerHTML='';
+            eventBox.innerHTML = '';
             localStorage.clear();
             let dayList_Group = document.querySelectorAll('.dayList');
             dayList_Group.forEach((li) => {
