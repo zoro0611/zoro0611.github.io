@@ -778,7 +778,7 @@
         let showTotal = document.getElementById('totalScore');
 
         let showTimeLeft = document.querySelector('#timeLeft');
-       
+
 
 
 
@@ -798,7 +798,7 @@
                 document.querySelector('#myHammer').style.display = 'none';
 
             });;
-            
+
 
 
 
@@ -810,7 +810,11 @@
 
                 totalScore = 0;
                 showTotal.innerText = `目前分數: ${totalScore}分`;
-                gameStart = setInterval(setMouseOut, 3000);
+                gameStart = setInterval(()=>{
+                    // rdnSpeed = getRandomSpeed();
+                    setMouseOut();
+                
+                }, 3000);
 
                 holeGroup.forEach(hole => {
                     hole.classList.remove('active');
@@ -838,13 +842,13 @@
             function timeCountDown() {
                 // if (totalScore < 0){
                 //     alert('時間到了，遊戲結束');
-                    
+
                 //     clearInterval(timeCount);
-                    
+
                 //     startBtn.disabled = false;
                 // }
                 if (totalSecond <= 0) {
-                    
+
                     alert('時間到了，遊戲結束');
                     clearInterval(gameStart);
                     clearInterval(timeCount);
@@ -863,12 +867,12 @@
 
             }
 
-        
+
         }
 
 
         //function()
-        
+
         //產出隨機N個地鼠洞
         function randomHoleNumber() {
             var holeArr = [];
@@ -886,68 +890,75 @@
             // alert(arr);
         }
 
-        function getRandomHole() {
-            let random = Math.floor(Math.random() * (holeData.length));
-            // console.log("random = " + random);
-            return random;
+        // function getRandomSpeed() {
+        //     let random = Math.floor(Math.random() * 3);
+        //     // console.log("random = " + random);
+        //     return random;
 
-        }
+        // }
         function getRandomPic(max) {
             return Math.floor(Math.random() * max);
         }
 
         function setMouseOut() {
+            //設定每一次出現的秒數
+            
+
             //產出0~15的5個數字陣列
-            let rdnHoles = randomHoleNumber(); 
+            let rdnHoles = randomHoleNumber();
             console.log(rdnHoles);
-            rdnHoles.forEach((number,index)=>{
-                
+            holeGroup.forEach(x => {
+                x.classList.remove('active');
+            })
+            rdnHoles.forEach((holeNum, index) => {
+
+
+
+                // console.log(rdnHoleId);
+
+                let hole = holeData.find(hole => (parseInt(hole.id)) == holeNum + 1)
+
+                let img = holeGroup[holeNum].querySelector('img');
+                img.setAttribute("src", "");
+                rdnPic = getRandomPic(3);
+                let monster = hole.monsters[rdnPic];
+
+                img.setAttribute("src", monster.pic);
+                img.setAttribute('score', hole.monsters[rdnPic].score);
+                // img.style.cursor = 'pointer';
+                img.onclick = () => {
+                    hitScore = img.getAttribute('score');
+                    // console.log(hitScore);
+                    holeGroup[holeNum].classList.remove('active');
+                    totalScore += parseInt(hitScore);
+                    showTotal.innerText = `目前分數: ${totalScore}分`;
+                    if (totalScore < 0) {
+
+                        alert`您的分數低於0分，遊戲失敗，不可以打柴柴!!`;
+                        clearInterval(gameStart);
+                        clearInterval(timeCount);
+                        totalSecond = 60;
+                        totalScore = 0;
+                        startBtn.disabled = false;
+
+                    }
+                    if (totalScore >= 40) {
+                        alert(`恭喜您過關，總成績: ${totalScore}，所花秒數是: ${60 - totalSecond}秒`)
+                        clearInterval(gameStart);
+                        clearInterval(timeCount);
+                        totalSecond = 60;
+                        totalScore = 0;
+                        startBtn.disabled = false;
+                    }
+
+                }
+
+                holeGroup[holeNum].classList.add('active');
 
 
             });
 
-            holeGroup[rdnHoleId].classList.remove('active');
-            rdnHoleId = getRandomHole();
-            // console.log(rdnHoleId);
 
-            let hole = holeData.find(hole => (parseInt(hole.id)) == rdnHoleId + 1)
-
-            let img = holeGroup[rdnHoleId].querySelector('img');
-            img.setAttribute("src", "");
-            rdnPic = getRandomPic(3);
-            let monster = hole.monsters[rdnPic];
-
-            img.setAttribute("src", monster.pic);
-            img.setAttribute('score', hole.monsters[rdnPic].score);
-            // img.style.cursor = 'pointer';
-            img.onclick = () => {
-                hitScore = img.getAttribute('score');
-                // console.log(hitScore);
-                holeGroup[rdnHoleId].classList.remove('active');
-                totalScore += parseInt(hitScore);
-                showTotal.innerText = `目前分數: ${totalScore}分`;
-                if (totalScore < 0) {
-
-                    alert`您的分數低於0分，遊戲失敗，不可以打柴柴!!`;
-                    clearInterval(gameStart);
-                    clearInterval(timeCount);
-                    totalSecond = 60;
-                    totalScore = 0;
-                    startBtn.disabled = false;
-
-                }
-                if (totalScore >= 40) {
-                    alert(`恭喜您過關，總成績: ${totalScore}，所花秒數是: ${60 - totalSecond}秒`)
-                    clearInterval(gameStart);
-                    clearInterval(timeCount);
-                    totalSecond = 60;
-                    totalScore = 0;
-                    startBtn.disabled = false;
-                }
-
-            }
-
-            holeGroup[rdnHoleId].classList.add('active');
 
 
         }
