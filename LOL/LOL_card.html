@@ -185,7 +185,7 @@
 
             cloneCard.querySelector('img').src = imgUrl;
             cloneCard.querySelector('h5').innerText = `${index} : ${id}-${name}`;
-            cloneCard.querySelector('p').innerText = description;
+            cloneCard.querySelector('p').innerText = `${description}...more`;
 
             cloneCard.querySelector('#detail').addEventListener('click', () => {
                 modalBtn.click();
@@ -225,7 +225,7 @@
                             index: index,
                             id: heroData.id,
                             name: heroData.name,
-                            description: heroData.blurb.substring(0, 20),
+                            description: heroData.blurb.substring(0, 25),
                             ability: heroData.stats
                         }
                         herosArray.push(data);
