@@ -49,12 +49,17 @@
             justify-content: space-around;
         }
 
-        #openModal{
+        #openModal {
             display: none;
         }
 
-        .modal-header{
+        .modal-header {
             background-color: blue;
+        }
+
+        .ability{
+            margin-top: 10px;
+            margin-bottom: -20px;
         }
     </style>
 </head>
@@ -74,39 +79,39 @@
     <!-- modal -->
 
     <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="openModal">
-    Launch demo modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Aatrox-厄薩斯</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          
-            <img src="" alt="" id="modalImg" class="w-100">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="openModal">
+        Launch demo modal
+    </button>
 
-            <div class="ability">
-                <p id="hp">HP</p>
-                <p id="moveSpeed">Move Speed</p>
-                <p id="armor">Armor</p>
-                <p id="spellBlock">Spell Block</p>
-                <p id="attackRange">AttackRange</p>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Aatrox-厄薩斯</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <img src="" alt="" id="modalImg" class="w-100">
+
+                    <div class="ability">
+                        <p id="hp">HP</p>
+                        <p id="moveSpeed">Move Speed</p>
+                        <p id="armor">Armor</p>
+                        <p id="spellBlock">Spell Block</p>
+                        <p id="attackRange">AttackRange</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
             </div>
-
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
-          
-        </div>
-      </div>
     </div>
-  </div>
-    
+
 
 
     <template id="cardLOL" class="row col-12">
@@ -138,20 +143,15 @@
 
     <script>
 
+        //宣告變數
         let row, cardTemplate;
 
         let herosArray = [];
-        let heroId;
 
         let url = 'https://raw.githubusercontent.com/zoro0611/FileStorage/master/lol.json';
 
         //DOM
         const modalBtn = document.querySelector('#openModal');
-        console.log(modalBtn);
-
-
-
-
     </script>
 
     <script type="module">
@@ -160,17 +160,10 @@
         import { $g } from "./helpers.js"
         cardTemplate = $g('#cardLOL');
         row = $g(".row")[0];
-        console.log(row);
-        console.log(cardTemplate);
 
         window.onload = () => {
 
             fetchData();
-
-            //這邊開始複製卡牌
-            // let cloneCard = cardTemplate.content.cloneNode(true);
-
-
 
         }
         //DOM元素
@@ -179,15 +172,10 @@
         let modalImg = document.querySelector('#modalImg');
 
         let hp = document.getElementById('hp');
-        console.log(hp);
         let moveSpeed = document.getElementById('moveSpeed');
-        console.log(moveSpeed);
         let armor = document.getElementById('armor');
-        console.log(armor);
         let spellBlock = document.getElementById('spellBlock');
-        console.log(spellBlock);
         let attackRange = document.getElementById('attackRange');
-        console.log(attackRange);
 
 
         //function
@@ -198,11 +186,9 @@
             cloneCard.querySelector('img').src = imgUrl;
             cloneCard.querySelector('h5').innerText = `${index} : ${id}-${name}`;
             cloneCard.querySelector('p').innerText = description;
-            cloneCard.querySelector('#detail').setAttribute('data', index)
-            cloneCard.querySelector('#detail').addEventListener('click', ()=>{
+
+            cloneCard.querySelector('#detail').addEventListener('click', () => {
                 modalBtn.click();
-                heroId = event.currentTarget.getAttribute('data')
-                console.log(heroId);
 
                 modalTitle.innerText = `No. ${index} : ${id}-${name}`
                 modalImg.src = imgUrl;
