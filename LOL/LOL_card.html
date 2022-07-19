@@ -35,6 +35,7 @@
             padding: 5px 10px;
             border-radius: 5px;
             text-align-last: left;
+            font-size: 16px;
         }
 
         .card-body {
@@ -195,7 +196,7 @@
             let cloneCard = cardTemplate.content.cloneNode(true);
 
             cloneCard.querySelector('img').src = imgUrl;
-            cloneCard.querySelector('h5').innerText = `No.${index} : ${id}-${name}`;
+            cloneCard.querySelector('h5').innerText = `${index} : ${id}-${name}`;
             cloneCard.querySelector('p').innerText = description;
             cloneCard.querySelector('#detail').setAttribute('data', index)
             cloneCard.querySelector('#detail').addEventListener('click', ()=>{
