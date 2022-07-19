@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            width: 100%;
+            height: 150px;
+
+            text-align: center;
+            padding: 50px auto;
+        }
+
+        header h2 {
+            display: block;
+            font-weight: bolder;
+            line-height: 150px;
+        }
+
+        .card-title {
+            background-color: #000;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            text-align-last: left;
+        }
+
+        .card-body {
+            background-color: #fa0;
+        }
+
+        .row {
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        #openModal{
+            display: none;
+        }
+
+        .modal-header{
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class='container-fluid'>
+        <div class='jumbotron bg-info'>
+            <h2>LOL英雄聯盟圖鑑</h2>
+        </div>
+
+        <div class='row'>
+
+        </div>
+    </header>
+
+    <!-- modal -->
+
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="openModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Aatrox-厄薩斯</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+            <img src="" alt="" id="modalImg" class="w-100">
+
+            <div class="ability">
+                <p id="hp">HP</p>
+                <p id="moveSpeed">Move Speed</p>
+                <p id="armor">Armor</p>
+                <p id="spellBlock">Spell Block</p>
+                <p id="attackRange">AttackRange</p>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+
+    <template id="cardLOL" class="row col-12">
+
+        <div class="card col-3" style="width: 18rem;">
+            <img src="#" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">0: Aaxtrox - 厄薩斯</h5>
+                <p class="card-text">尊貴的蘇芮馬守護者過去曾為了福文大</p>
+            </div>
+            <div class="card-body">
+                <!-- <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="heroModal">詳細</button> -->
+                <button class="btn btn-primary" id="detail" data-toggle="modal" data-target="heroModal">詳細</button>
+                <button class="btn btn-danger">影片</button>
+            </div>
+        </div>
+
+
+    </template>
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        let row, cardTemplate;
+
+        let herosArray = [];
+        let heroId;
+
+        let url = 'https://raw.githubusercontent.com/zoro0611/FileStorage/master/lol.json';
+
+        //DOM
+        const modalBtn = document.querySelector('#openModal');
+        console.log(modalBtn);
+
+
+
+
+    </script>
+
+    <script type="module">
+
+        //放入想要的英雄card資料
+        import { $g } from "./helpers.js"
+        cardTemplate = $g('#cardLOL');
+        row = $g(".row")[0];
+        console.log(row);
+        console.log(cardTemplate);
+
+        window.onload = () => {
+
+            fetchData();
+
+            //這邊開始複製卡牌
+            // let cloneCard = cardTemplate.content.cloneNode(true);
+
+
+
+        }
+        //DOM元素
+        let modalTitle = document.querySelector('#exampleModalLabel');
+
+        let modalImg = document.querySelector('#modalImg');
+
+        let hp = document.getElementById('hp');
+        console.log(hp);
+        let moveSpeed = document.getElementById('moveSpeed');
+        console.log(moveSpeed);
+        let armor = document.getElementById('armor');
+        console.log(armor);
+        let spellBlock = document.getElementById('spellBlock');
+        console.log(spellBlock);
+        let attackRange = document.getElementById('attackRange');
+        console.log(attackRange);
+
+
+        //function
+
+        function getCard(index, id, name, description, imgUrl) {
+            let cloneCard = cardTemplate.content.cloneNode(true);
+
+            cloneCard.querySelector('img').src = imgUrl;
+            cloneCard.querySelector('h5').innerText = `No.${index} : ${id}-${name}`;
+            cloneCard.querySelector('p').innerText = description;
+            cloneCard.querySelector('#detail').setAttribute('data', index)
+            cloneCard.querySelector('#detail').addEventListener('click', ()=>{
+                modalBtn.click();
+                heroId = event.currentTarget.getAttribute('data')
+                console.log(heroId);
+
+                modalTitle.innerText = `No. ${index} : ${id}-${name}`
+                modalImg.src = imgUrl;
+
+                hp.innerText = `HP: ${herosArray[index].ability.hp}`
+                moveSpeed.innerText = `Move Speed: ${herosArray[index].ability.movespeed}`
+                armor.innerText = `Armor: ${herosArray[index].ability.armor}`
+                spellBlock.innerText = `Spell Block: ${herosArray[index].ability.spellblock}`
+                attackRange.innerText = `Attack Range: ${herosArray[index].ability.attackrange}`
+
+            });
+
+            return cloneCard;
+        }
+
+        //用來取得url資料後，再裝進herosArray裏頭
+        function fetchData() {
+
+
+            //用來裝fetch回來的資料
+            let championObject = {};
+
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    championObject = result.data;
+                    // console.log(championObject);
+                    let keys = Object.keys(championObject)
+                    // console.log(keys);
+                    keys.forEach((key, index) => {
+                        let heroData = championObject[key];
+
+                        let data = {
+                            index: index,
+                            id: heroData.id,
+                            name: heroData.name,
+                            description: heroData.blurb.substring(0, 20),
+                            ability: heroData.stats
+                        }
+                        herosArray.push(data);
+
+                    })
+
+                    herosArray.forEach((hero, index) => {
+
+                        // console.log(hero.id);
+                        let img = `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${hero.id}_0.jpg`;
+
+                        row.append(getCard(index, hero.id, hero.name, hero.description, img))
+
+                    });
+
+
+
+
+
+                })
+                .catch()
+
+
+
+
+        }
+
+
+
+    </script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
