@@ -145,7 +145,11 @@
                                 let person = polArray[dist][index]
                                 console.log(person); 
                                 card.innerHTML = `<strong>議員姓名: </strong>${person.name}<br><strong>議員職稱: </strong>${person.title}<br><strong>服務處地址: </strong>${person.address}<br><strong>服務處電話: </strong>${person.phone}<br>`
-                                card.style.border = '1px solid black'
+                                card.style.border = '1px solid black';
+                                card.style.cursor = 'pointer'
+                                card.addEventListener('click',()=>{
+                                    map.setView([parseFloat(person.lng), parseFloat(person.lat)], 16)
+                                });
 
                                 dataHolder.append(card)
 
@@ -189,12 +193,6 @@
 
                     // let marker = L.marker([Lng,Lat]).addTo(map);
                     let marker = L.marker([Lng, Lat]).addTo(map);
-
-                    marker.addEventListener('click', () => {
-                        document.querySelector('span').innerText = person.district
-
-
-                    })
 
                     marker.bindPopup(`<strong>議員姓名: </strong>${person.name}<br><strong>議員職稱: </strong>${person.title}<br><strong>服務處地址: </strong>${person.address}<br><strong>服務處電話: </strong>${person.phone}`);
 
