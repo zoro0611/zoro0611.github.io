@@ -17,6 +17,13 @@
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
+
+
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+
     <title>My Map</title>
     <style>
         header {
@@ -32,11 +39,12 @@
         #map {
             height: 440px;
         }
-        .data-holder{
+
+        .data-holder {
             box-sizing: border-box;
             padding: 5px;
             border: 10px solid;
-            overflow-y:scroll;
+            overflow-y: scroll;
             height: 400px;
         }
     </style>
@@ -71,6 +79,15 @@
 
 
     <script>
+        let markers = L.markerClusterGroup();
+        //地圖以下
+        var map = L.map('map').setView([23.1811991, 120.1715036], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            minZoom: 8,
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
         //變數
         const dataUrl = 'https://raw.githubusercontent.com/zoro0611/FileStorage/master/Tainan_Politician.json'
 
@@ -81,6 +98,8 @@
         let disSelect = document.querySelector('#district-select');
         let dataHolder = document.querySelector('.data-holder');
         let title = document.querySelector('#title-district');
+
+
         //window.onload
         window.onload = () => {
 
@@ -92,6 +111,7 @@
                 .then(result => {
                     // console.log(result);
                     //資料重新處理
+
                     result.forEach(person => {
                         let data = {
                             name: person.姓名,
@@ -133,21 +153,21 @@
                         console.log("選單選中: " + event.target.value);
                         let keys = Object.keys(polArray)
                         console.log(keys);
-                        
+
                         if (event.target.value != '') {
                             let dist = keys.find(key => key == event.target.value)
                             console.log(polArray[dist]);
                             map.setView([parseFloat(polArray[dist][0].lng), parseFloat(polArray[dist][0].lat)], 13)
 
                             polArray[dist].forEach((x, index) => {
-                                
+
                                 let card = document.createElement('div');
                                 let person = polArray[dist][index]
-                                console.log(person); 
+                                console.log(person);
                                 card.innerHTML = `<strong>議員姓名: </strong>${person.name}<br><strong>議員職稱: </strong>${person.title}<br><strong>服務處地址: </strong>${person.address}<br><strong>服務處電話: </strong>${person.phone}<br>`
                                 card.style.border = '1px solid black';
                                 card.style.cursor = 'pointer'
-                                card.addEventListener('click',()=>{
+                                card.addEventListener('click', () => {
                                     map.setView([parseFloat(person.lng), parseFloat(person.lat)], 16)
                                 });
 
@@ -155,7 +175,7 @@
 
                             })
                         }
-                        else{
+                        else {
                             map.setView([23.1811991, 120.1715036], 10)
                         }
 
@@ -182,7 +202,9 @@
         }
 
         function setMarker() {
+
             Object.keys(polArray).forEach((x, index) => {
+
                 let people = polArray[x]
                 // console.log(people);
                 people.forEach(person => {
@@ -195,9 +217,9 @@
                     let marker = L.marker([Lng, Lat]).addTo(map);
 
                     marker.bindPopup(`<strong>議員姓名: </strong>${person.name}<br><strong>議員職稱: </strong>${person.title}<br><strong>服務處地址: </strong>${person.address}<br><strong>服務處電話: </strong>${person.phone}`);
-
+                    markers.addLayer(marker);
                 })
-
+                map.addLayer(markers);
 
 
             })
@@ -209,13 +231,6 @@
 
 
 
-        //地圖以下
-        var map = L.map('map').setView([23.1811991, 120.1715036], 10);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            minZoom: 8,
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
 
 
 
