@@ -220,7 +220,7 @@
                     <p><span>標記顏色: </span>
                         <input type="color" id="color">
                     </p>
-                    <span>代辦事項：(點擊可刪除)</span>
+                    <span id="eventBox-text">代辦事項：(點擊可刪除)</span>
                     <div id="eventBox"></div>
 
                     <!-- <div id="map"></div> -->
@@ -229,8 +229,10 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="ClearLocalStorage()">清除所有行程</button>
-                    <button type="button" class="btn btn-primary" id="save-localStorage" data-toggle="modal"
-                        data-bs-dismiss="modal">新增/修改</button>
+                    <button type="button" class="btn btn-primary" id="add-localStorage" data-toggle="modal"
+                        data-bs-dismiss="modal">新增</button>
+                    <button type="button" class="btn btn-danger" id="revise-localStorage" data-toggle="modal"
+                        data-bs-dismiss="modal">修改</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onclick="eventBox.innerHTML=''">關閉</button>
                 </div>
@@ -256,7 +258,27 @@
 
         let datasetID;
 
+        //設定物件date
+        dateObj = new Date();
+
+        // 當年
+        year = dateObj.getFullYear();
+        // 當月 (#月份從0開始)
+        month = dateObj.getMonth();
+        // 當天
+        day = dateObj.getDate();
+        let nowDate = `${year}-${month + 1}-${day}`;
+
+        // 當天是星期(?)
+        weekday = dateObj.getDay();
+        // 當月的第一天是星期幾
+        firstWeekday = new Date(year, month, 1).getDay();
+
+        //得到當月總天數
+        totalDays = new Date(year, month + 1, 0).getDate();
+
         //DOM
+        const modalMenu = document.querySelector('#exampleModal');
         const modalBtn = document.getElementById('modal-btn');
 
         const holder = document.getElementById("days");
@@ -270,45 +292,34 @@
         let dayP_group;
 
         //新增事件中的"活動事項名稱" @input button
-        const doTitle = document.getElementById('titleInput');
+        let doTitle = document.getElementById('titleInput');
 
-        // const doDate = document.getElementById('date');
+        // let doDate = document.getElementById('date');
         // console.log(JSON.stringify(doDate.value));
 
         //新增事件中的"活動事件時間" @input button
-        const doTime = document.getElementById('time');
+        let doTime = document.getElementById('time');
 
-        const doColor = document.getElementById('color');
+        let doColor = document.getElementById('color');
 
-        const saveEventBtn = document.getElementById('save-localStorage');
-        // console.log(saveEventBtn);
+        const addEventBtn = document.getElementById('add-localStorage');
+        const reviseEventBtn = document.getElementById('revise-localStorage');
+        // console.log(addEventBtn);
 
         //用來儲存local-storage的key
         let storageKey;
+        let storageKeyRevise;
 
         const eventBox = document.getElementById('eventBox');
+        const eventBoxText = document.getElementById('eventBox-text');
 
 
 
         //window.onload
         window.onload = () => {
-            //設定物件date
-            dateObj = new Date();
+            // reviseEventBtn.style.display = 'none'
 
-            // 當年
-            year = dateObj.getFullYear();
-            // 當月 (#月份從0開始)
-            month = dateObj.getMonth();
-            // 當天
-            day = dateObj.getDate();
 
-            // 當天是星期(?)
-            weekday = dateObj.getDay();
-            // 當月的第一天是星期幾
-            firstWeekday = new Date(year, month, 1).getDay();
-
-            //得到當月總天數
-            totalDays = new Date(year, month + 1, 0).getDate();
 
 
 
@@ -337,7 +348,7 @@
             });
 
 
-            saveEventBtn.addEventListener('click', () => {
+            addEventBtn.addEventListener('click', () => {
 
                 SaveEventToStorage();
 
@@ -353,8 +364,9 @@
 
         //function()
 
-        function setEventBox(){
-            datasetID = event.currentTarget.dataset.id;
+        function setEventBox() {
+
+            datasetID = event.target.dataset.id;
 
             let i = 0;
             while (localStorage.getItem(`${datasetID}-${i}`) != null) {
@@ -385,13 +397,7 @@
         }
 
 
-        //每個日期按下去會跳出Modal視窗
-        function clickModal() {
-            modalBtn.click();
-            datasetID = event.currentTarget.dataset.id;
-            eventBox.innerHTML = '';
-            setEventBox();
-        }
+
 
         //對於表頭年份&日期插入文字
         function setTitle(year, month) {
@@ -415,14 +421,59 @@
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
-                    eventBox.innerHTML = '';
+                    doTitle.value = '';
+                    doTime.value = '';
+                    doColor.value = '';
+                    addEventBtn.style.display = 'block'
+                    reviseEventBtn.style.display = 'none'
+                    eventBox.style.display = 'block'
+                    eventBoxText.style.display = 'block'
+                    seqNumMonth = dayLi.getAttribute('seqNumMonth');
+                    //點擊時候把seqNum設定為日期的index(從0開始算)
+                    seqNumDay = dayLi.getAttribute('seqNumDay');
+
+                    document.getElementById('exampleModalLabel').innerText = `${year}/${month + 1}/${seqNumDay} 行事曆`;
+
+                    event.stopPropagation()
+                    // reviseEventBtn.style.display = 'none';
+                    console.log(event.target.getAttribute('data-id').split('-').length);
+                    if (event.target.getAttribute('data-id').split('-').length == 4) {
+                        addEventBtn.style.display = 'none'
+                        reviseEventBtn.style.display = 'block'
+                        eventBox.style.display = 'none'
+                        eventBoxText.style.display = 'none'
+                        let id = event.target.getAttribute('data-id')
+                        let content = JSON.parse(localStorage.getItem(id))
+                        console.log(content);
+                        let color = content.color;
+                        let title = content.title;
+                        let time = content.time;
+                        doTime.value = time;
+                        doTitle.value = title;
+                        doColor.value = color;
+
+                        reviseEventBtn.onclick = () => {
+
+                            let event = {
+                                title: doTitle.value,
+                                time: doTime.value,
+                                color: doColor.value
+                            }
+                            localStorage.setItem(id, JSON.stringify(event));
+
+                            resetData();
+                            WriteEvent();
+
+                        }
+
+
+                    }
+
+
 
                     clickModal();
-                    seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
 
-                    seqNumDay = event.currentTarget.getAttribute('seqNumDay');
 
-                    document.getElementById('exampleModalLabel').innerText = `${year}/${month}/${seqNumDay} 行事曆`;
                 }
             }
 
@@ -435,19 +486,70 @@
                 dayLi.setAttribute('seqNumDay', j);
                 dayLi.setAttribute('data-id', `${year}-${month + 1}-${j}`)
                 // console.log(dayLi.dataset);
-                if (j == day) {
+                if (dayLi.getAttribute('data-id') === nowDate) {
                     dayLi.style.color = 'red';
                 }
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
-                    clickModal();
-                    seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
+                    doTitle.value = '';
+                    doTime.value = '';
+                    doColor.value = '';
+                    addEventBtn.style.display = 'block'
+                    reviseEventBtn.style.display = 'none'
+                    eventBox.style.display = 'block'
+                    eventBoxText.style.display = 'block'
+                    seqNumMonth = dayLi.getAttribute('seqNumMonth');
                     //點擊時候把seqNum設定為日期的index(從0開始算)
-                    seqNumDay = event.currentTarget.getAttribute('seqNumDay');
+                    seqNumDay = dayLi.getAttribute('seqNumDay');
 
                     document.getElementById('exampleModalLabel').innerText = `${year}/${month + 1}/${seqNumDay} 行事曆`;
+
+                    event.stopPropagation()
+                    // reviseEventBtn.style.display = 'none';
+
+                    // console.log(event.target.getAttribute('data-id').split('-').length);
+                    if (event.target.getAttribute('data-id').split('-').length == 4) {
+
+                        addEventBtn.style.display = 'none'
+                        reviseEventBtn.style.display = 'block'
+                        let id = event.target.getAttribute('data-id')
+                        let content = JSON.parse(localStorage.getItem(id))
+                        console.log(content);
+                        let color = content.color;
+                        let title = content.title;
+                        let time = content.time;
+                        doTime.value = time;
+                        doTitle.value = title;
+                        doColor.value = color;
+                        eventBox.style.display = 'none'
+                        eventBoxText.style.display = 'none'
+
+                        reviseEventBtn.onclick = () => {
+
+                            let event = {
+                                title: doTitle.value,
+                                time: doTime.value,
+                                color: doColor.value
+                            }
+                            localStorage.setItem(id, JSON.stringify(event));
+                            // dayLi.innerText = seqNumDay;
+                            resetData();
+                            WriteEvent();
+
+                        }
+
+
+                    }
+
+
+
+                    clickModal();
+
+
                 }
+
+
 
             }
 
@@ -463,16 +565,70 @@
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
+                    doTitle.value = '';
+                    doTime.value = '';
+                    doColor.value = '';
+                    addEventBtn.style.display = 'block'
+                    reviseEventBtn.style.display = 'none'
+                    eventBox.style.display = 'block'
+                    eventBoxText.style.display = 'block'
+                    seqNumMonth = dayLi.getAttribute('seqNumMonth');
+                    //點擊時候把seqNum設定為日期的index(從0開始算)
+                    seqNumDay = dayLi.getAttribute('seqNumDay');
+
+                    document.getElementById('exampleModalLabel').innerText = `${year}/${month + 1}/${seqNumDay} 行事曆`;
+
+                    event.stopPropagation()
+                    // reviseEventBtn.style.display = 'none';
+                    console.log(event.target.getAttribute('data-id').split('-').length);
+                    if (event.target.getAttribute('data-id').split('-').length == 4) {
+                        addEventBtn.style.display = 'none'
+                        reviseEventBtn.style.display = 'block'
+                        let id = event.target.getAttribute('data-id')
+                        let content = JSON.parse(localStorage.getItem(id))
+                        console.log(content);
+                        let color = content.color;
+                        let title = content.title;
+                        let time = content.time;
+                        doTime.value = time;
+                        doTitle.value = title;
+                        doColor.value = color;
+                        eventBox.style.display = 'none'
+                        eventBoxText.style.display = 'none'
+                        reviseEventBtn.onclick = () => {
+
+                            let event = {
+                                title: doTitle.value,
+                                time: doTime.value,
+                                color: doColor.value
+                            }
+                            localStorage.setItem(id, JSON.stringify(event));
+
+                            resetData();
+                            WriteEvent();
+
+                        }
+
+
+                    }
+
+
+
                     clickModal();
-                    seqNumMonth = event.currentTarget.getAttribute('seqNumMonth');
 
-                    seqNumDay = event.currentTarget.getAttribute('seqNumDay');
-
-                    document.getElementById('exampleModalLabel').innerText = `${year}/${month + 2}/${seqNumDay} 行事曆`;
 
                 }
             }
 
+        }
+
+        //每個日期按下去會跳出Modal視窗
+        function clickModal() {
+
+            bootstrap.Modal.getOrCreateInstance(modalMenu).show()
+            datasetID = event.currentTarget.dataset.id;
+
+            setEventBox();
         }
 
         //更改月份的時候，重設表單內容
@@ -526,10 +682,6 @@
             p.style.marginTop = '20px';
             p.setAttribute('data-id', `${datasetID}-${key_tail}`);
             p.innerText = `${val.time} ${val.title}`;
-            //這邊需要加入新的addEventLister的click事件，讓每一筆p可以被修改
-
-            
-            //END
 
             document.querySelector(`[data-id="${datasetID}"]`).append(p);
 
@@ -538,6 +690,7 @@
 
         function WriteEvent() {
             //找出當月每一天的data-id集合
+
             let keyArray = [];
             document.querySelectorAll('li[data-id]').forEach((li) => {
                 let id = li.getAttribute('data-id')
@@ -559,6 +712,8 @@
                     p.setAttribute('data-id', `${key}-${i}`);
                     p.style.marginTop = '20px';
                     p.innerText = `${val.time} ${val.title}`;
+
+
                     document.querySelector(`[data-id="${key}"]`).append(p);
                     i++;
                 }
@@ -577,93 +732,6 @@
                 li.innerText = li.getAttribute('seqNumDay');
             });
         }
-
-
-
-
-
-
-
-
-
-
-        // //google地圖
-        // let map;
-
-        // // 設置定位按鈕
-        // function mapCenterControl(map, clickButton) {
-        //     let centerControlDiv = document.createElement('div');
-
-        //     // Set CSS for the control border.
-        //     let controlUI = document.createElement('button');
-        //     controlUI.style.backgroundColor = '#fff';
-        //     controlUI.style.border = 'none';
-        //     controlUI.style.outline = 'none';
-        //     controlUI.style.width = '40px';
-        //     controlUI.style.height = '40px';
-        //     controlUI.style.borderRadius = '2px';
-        //     controlUI.style.boxShadow = '0 1px 4px rgba(0,0,0,0.3)';
-        //     controlUI.style.cursor = 'pointer';
-        //     controlUI.style.marginRight = '10px';
-        //     controlUI.style.padding = '0';
-        //     controlUI.title = 'Your Location';
-        //     centerControlDiv.appendChild(controlUI);
-
-        //     // Set CSS for the control interior.
-        //     let controlText = document.createElement('div');
-        //     controlText.style.margin = '10px';
-        //     controlText.style.width = '30px';
-        //     controlText.style.height = '30px';
-        //     controlText.style.backgroundImage = 'url(\'./pic/myLocation.png\')';
-        //     controlText.style.backgroundSize = '20px 20px';
-        //     controlText.style.backgroundPosition = '0px 0px';
-        //     controlText.style.backgroundRepeat = 'no-repeat';
-        //     controlUI.appendChild(controlText);
-
-        //     // constructor passing in this DIV.
-        //     centerControlDiv.index = 1; // 排列優先度
-        //     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(centerControlDiv); // 設定按鈕加入地圖的位置
-
-        //     // Setup the click event listeners.
-        //     controlUI.addEventListener('click', () => clickButton());
-        // }
-
-
-        // // 取得使用者位置
-        // function gettingPosition() {
-        //     if (navigator.geolocation) {
-        //         return new Promise((resolve, reject) => {
-        //             let option = {
-        //                 enableAcuracy: false, // 提高精確度
-        //                 maximumAge: 0, // 設定上一次位置資訊的有效期限(毫秒)
-        //                 timeout: 10000 // 逾時計時器(毫秒)
-        //             };
-        //             navigator.geolocation.getCurrentPosition(resolve, reject, option);
-        //         })
-        //     } else {
-        //         alert("Does not support positioning!");
-        //     }
-        // }
-        // function successCallback(position) {
-        //     map.setCenter({ lat: position.coords.latitude, lng: position.coords.longitude });
-        // }
-        // function errorCallback(error) {
-        //     alert(error.message); //error.code
-        // }
-
-
-        // function initMap() {
-        //     map = new google.maps.Map(document.getElementById('map'), {
-        //         zoom: 15,
-        //         center: { lat: 25.033708, lng: 121.564899 }
-        //     });
-        //     mapCenterControl(map,
-        //         () => gettingPosition()
-        //             .then(position => successCallback(position))
-        //             .catch(error => errorCallback(error))
-        //     )
-        // }
-
     </script>
 
     <!-- JavaScript Bundle with Popper -->
