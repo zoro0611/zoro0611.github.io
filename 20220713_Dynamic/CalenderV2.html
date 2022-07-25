@@ -107,6 +107,8 @@
             color: white;
         }
 
+        
+
         /* .darkgrey {
             color: #565656;
 
@@ -436,7 +438,7 @@
 
                     event.stopPropagation()
                     // reviseEventBtn.style.display = 'none';
-                    console.log(event.target.getAttribute('data-id').split('-').length);
+                    // console.log(event.target.getAttribute('data-id').split('-').length);
                     if (event.target.getAttribute('data-id').split('-').length == 4) {
                         addEventBtn.style.display = 'none'
                         reviseEventBtn.style.display = 'block'
@@ -444,7 +446,7 @@
                         eventBoxText.style.display = 'none'
                         let id = event.target.getAttribute('data-id')
                         let content = JSON.parse(localStorage.getItem(id))
-                        console.log(content);
+                        // console.log(content);
                         let color = content.color;
                         let title = content.title;
                         let time = content.time;
@@ -515,7 +517,7 @@
                         reviseEventBtn.style.display = 'block'
                         let id = event.target.getAttribute('data-id')
                         let content = JSON.parse(localStorage.getItem(id))
-                        console.log(content);
+                        // console.log(content);
                         let color = content.color;
                         let title = content.title;
                         let time = content.time;
@@ -580,13 +582,13 @@
 
                     event.stopPropagation()
                     // reviseEventBtn.style.display = 'none';
-                    console.log(event.target.getAttribute('data-id').split('-').length);
+                    // console.log(event.target.getAttribute('data-id').split('-').length);
                     if (event.target.getAttribute('data-id').split('-').length == 4) {
                         addEventBtn.style.display = 'none'
                         reviseEventBtn.style.display = 'block'
                         let id = event.target.getAttribute('data-id')
                         let content = JSON.parse(localStorage.getItem(id))
-                        console.log(content);
+                        // console.log(content);
                         let color = content.color;
                         let title = content.title;
                         let time = content.time;
