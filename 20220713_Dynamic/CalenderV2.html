@@ -194,10 +194,10 @@
 
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    <!-- <button type="button" class="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal"
         id="modal-btn">
         Launch demo modal
-    </button>
+    </button> -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -225,18 +225,17 @@
                     <span id="eventBox-text">代辦事項：</span>
                     <div id="eventBox"></div>
 
-                    <!-- <div id="map"></div> -->
-
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="ClearLocalStorage()">清除所有行程</button>
                     <button type="button" class="btn btn-primary" id="add-localStorage" data-toggle="modal"
                         data-bs-dismiss="modal">新增</button>
                     <button type="button" class="btn btn-danger" id="revise-localStorage" data-toggle="modal"
-                        data-bs-dismiss="modal">修改</button>
+                        data-bs-dismiss="modal">儲存</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                         onclick="eventBox.innerHTML=''">關閉</button>
+                    <button type="button" class="btn btn-danger" id="clear-AllStorage"
+                        onclick="ClearLocalStorage()">清除當日行程</button>
                 </div>
             </div>
         </div>
@@ -258,6 +257,7 @@
         let seqNumDay;
         let seqNumMonth;
 
+        //每個日期點擊下去取得ID
         let datasetID;
 
         //設定物件date
@@ -306,6 +306,7 @@
 
         const addEventBtn = document.getElementById('add-localStorage');
         const reviseEventBtn = document.getElementById('revise-localStorage');
+        const clearAllBtn = document.getElementById('clear-AllStorage');
         // console.log(addEventBtn);
 
         //用來儲存local-storage的key
@@ -401,7 +402,7 @@
 
                     let dataID = p.getAttribute('data-id');
                     deleteBtn.addEventListener('click', () => {
-                        
+
                         eventBox.removeChild(p);
                         let index = keysArr.findIndex(x => x == dataID)
                         keysArr.splice(index, 1)
@@ -416,7 +417,7 @@
 
                     });
                     fixBtn.addEventListener('click', () => {
-                        eventBox.innerHTML =''
+                        eventBox.innerHTML = ''
                         let event = {
                             title: doTitle.value,
                             time: doTime.value,
@@ -427,7 +428,7 @@
                         // let val = JSON.parse(localStorage.getItem(dataID));
                         // p.innerText = `${val.time} ${val.title}`;
                         // p.style.color = `${val.color}`;
-                        
+
                         resetData();
                         WriteEvent();
                         bootstrap.Modal.getOrCreateInstance(document.querySelector('#exampleModal')).hide()
@@ -469,6 +470,7 @@
                     doTitle.value = '';
                     doTime.value = '';
                     doColor.value = '';
+                    clearAllBtn.style.display = 'block'
                     addEventBtn.style.display = 'block'
                     reviseEventBtn.style.display = 'none'
                     eventBox.style.display = 'block'
@@ -485,6 +487,7 @@
                     if (event.target.getAttribute('data-id').split('-').length == 4) {
                         addEventBtn.style.display = 'none'
                         reviseEventBtn.style.display = 'block'
+                        clearAllBtn.style.display = 'none'
                         eventBox.style.display = 'none'
                         eventBoxText.style.display = 'none'
                         let id = event.target.getAttribute('data-id')
@@ -531,6 +534,7 @@
                     doTitle.value = '';
                     doTime.value = '';
                     doColor.value = '';
+                    clearAllBtn.style.display = 'block'
                     addEventBtn.style.display = 'block'
                     reviseEventBtn.style.display = 'none'
                     eventBox.style.display = 'block'
@@ -546,7 +550,7 @@
 
                     // console.log(event.target.getAttribute('data-id').split('-').length);
                     if (event.target.getAttribute('data-id').split('-').length == 4) {
-
+                        clearAllBtn.style.display = 'none'
                         addEventBtn.style.display = 'none'
                         reviseEventBtn.style.display = 'block'
                         let id = event.target.getAttribute('data-id')
@@ -590,6 +594,7 @@
                     doTitle.value = '';
                     doTime.value = '';
                     doColor.value = '';
+                    clearAllBtn.style.display = 'block'
                     addEventBtn.style.display = 'block'
                     reviseEventBtn.style.display = 'none'
                     eventBox.style.display = 'block'
@@ -606,6 +611,7 @@
                     if (event.target.getAttribute('data-id').split('-').length == 4) {
                         addEventBtn.style.display = 'none'
                         reviseEventBtn.style.display = 'block'
+                        clearAllBtn.style.display = 'none'
                         let id = event.target.getAttribute('data-id')
                         let content = JSON.parse(localStorage.getItem(id))
                         // console.log(content);
@@ -695,7 +701,7 @@
 
             document.querySelector(`[data-id="${datasetID}"]`).append(p);
 
-            
+
         }
 
 
@@ -723,12 +729,22 @@
 
         function ClearLocalStorage() {
             eventBox.innerHTML = '';
-            localStorage.clear();
-            let dayList_Group = document.querySelectorAll('.dayList');
-            dayList_Group.forEach((li) => {
-                li.innerHTML = '';
-                li.innerText = li.getAttribute('seqNumDay');
-            });
+
+            let deleteKeys = keysArr.filter(x => x.slice(0, x.length - 2) == datasetID)
+            deleteKeys.forEach(key => {
+                localStorage.removeItem(key)
+
+            })
+            document.querySelector(`[data-id="${datasetID}"]`).innerHTML = '';
+            document.querySelector(`[data-id="${datasetID}"]`).innerText = document.querySelector(`[data-id="${datasetID}"]`).getAttribute('seqNumDay');
+
+            // localStorage.clear();
+            // let dayList_Group = document.querySelectorAll('.dayList');
+            // dayList_Group.forEach((li) => {
+            //     li.innerHTML = '';
+            //     li.innerText = li.getAttribute('seqNumDay');
+            // });
+            // bootstrap.Modal.getOrCreateInstance(document.querySelector('#exampleModal')).hide()
         }
     </script>
 
