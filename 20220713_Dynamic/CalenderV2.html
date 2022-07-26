@@ -194,7 +194,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="add-localStorage" >新增</button>
+                    <button type="button" class="btn btn-primary" id="add-localStorage" data-toggle="modal" data-bs-dismiss="modal">新增</button>
                     <!-- data-toggle="modal" data-bs-dismiss="modal" -->
                     <button type="button" class="btn btn-danger" id="revise-localStorage" data-toggle="modal"
                         data-bs-dismiss="modal">儲存</button>
@@ -210,11 +210,6 @@
 
     <script>
         //宣告常數
-
-        // //閏年的天數
-        // const month_olympic = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-        // //非閏年天數
-        // const month_normal = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
         let dateObj, year, month, day, weekday, firstWeekday, totalDays, lastMonthDay;
 
         //月份名字
@@ -704,18 +699,25 @@
             let deleteKeys = keysArr.filter(x => x.slice(0, x.length - 2) == datasetID)
             deleteKeys.forEach(key => {
                 localStorage.removeItem(key)
+                let index = keysArr.indexOf(key)
+                keysArr.splice(index, 1)
 
             })
             document.querySelector(`[data-id="${datasetID}"]`).innerHTML = '';
             document.querySelector(`[data-id="${datasetID}"]`).innerText = document.querySelector(`[data-id="${datasetID}"]`).getAttribute('seqNumDay');
+            bootstrap.Modal.getOrCreateInstance(document.querySelector('#exampleModal')).hide()
+            resetData();
+            WriteEvent();
 
+            console.log("清除當日行程後的長度: "+keysArr.length);
+            console.log(keysArr);
             // localStorage.clear();
             // let dayList_Group = document.querySelectorAll('.dayList');
             // dayList_Group.forEach((li) => {
             //     li.innerHTML = '';
             //     li.innerText = li.getAttribute('seqNumDay');
             // });
-            // bootstrap.Modal.getOrCreateInstance(document.querySelector('#exampleModal')).hide()
+            
         }
     </script>
 
