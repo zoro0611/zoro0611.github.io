@@ -30,7 +30,7 @@
 
             margin-top: 10px;
 
-            
+
         }
 
 
@@ -113,7 +113,6 @@
 
             padding: 10px;
         }
-
     </style>
 </head>
 
@@ -177,7 +176,7 @@
                 <!-- 主要Input放這 -->
                 <div class="modal-body">
                     <p>
-                        <input type="text" placeholder="新增標題(限6字內)" id="titleInput" maxlength="6">
+                        <input type="text" placeholder="新增標題(限6字內)" id="titleInput" maxlength="6" minlength="1">
                     </p>
                     <!-- <p><span>行程日期: </span>
                         <input type="date" id="date">
@@ -195,8 +194,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="add-localStorage" data-toggle="modal"
-                        data-bs-dismiss="modal">新增</button>
+                    <button type="button" class="btn btn-primary" id="add-localStorage" >新增</button>
+                    <!-- data-toggle="modal" data-bs-dismiss="modal" -->
                     <button type="button" class="btn btn-danger" id="revise-localStorage" data-toggle="modal"
                         data-bs-dismiss="modal">儲存</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
@@ -320,13 +319,18 @@
 
 
             addEventBtn.addEventListener('click', () => {
-                SaveEventToStorage()
-
-
-
-                console.log("新增資料後的local Key長度: " + localStorage.length);
-                console.log(keysArr);
-                // 在這新增儲存後要顯示
+                if (doTitle.value.length > 0) {
+                    SaveEventToStorage()
+                    console.log("新增資料後的local Key長度: " + localStorage.length);
+                    console.log(keysArr);
+                    // 在這新增儲存後要顯示
+                    
+                }
+                else{
+                    alert('標題不得空白!')
+                    // eventBox.innerHTML=''
+                    
+                }
                 setEventBox();
 
 
