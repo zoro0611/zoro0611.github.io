@@ -171,7 +171,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="header-closeBtn" onclick="eventBox.innerHTML=''"></button>
                 </div>
                 <!-- 主要Input放這 -->
                 <div class="modal-body">
@@ -280,7 +280,12 @@
         //window.onload
         window.onload = () => {
             // reviseEventBtn.style.display = 'none'
+            // document.getElementById('header-closeBtn').addEventListener('click',()=>{
+            //     eventBox.innerHTML = ''
 
+            // });
+
+            //一開始先將local storage中所有的key加入預設陣列中
             for (i = 0; i < localStorage.length; i++) {
                 keysArr.push(localStorage.key(i))
             }
