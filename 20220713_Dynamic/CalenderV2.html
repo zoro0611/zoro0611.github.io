@@ -8,6 +8,8 @@
 
     <title>Calender</title>
 
+
+
     <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -171,7 +173,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="header-closeBtn" onclick="eventBox.innerHTML=''"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        id="header-closeBtn" ></button>
                 </div>
                 <!-- 主要Input放這 -->
                 <div class="modal-body">
@@ -194,12 +197,13 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="add-localStorage" data-toggle="modal" data-bs-dismiss="modal">新增</button>
+                    <button type="button" class="btn btn-primary" id="add-localStorage" data-toggle="modal"
+                        data-bs-dismiss="modal">新增</button>
                     <!-- data-toggle="modal" data-bs-dismiss="modal" -->
                     <button type="button" class="btn btn-danger" id="revise-localStorage" data-toggle="modal"
                         data-bs-dismiss="modal">儲存</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                        onclick="eventBox.innerHTML=''">關閉</button>
+                        >關閉</button>
                     <button type="button" class="btn btn-danger" id="clear-AllStorage"
                         onclick="ClearLocalStorage()">清除當日行程</button>
                 </div>
@@ -279,6 +283,14 @@
 
         //window.onload
         window.onload = () => {
+
+
+            // modalMenu.on('hide.bs.modal', () => {
+            //     alert('1234')
+
+            // })
+
+
             // reviseEventBtn.style.display = 'none'
             // document.getElementById('header-closeBtn').addEventListener('click',()=>{
             //     eventBox.innerHTML = ''
@@ -324,12 +336,12 @@
                     console.log("新增資料後的local Key長度: " + localStorage.length);
                     console.log(keysArr);
                     // 在這新增儲存後要顯示
-                    
+
                 }
-                else{
+                else {
                     alert('標題不得空白!')
-                    eventBox.innerHTML=''
-                    
+                    eventBox.innerHTML = ''
+
                 }
                 setEventBox();
 
@@ -438,6 +450,7 @@
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
+                    eventBox.innerHTML = ''
                     doTitle.value = '';
                     doTime.value = '';
                     doColor.value = '';
@@ -502,6 +515,7 @@
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
+                    eventBox.innerHTML = ''
                     doTitle.value = '';
                     doTime.value = '';
                     doColor.value = '';
@@ -562,6 +576,7 @@
                 dayLi.style.border = '1px solid darkgrey'
                 holder.append(dayLi);
                 dayLi.onclick = () => {
+                    eventBox.innerHTML = ''
                     doTitle.value = '';
                     doTime.value = '';
                     doColor.value = '';
@@ -714,7 +729,7 @@
             resetData();
             WriteEvent();
 
-            console.log("清除當日行程後的長度: "+keysArr.length);
+            console.log("清除當日行程後的長度: " + keysArr.length);
             console.log(keysArr);
             // localStorage.clear();
             // let dayList_Group = document.querySelectorAll('.dayList');
@@ -722,7 +737,7 @@
             //     li.innerHTML = '';
             //     li.innerText = li.getAttribute('seqNumDay');
             // });
-            
+
         }
     </script>
 
@@ -730,6 +745,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
         crossorigin="anonymous"></script>
+
 
 </body>
 
