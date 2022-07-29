@@ -115,9 +115,17 @@
         //C. window onload
         window.onload = () => {
             //一開始將local storage中所有key放入keyArr中
-            for (i = 0; i < localStorage.length; i++) {
-                keyArr.push(localStorage.key(i))
-            }
+            // for (i = 0; i < localStorage.length; i++) {
+            //     keyArr.push(localStorage.key(i))
+                
+            // }
+
+            Object.keys(localStorage).forEach(key=>{
+                if (JSON.parse(localStorage.getItem(key)).val != null){
+                    keyArr.push(key)
+                }
+                
+            })
 
             //Func 1:設定新增事項的input & addBtn =>OK
             keyVal = 0;
@@ -167,7 +175,9 @@
                 contentBox.innerHTML = '';
                 //用local-storage的key去建立clone item
                 keyArr.forEach((key) => {
-                    let cloneItem = itemTemplate.content.cloneNode(true);
+                    // if (JSON.parse(localStorage.getItem(key)).val != null)
+                    // {
+                        let cloneItem = itemTemplate.content.cloneNode(true);
 
                     let checkbox = cloneItem.getElementById('item-checkbox');
                     let editBtn = cloneItem.getElementById('editBtn');
@@ -240,7 +250,10 @@
 
                     //最後加入contentBox內
                     contentBox.append(cloneItem)
-                })
+                    }
+
+                    
+                )
 
         }
 
