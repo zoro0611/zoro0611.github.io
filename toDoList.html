@@ -201,18 +201,26 @@
                     //saveBtn要做的事情
                     
                     saveBtn.addEventListener('click', () => {
-                        //按下儲存=> saveBtn消失, editBtn出現, input.disabled = true
-                        saveBtn.style.display = 'none';
-                        editBtn.style.display = 'block';
-                        itemInput.disabled = true;
+                       
+                        
                         //儲存input.value到local storage
-                        let data = {
-                            val: itemInput.value,
-                            checkStat: checkbox.checked
+                        if (itemInput.value.length == 0) {
+                            alert('不得空白')
                         }
-                        localStorage.setItem(key, JSON.stringify(data));
-                        //重新insert資料到畫面上
-                        insertData();
+                        else{
+                            //按下儲存=> saveBtn消失, editBtn出現, input.disabled = true
+                            saveBtn.style.display = 'none';
+                            editBtn.style.display = 'block';
+                            itemInput.disabled = true;
+                            let data = {
+                                val: itemInput.value,
+                                checkStat: checkbox.checked
+                            }
+                            localStorage.setItem(key, JSON.stringify(data));
+                            //重新insert資料到畫面上
+                            insertData();
+                        }
+
                     })
                     
 
