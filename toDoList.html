@@ -93,29 +93,24 @@
     <script>
         //A. 變數
 
-        //檢查local storage的key所用index
-        let keyVal;
-
-        //儲存local storage的key所用陣列
-        let keyArr = [];
-
-        //window onload要塞資料的陣列
-        let dataArr = [];
+            //檢查local storage的key所用index
+            let keyVal;
+            //儲存local storage的key所用陣列
+            let keyArr = [];
 
         //B. DOM
 
-        //header input
-        const headInput = document.getElementById('header-input');
-        //header addBtn
-        const headBtn = document.getElementById('header-add');
+            //header input
+            const headInput = document.getElementById('header-input');
+            //header addBtn
+            const headBtn = document.getElementById('header-add');
+            //ul
+            const contentBox = document.getElementById('contentBox');
 
-        //ul
-        const contentBox = document.getElementById('contentBox');
+            //toDoItem裏頭的DOM為動態產生，宣告寫在裡面  
 
-        //toDoItem裏頭的DOM為動態產生，宣告寫在裡面        
-
-        //template
-        let itemTemplate = document.getElementById('itemToDo');
+            //template
+            let itemTemplate = document.getElementById('itemToDo');
 
         //C. window onload
         window.onload = () => {
@@ -128,125 +123,116 @@
             keyVal = 0;
             setAddBtns();
 
-            //Func 2:取出local storage的資料
-            getLocalStoage();
-
-            //Func 3:將資料塞進template產生toDoItem
+            //Func 2:將資料塞進template產生toDoItem
             insertData();
 
         }
 
         //D. function
 
-        //Func 1
-        function setAddBtns() {
-            if (localStorage.getItem(keyVal) == null) {
-                headBtn.addEventListener('click', () => {
-                    if (headInput.value.length == 0) {
-                        alert('不得空白')
-                    }
-                    else {
-                        let data = {
-                            val: headInput.value,
-                            checkStat: false
+            //Func 1
+            function setAddBtns() {
+                if (localStorage.getItem(keyVal) == null) {
+                    headBtn.addEventListener('click', () => {
+                        if (headInput.value.length == 0) {
+                            alert('不得空白')
+                        }
+                        else {
+                            let data = {
+                                val: headInput.value,
+                                checkStat: false
+                            }
+
+                            localStorage.setItem(keyVal, JSON.stringify(data));
+
+                            keyArr.push(keyVal)
+                            //儲存key時檢查keyArr內的元素
+                            //console.log(keyArr)
+                            keyVal++;
                         }
 
-                        localStorage.setItem(keyVal, JSON.stringify(data));
-
-                        keyArr.push(keyVal)
-                        //儲存key時檢查keyArr內的元素
-                        //console.log(keyArr)
-                        keyVal++;
-                    }
-
-                    //每次新增要重新清空並且加入待辦
-                    insertData();
-                })
+                        //每次新增要重新清空並且加入待辦
+                        insertData();
+                    })
+                }
+                else {
+                    keyVal++;
+                    setAddBtns();
+                }
             }
-            else {
-                keyVal++;
-                setAddBtns();
-            }
-        }
 
-        //Func 2 (還沒寫)
-        function getLocalStoage() {
-            //Foreach localStorage，資料放入dataArr
-            // localStorage.key(i)
+            //Func 2
+            function insertData() {
+                //初始化待辦事項
+                contentBox.innerHTML = '';
+                //用local-storage的key去建立clone item
+                keyArr.forEach((key) => {
+                    let cloneItem = itemTemplate.content.cloneNode(true);
 
-        }
-
-        //Func 3
-        function insertData() {
-            //初始化清單內所有list
-            contentBox.innerHTML = '';
-            keyArr.forEach((key) => {
-                let cloneItem = itemTemplate.content.cloneNode(true);
-
-                let checkbox = cloneItem.getElementById('item-checkbox');
-                let editBtn = cloneItem.getElementById('editBtn');
-                let saveBtn = cloneItem.getElementById('saveBtn');//預設display:none
-                saveBtn.style.display = 'none';
-                let deleBtn = cloneItem.getElementById('deleBtn');
-
-                let itemInput = cloneItem.getElementById('item-input');
-                itemInput.value = JSON.parse(localStorage.getItem(key)).val;
-
-                //checkbox要做的事情
-
-                checkbox.checked = JSON.parse(localStorage.getItem(key)).checkStat;
-                //勾選時改變資料庫的check status
-                checkbox.addEventListener('click', () => {
-                    let data = {
-                        val: itemInput.value,
-                        checkStat: checkbox.checked
-                    }
-                    localStorage.setItem(key, JSON.stringify(data));
-                })
-
-                //editBtn要做的事情
-                editBtn.addEventListener('click', () => {
-                    //按下編輯=> editBtn消失, saveBtn出現, input.disabled = false
-                    editBtn.style.display = 'none';
-                    saveBtn.style.display = 'block';
-                    itemInput.disabled = false;
-                })
-
-                //saveBtn要做的事情
-                
-                saveBtn.addEventListener('click', () => {
-                    //按下儲存=> saveBtn消失, editBtn出現, input.disabled = true
+                    let checkbox = cloneItem.getElementById('item-checkbox');
+                    let editBtn = cloneItem.getElementById('editBtn');
+                    let saveBtn = cloneItem.getElementById('saveBtn');//預設display:none
                     saveBtn.style.display = 'none';
-                    editBtn.style.display = 'block';
-                    itemInput.disabled = true;
-                    //儲存input.value到local storage
-                    let data = {
-                        val: itemInput.value,
-                        checkStat: checkbox.checked
-                    }
-                    localStorage.setItem(key, JSON.stringify(data));
-                    //重新insert資料到畫面上
-                    insertData();
+                    let deleBtn = cloneItem.getElementById('deleBtn');
+
+                    let itemInput = cloneItem.getElementById('item-input');
+                    itemInput.value = JSON.parse(localStorage.getItem(key)).val;
+
+                    //checkbox要做的事情
+
+                    checkbox.checked = JSON.parse(localStorage.getItem(key)).checkStat;
+                    //勾選時改變資料庫的check status
+                    checkbox.addEventListener('click', () => {
+                        let data = {
+                            val: itemInput.value,
+                            checkStat: checkbox.checked
+                        }
+                        localStorage.setItem(key, JSON.stringify(data));
+                    })
+
+                    //editBtn要做的事情
+                    editBtn.addEventListener('click', () => {
+                        //按下編輯=> editBtn消失, saveBtn出現, input.disabled = false
+                        editBtn.style.display = 'none';
+                        saveBtn.style.display = 'block';
+                        itemInput.disabled = false;
+                    })
+
+                    //saveBtn要做的事情
+                    
+                    saveBtn.addEventListener('click', () => {
+                        //按下儲存=> saveBtn消失, editBtn出現, input.disabled = true
+                        saveBtn.style.display = 'none';
+                        editBtn.style.display = 'block';
+                        itemInput.disabled = true;
+                        //儲存input.value到local storage
+                        let data = {
+                            val: itemInput.value,
+                            checkStat: checkbox.checked
+                        }
+                        localStorage.setItem(key, JSON.stringify(data));
+                        //重新insert資料到畫面上
+                        insertData();
+                    })
+                    
+
+                    //deleBtn要做的事情
+                    deleBtn.addEventListener('click',()=>{
+                        //刪除local storage此key
+                        localStorage.removeItem(key);
+                        //keyArr移除key
+                        keyArr.splice(keyArr.indexOf(key),1);
+                        //keyArr重新排序
+                        keyArr = keyArr.map(x=>x);
+
+                        //用重排序的keyArr來insert data
+                        insertData();
+
+                    })
+
+                    //最後加入contentBox內
+                    contentBox.append(cloneItem)
                 })
-                
-
-                //deleBtn要做的事情
-                deleBtn.addEventListener('click',()=>{
-                    //刪除local storage此key
-                    localStorage.removeItem(key);
-                    //keyArr移除此key
-                    keyArr.splice(keyArr.indexOf(key),1);
-                    //keyArr重新排序
-                    keyArr = keyArr.map(x=>x);
-
-                    //用重排序的keyArr來insert data
-                    insertData();
-
-                })
-
-                //最後加入contentBox內
-                contentBox.append(cloneItem)
-            })
 
         }
 
