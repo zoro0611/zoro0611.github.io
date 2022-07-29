@@ -124,7 +124,6 @@
                 if (JSON.parse(localStorage.getItem(key)).val != null){
                     keyArr.push(key)
                 }
-                
             })
 
             //Func 1:設定新增事項的input & addBtn =>OK
@@ -142,10 +141,12 @@
             function setAddBtns() {
                 if (localStorage.getItem(keyVal) == null) {
                     headBtn.addEventListener('click', () => {
+                        
                         if (headInput.value.length == 0) {
                             alert('待辦事項不得空白，請重新輸入');
                         }
                         else {
+                            
                             let data = {
                                 val: headInput.value,
                                 checkStat: false
@@ -157,8 +158,10 @@
                             //儲存key時檢查keyArr內的元素
                             //console.log(keyArr)
                             keyVal++;
+                            
                         }
-
+                        //新增完成後，自動清空輸入框內的文字
+                        headInput.value = '';
                         //每次新增要重新清空並且加入待辦
                         insertData();
                     })
