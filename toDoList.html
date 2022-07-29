@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        header {
+            margin: 20px;
+            height: 40px;
+
+        }
+
+        #header-input {
+            width: 700px;
+            height: 40px;
+            outline: none;
+            border: 1px solid #ccc;
+        }
+
+        #header-add {
+            width: 100px;
+            height: 40px;
+            border-radius: 0;
+        }
+
+        ul {
+            width: 80%;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+
+        .list-group-item {
+            margin: 0 20px;
+            padding: 20px;
+            display: flex;
+        }
+
+        #item-checkbox {
+            margin: 10px;
+
+        }
+
+        #item-input {
+            width: 50%;
+            height: 35px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header class="d-flex">
+        <input type="text" class="text-primary" id="header-input" placeholder="ToDo...">
+
+        <button class="btn btn-primary" id="header-add">新增</button>
+    </header>
+
+    <ul class="list-group" id="contentBox">
+
+        <li class="list-group-item">
+            <input type="checkbox" id="item-checkbox">
+            <input type="text" disabled="true" id="item-input">
+
+            <button class="btn btn-warning">編輯</button>
+            <button class="btn btn-success d-none">保存</button>
+            <button class="btn btn-danger">刪除</button>
+        </li>
+
+    </ul>
+
+    <!-- template開始 -->
+    <template id="itemToDo">
+
+        <li class="list-group-item">
+            <input type="checkbox" id="item-checkbox">
+            <input type="text" disabled="true" id="item-input">
+
+            <button class="btn btn-warning" id="editBtn">編輯</button>
+            <button class="btn btn-success" id="saveBtn">保存</button>
+            <button class="btn btn-danger" id="deleBtn">刪除</button>
+        </li>
+
+    </template>
+    <!-- template結束 -->
+
+    <script>
+        //A. 變數
+
+        //檢查local storage的key所用index
+        let keyVal;
+
+        //儲存local storage的key所用陣列
+        let keyArr = [];
+
+        //window onload要塞資料的陣列
+        let dataArr = [];
+
+        //B. DOM
+
+        //header input
+        const headInput = document.getElementById('header-input');
+        //header addBtn
+        const headBtn = document.getElementById('header-add');
+
+        //ul
+        const contentBox = document.getElementById('contentBox');
+
+        //toDoItem裏頭的DOM為動態產生，宣告寫在裡面        
+
+        //template
+        let itemTemplate = document.getElementById('itemToDo');
+
+        //C. window onload
+        window.onload = () => {
+            //一開始將local storage中所有key放入keyArr中
+            for (i = 0; i < localStorage.length; i++) {
+                keyArr.push(localStorage.key(i))
+            }
+
+            //Func 1:設定新增事項的input & addBtn =>OK
+            keyVal = 0;
+            setAddBtns();
+
+            //Func 2:取出local storage的資料
+            getLocalStoage();
+
+            //Func 3:將資料塞進template產生toDoItem
+            insertData();
+
+        }
+
+        //D. function
+
+        //Func 1
+        function setAddBtns() {
+            if (localStorage.getItem(keyVal) == null) {
+                headBtn.addEventListener('click', () => {
+                    if (headInput.value.length == 0) {
+                        alert('不得空白')
+                    }
+                    else {
+                        let data = {
+                            val: headInput.value,
+                            checkStat: false
+                        }
+
+                        localStorage.setItem(keyVal, JSON.stringify(data));
+
+                        keyArr.push(keyVal)
+                        //儲存key時檢查keyArr內的元素
+                        //console.log(keyArr)
+                        keyVal++;
+                    }
+
+                    //每次新增要重新清空並且加入待辦
+                    insertData();
+                })
+            }
+            else {
+                keyVal++;
+                setAddBtns();
+            }
+        }
+
+        //Func 2 (還沒寫)
+        function getLocalStoage() {
+            //Foreach localStorage，資料放入dataArr
+            // localStorage.key(i)
+
+        }
+
+        //Func 3
+        function insertData() {
+            //初始化清單內所有list
+            contentBox.innerHTML = '';
+            keyArr.forEach((key) => {
+                let cloneItem = itemTemplate.content.cloneNode(true);
+
+                let checkbox = cloneItem.getElementById('item-checkbox');
+                let editBtn = cloneItem.getElementById('editBtn');
+                let saveBtn = cloneItem.getElementById('saveBtn');//預設display:none
+                saveBtn.style.display = 'none';
+                let deleBtn = cloneItem.getElementById('deleBtn');
+
+                let itemInput = cloneItem.getElementById('item-input');
+                itemInput.value = JSON.parse(localStorage.getItem(key)).val;
+
+                //checkbox要做的事情
+
+                checkbox.checked = JSON.parse(localStorage.getItem(key)).checkStat;
+                //勾選時改變資料庫的check status
+                checkbox.addEventListener('click', () => {
+                    let data = {
+                        val: itemInput.value,
+                        checkStat: checkbox.checked
+                    }
+                    localStorage.setItem(key, JSON.stringify(data));
+                })
+
+                //editBtn要做的事情
+                editBtn.addEventListener('click', () => {
+                    //按下編輯=> editBtn消失, saveBtn出現, input.disabled = false
+                    editBtn.style.display = 'none';
+                    saveBtn.style.display = 'block';
+                    itemInput.disabled = false;
+                })
+
+                //saveBtn要做的事情
+                
+                saveBtn.addEventListener('click', () => {
+                    //按下儲存=> saveBtn消失, editBtn出現, input.disabled = true
+                    saveBtn.style.display = 'none';
+                    editBtn.style.display = 'block';
+                    itemInput.disabled = true;
+                    //儲存input.value到local storage
+                    let data = {
+                        val: itemInput.value,
+                        checkStat: checkbox.checked
+                    }
+                    localStorage.setItem(key, JSON.stringify(data));
+                    //重新insert資料到畫面上
+                    insertData();
+                })
+                
+
+                //deleBtn要做的事情
+                deleBtn.addEventListener('click',()=>{
+                    //刪除local storage此key
+                    localStorage.removeItem(key);
+                    //keyArr移除此key
+                    keyArr.splice(keyArr.indexOf(key),1);
+                    //keyArr重新排序
+                    keyArr = keyArr.map(x=>x);
+
+                    //用重排序的keyArr來insert data
+                    insertData();
+
+                })
+
+                //最後加入contentBox內
+                contentBox.append(cloneItem)
+            })
+
+        }
+
+
+
+
+    </script>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
