@@ -135,7 +135,7 @@
                 if (localStorage.getItem(keyVal) == null) {
                     headBtn.addEventListener('click', () => {
                         if (headInput.value.length == 0) {
-                            alert('不得空白')
+                            alert('待辦事項不得空白，請重新輸入');
                         }
                         else {
                             let data = {
@@ -205,7 +205,7 @@
                         
                         //儲存input.value到local storage
                         if (itemInput.value.length == 0) {
-                            alert('不得空白')
+                            alert('待辦事項不得空白，請重新輸入')
                         }
                         else{
                             //按下儲存=> saveBtn消失, editBtn出現, input.disabled = true
