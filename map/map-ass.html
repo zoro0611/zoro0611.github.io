@@ -110,87 +110,96 @@
                 .then(res => res.json())
                 .then(result => {
                     // console.log(result);
-
-                    //資料重新處理
-                    result.forEach(person => {
-                        let data = {
-                            name: person.姓名,
-                            title: person.職稱,
-                            party: person.黨籍,
-                            district: person.區別,
-                            address: person.服務處地址,
-                            phone: person.服務處電話,
-                            lng: person.經度,
-                            lat: person.緯度
-                        }
-                        polArray.push(data)
-                    });
-
-
-                    polArray = polArray.groupby('district')
-                    // console.log(polArray);
-                    // console.log(Object.keys(polArray));
-
-                    //下拉式選單
-
-                    console.log(disSelect);
-                    ['請選擇區域'].concat(...new Set(Object.keys(polArray))).forEach((x) => {
-                        // console.log(x);
-
-                        let opt = document.createElement('option');
-                        opt.innerText = x;
-                        opt.value = x == '請選擇區域' ? "" : x;
-                        disSelect.append(opt);
-                    })
-
-                    //初始化marker
-                    setMarker();
-
-                    //下拉式選單select行為
-                    disSelect.addEventListener('change', () => {
-                        let selVal = event.target.value;
-                        console.log(selVal);
-                        dataHolder.innerHTML = '';
-                        title.innerText = selVal;
-                        // console.log("選單選中: " + selVal);
-                        let keys = Object.keys(polArray)
-                        // console.log(keys);
-
-                        if (selVal != '') {
-                            let dist = keys.find(key => key == selVal)
-                            // console.log(polArray[dist]);
-                            map.setView([parseFloat(polArray[dist][0].lng), parseFloat(polArray[dist][0].lat)], 13)
-
-                            polArray[dist].forEach((x, index) => {
-
-                                let card = document.createElement('div');
-                                let person = polArray[dist][index]
-                                // console.log(person);
-                                card.innerHTML = `<strong>議員姓名: </strong>${person.name}<br><strong>議員職稱: </strong>${person.title}<br><strong>服務處地址: </strong>${person.address}<br><strong>服務處電話: </strong>${person.phone}<br>`
-                                card.style.border = '1px solid black';
-                                card.style.cursor = 'pointer'
-                                card.addEventListener('click', () => {
-                                    map.setView([parseFloat(person.lng), parseFloat(person.lat)], 16)
-                                });
-
-                                dataHolder.append(card)
-
-                            })
-                        }
-                        else {
-                            //如果選擇為預設，初始化地圖位置
-                            map.setView([23.1811991, 120.1715036], 10)
-                        }
-                        
-                        // markerColor = 'red';
-                        // setMarker()
+                    if (result.length != 0) {
+                        // console.log('Hello');
+                        //資料重新處理
+                        result.forEach(person => {
+                            let data = {
+                                name: person.姓名,
+                                title: person.職稱,
+                                party: person.黨籍,
+                                district: person.區別,
+                                address: person.服務處地址,
+                                phone: person.服務處電話,
+                                lng: person.經度,
+                                lat: person.緯度
+                            }
+                            polArray.push(data)
+                        });
 
 
-                    })
+                        polArray = polArray.groupby('district')
+                        // console.log(polArray);
+                        // console.log(Object.keys(polArray));
 
+                        //下拉式選單
+
+                        console.log(disSelect);
+                        ['請選擇區域'].concat(...new Set(Object.keys(polArray))).forEach((x) => {
+                            // console.log(x);
+
+                            let opt = document.createElement('option');
+                            opt.innerText = x;
+                            opt.value = x == '請選擇區域' ? "" : x;
+                            disSelect.append(opt);
+                        })
+
+                        //初始化marker
+                        setMarker();
+
+                        //下拉式選單select行為
+                        disSelect.addEventListener('change', () => {
+                            let selVal = event.target.value;
+                            console.log(selVal);
+                            dataHolder.innerHTML = '';
+                            title.innerText = selVal;
+                            // console.log("選單選中: " + selVal);
+                            let keys = Object.keys(polArray)
+                            // console.log(keys);
+
+                            if (selVal != '') {
+                                let dist = keys.find(key => key == selVal)
+                                // console.log(polArray[dist]);
+                                map.setView([parseFloat(polArray[dist][0].lng), parseFloat(polArray[dist][0].lat)], 13)
+
+                                polArray[dist].forEach((x, index) => {
+
+                                    let card = document.createElement('div');
+                                    let person = polArray[dist][index]
+                                    // console.log(person);
+                                    card.innerHTML = `<strong>議員姓名: </strong>${person.name}<br><strong>議員職稱: </strong>${person.title}<br><strong>服務處地址: </strong>${person.address}<br><strong>服務處電話: </strong>${person.phone}<br>`
+                                    card.style.border = '1px solid black';
+                                    card.style.cursor = 'pointer'
+                                    card.addEventListener('click', () => {
+                                        map.setView([parseFloat(person.lng), parseFloat(person.lat)], 16)
+                                    });
+
+                                    dataHolder.append(card)
+
+                                })
+                            }
+                            else {
+                                //如果選擇為預設，初始化地圖位置
+                                map.setView([23.1811991, 120.1715036], 10)
+                            }
+
+                            // markerColor = 'red';
+                            // setMarker()
+
+
+                        })
+                    }
+
+                    else {
+                        throw new Error();
+                    }
                 })
 
 
+                .catch(err => {
+                    console.log(err);
+
+                });
 
         }
 
@@ -206,7 +215,7 @@
         }
 
         function setMarker() {
-            
+
             Object.keys(polArray).forEach((x, index) => {
 
                 let people = polArray[x]
@@ -222,11 +231,11 @@
                         iconAnchor: [12, 41],
                         popupAnchor: [1, -34],
                         shadowSize: [41, 41],
-                        
+
                     });
 
-                    
-                    let marker = L.marker([Lng, Lat], {icon: colorIcon})
+
+                    let marker = L.marker([Lng, Lat], { icon: colorIcon })
                         .addTo(map);
 
                     // let marker = L.marker([Lng,Lat]).addTo(map);
