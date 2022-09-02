@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Booking</title>
+    <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./css/pawsday.css">
+    <link rel="stylesheet" href="./css/02-booking.css">
+</head>
+
+<body>
+
+    <div class="booking-page">
+        <div class="container booking-area">
+
+            <!-- 流程 -->
+            <div class="process py-4">
+                <p>
+                    <span><a href="./01-cart.html" class="to-cart text-decoration-none">購物車</a></span>
+                    <i class="fa-solid fa-angle-right mx-2"></i>
+                    <span>填寫資料與付款</span>
+                    <i class="fa-solid fa-angle-right mx-2"></i>
+                    <span>訂購完成</span>
+                </p>
+            </div>
+    
+            <!-- 手風琴開始 -->
+            <div class="accordion" id="accordionExample">
+                
+                <!-- item1 訂購人資料-->
+                <div class="accordion-item">
+                  <h2 class="accordion-header d-flex align-items-center" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <span>訂購人資料</span>
+                        <div class="data-checked d-inline">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </button>
+                  </h2>
+
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                          <!-- Part1 -->
+                          <!-- Begin家長資料輸入 -->
+                          <div class="inputareas-group parent-info">
+                              
+                              <!-- 同會員資料的按鈕 -->
+                              <p class="same-user d-flex align-items-center px-4">
+                                  <input type="checkbox" id="orderuser">
+                                  <label class="mx-3 fw-bold" for="orderuser">同會員資料</label>
+                              </p>
+                            <div class="inputarea firstname-input col-12 col-lg-6">
+                                <label>訂購人全名<span>*</span></label>
+                                <br>
+                                <input class="pawsday-input" type="text" placeholder="例如: Dann">
+                            </div>
+                            
+                            <div class="inputarea phone-input col-12 col-lg-6">
+                                <label>聯絡電話<span>*</span></label>
+                                <br>
+                                <input type="tel" class="pawsday-input" placeholder="例如: 02-2788-8787">
+                                <!-- <div class="input-group">
+                                    <input type="tel" id="telinput" class="form-control">
+
+                                </div> -->
+                            </div>
+                            
+                            
+                            
+
+
+                            <div class="inputarea email-input col-12 col-lg-12">
+                                <label>電子郵件信箱<span>*</span></label>
+                                <br>
+                                <input class="pawsday-input" type="email" placeholder="例如: 123@gmail.com">
+                            </div>
+                        </div>
+                        <!-- 家長資料輸入End -->
+
+
+                        <button class="pawsday-btn continue-btn" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            繼續
+                        </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- item2 寵物資料-->
+                <label class="petinfo-area">寵物資料</label>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <ul class="pet-info cart-content w-100">
+                            
+                            <li class="cart-item d-flex align-items-center">
+                                <div class="photo-area">
+                                    <div class="blocker" id="blocker"></div>
+                                    <a class="d-block item-photo" href=""></a>
+                                </div>
+                                <div class="item-details">
+                                    
+                                    <div class="details-name">
+                                        <a href="#">阿玉到府照顧好棒</a>
+                                        <p>到府照顧</p>
+                                    </div>
+                                    <div class="time-select">
+                                        <span class="">2022-08-20</span>
+                                        <span class="">1700 ~ 1900</span>
+                                    </div>
+                                    <div class="pet-selection ">
+                                        <ul class="">
+                                            <li class="w-100">
+                                                <label for="">毛孩1</label>
+                                                <span>狗溝</span>
+                                                <span>中型</span>
+                                            </li>
+                                            <li class="w-100">
+                                                <label for="">毛孩2</label>
+                                                <span>貓喵</span>
+                                                <span>大型</span>
+                                            </li>
+                                            <li class="w-100">
+                                                <label for="">毛孩3</label>
+                                                <span>貓喵</span>
+                                                <span>大型</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- <p class="totalamount  mt-2">TWD 1,398</p> -->
+
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="data-checked d-inline">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                    </button>
+                  </h2>
+
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body petinfo-body">
+
+                        <div class="inputareas-group service-address">
+                            <h2 class="w-100 d-block mb-3">服務地址</h2>
+                            
+                            <div class="inputarea city-input col-6 col-lg-6">
+
+                                <!-- <select name="" id="select-city" readonly disabled="true">
+                                    
+                                    <option value="" selected disabled="true">台北市</option>
+                                    
+                                </select> -->
+
+                                <input class="pawsday-input" type="text" placeholder="台北市" readonly="true">
+                            </div>
+                            <div class="inputarea district-input col-6 col-lg-6">
+
+                                <!-- <select name="" id="select-city" aria-readonly="true" disabled="true">
+                                    
+                                    <option value="" selected>大安區</option>
+                                    
+                                </select> -->
+
+                                <input class="pawsday-input" type="text" placeholder="大安區" readonly="true">
+                            </div>
+                            <div class="inputarea firstname-input col-12 col-lg-12">
+                                <input class="pawsday-input" type="text" placeholder="例如: 忠孝東路三段96號11樓">
+                            </div> 
+                        </div>
+                                          <!-- Part2 -->
+                    <!-- Begin資料輸入 -->
+                    <div class="inputareas-group petinfo-inputs">
+                        <button class="clear-info-btn">清空</button>
+
+                        <h3 class="pet-number">
+                            毛孩
+                            <span>1</span>
+                        </h3>
+    
+                        <!-- <button class="selectpet_btn">請選擇毛孩 <span>1</span></button> -->
+
+                        <!-- 下拉式選擇 begins -->
+                        <div class="input-group mb-3">
+                            <button class="dropdown-toggle selectpet-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">請選擇毛孩</button>
+                            <ul class="dropdown-menu">
+                                <li><label class="dropdown-item" href="#">預設寵物A</label></li>
+                                <li><label class="dropdown-item" href="#">預設寵物B</label></li>
+                            </ul>
+                        </div>
+                          <!-- 下拉式選擇 ends -->
+    
+    
+                        <div class="inputarea petname-input col-12 col-lg-6">
+                            <label>名字<span>*</span></label>
+                            <input class="pawsday-input" type="text" placeholder="例如: 糖糖">
+                        </div>
+                        
+                        
+                        <div class="inputarea sex-type-input col-12 col-lg-6">
+                            <label>性別<span>*</span></label>
+                            <select class="pawsday-input" name="" id="select-sex-type">
+                                <option value="" disabled="false">===請選擇===</option>
+                                <option value="">男生</option>
+                                <option value="">女生</option>
+                            </select>
+                        </div>
+                            
+                        <div class="inputarea petname-input col-12 col-lg-6">
+                            <label>寵物分類<span>*</span></label>
+                            <select class="pawsday-input" name="" id="select-sex-type">
+                                <option value="" disabled="false">===請選擇===</option>
+                                <option value="">狗勾</option>
+                                <option value="">貓喵</option>
+                            </select>
+                        </div>
+                            
+                        <div class="inputarea petname-input col-12 col-lg-6">
+                            <label>體型分類<span>*</span></label>
+                            <select class="pawsday-input" name="" id="select-body-type">
+                                <option value="" disabled="false">===請選擇===</option>
+                                <option value="">超大型</option>
+                                <option value="">大型</option>
+                                <option value="">中型</option>
+                                <option value="">小型</option>
+                                <option value="">迷你型</option>
+                            </select>
+                        </div>
+    
+    
+    
+                        <div class="inputarea petname-input col-12 col-lg-12">
+                            <label>特殊備註</label>
+                            <br>
+    
+                            <textarea class="textarea-memo" cols="40" rows="5"
+                                placeholder="寫下特別要跟褓母溝通的事項，例: 毛孩喜歡&不喜歡的事情"></textarea>
+                        </div>
+    
+    
+    
+    
+                    </div>
+                    <!-- 資料輸入End -->
+    
+                    <!-- Begin資料輸入 -->
+                    <div class="inputareas-group petinfo-inputs">
+                        <button class="clear-info-btn">清空</button>
+                        <h3 class="pet-number">
+                            毛孩
+                            <span>2</span>
+                        </h3>
+    
+                        <!-- <button class="selectpet_btn">請選擇毛孩 <span>1</span></button> -->
+
+                        <!-- 下拉式選擇 begins -->
+                        <div class="input-group mb-3">
+                            <button class="dropdown-toggle selectpet-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">請選擇毛孩</button>
+                            <ul class="dropdown-menu">
+                                <li><label class="dropdown-item" href="#">預設寵物A</label></li>
+                                <li><label class="dropdown-item" href="#">預設寵物B</label></li>
+                            </ul>
+                        </div>
+                          <!-- 下拉式選擇 ends -->
+    
+    
+                        <div class="inputarea petname-input col-12 col-lg-6">
+                            <label>名字<span>*</span></label>
+                            <input class="pawsday-input" type="text" placeholder="例如: 糖糖">
+                        </div>
+                        
+                        
+                        <div class="inputarea sex-type-input col-12 col-lg-6">
+                            <label>性別<span>*</span></label>
+                            <select class="pawsday-input" name="" id="select-sex-type">
+                                <option value="" disabled="false">===請選擇===</option>
+                                <option value="">男生</option>
+                                <option value="">女生</option>
+                            </select>
+                        </div>
+                            
+                        <div class="inputarea petname-input col-12 col-lg-6">
+                            <label>寵物分類<span>*</span></label>
+                            <select class="pawsday-input" name="" id="select-sex-type">
+                                <option value="" disabled="false">===請選擇===</option>
+                                <option value="">狗勾</option>
+                                <option value="">貓喵</option>
+                            </select>
+                        </div>
+                            
+                        <div class="inputarea petname-input col-12 col-lg-6">
+                            <label>體型分類<span>*</span></label>
+                            <select class="pawsday-input" name="" id="select-body-type">
+                                <option value="" disabled="false">===請選擇===</option>
+                                <option value="">超大型</option>
+                                <option value="">大型</option>
+                                <option value="">中型</option>
+                                <option value="">小型</option>
+                                <option value="">迷你型</option>
+                            </select>
+                        </div>
+
+                        <div class="inputarea petname-input col-12 col-lg-12">
+                            <label>特殊備註</label>
+                            <br>
+    
+                            <textarea class="textarea-memo" cols="40" rows="5"
+                                placeholder="寫下特別要跟褓母溝通的事項，例: 毛孩喜歡&不喜歡的事情"></textarea>
+                        </div>
+                    </div>
+                    <!-- 資料輸入End -->
+    
+    
+    
+                    <!-- Part3 -->
+                    <label class="title contact-method">托保期間聯絡方式</label>
+                    <!-- Begin聯絡方式 -->
+                    <div class="inputareas-group d-flex flex-wrap">
+    
+                        
+                        <!-- 下拉式選擇 begins -->
+                        <div class="input-group mb-3">
+                            
+                            <!-- 同會員資料的按鈕 -->
+                            <p class="same-user d-flex align-items-center px-4">
+                                <input type="checkbox" id="contactuser">
+                                <label class="mx-3 fw-bold" for="contactuser">同會員資料</label>
+                            </p>
+                        </div>
+                          <!-- 下拉式選擇 ends -->
+    
+    
+                        <div class="inputarea contactfirstname-input col-12 col-lg-6">
+                            <label>聯絡人名<span>*</span></label>
+                            <br>
+                            <input class="pawsday-input" type="text" placeholder="例: Ming Ni">
+                        </div>
+    
+                        <div class="inputarea contactlastname-input col-12 col-lg-6">
+                            <label>聯絡人姓<span>*</span></label>
+                            <br>
+                            <input class="pawsday-input" type="text" placeholder="例: Chen">
+                        </div>
+    
+                        <div class="inputarea contactlastname-input col-12 col-lg-12">
+                            <label>服務期間聯絡電話<span>*</span></label>
+    
+                            <div class="radio-tel d-flex align-items-center">
+                                <input name="contact_tel" type="radio"><span></span>有</span>
+                                <input name="contact_tel" type="radio"><span>沒有</span>
+                            </div>
+    
+                            <input class="pawsday-input mt-3" type="tel" placeholder="例: (02)2345-6789">
+                        </div>
+    
+    
+    
+    
+                    </div>
+                    <!-- 聯絡方式End -->
+    
+    
+                    <!-- Part3 -->
+                    <!-- <div class="coupon-area">
+                        <label class="title coupon">使用折扣券</label>
+                        <br>
+                        <button class="coupon-btn mb-3 mx-4">
+                            <i class="fa-solid fa-ticket mx-2"></i>
+                            
+                            使用折扣券
+                        </button>
+                    </div> -->
+    
+                    <button class="pawsday-btn continue-btn" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">繼續</button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- item3 付款 -->
+                <label class="petinfo-area">付款</label>
+
+                <!-- 付款方式 -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      
+
+                        <span>請選擇付款方式</span>
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <ul>
+                            <li class="payment-list d-flex">
+                                <input type="radio" name="payment-group">
+                                <span>LINE Pay</span>
+                                <img class="payment-photo" src="https://cdn.kkday.com/pc-web/assets/img/payment/ic_linepay_2.svg" alt="">
+                            </li>
+                            <li class="payment-list d-flex">
+                                <input type="radio" name="payment-group">
+                                <span>街口支付</span>
+                                <img class="payment-photo" src="https://cdn.kkday.com/pc-web/assets/img/payment/ic_jko.png" alt="">
+                            </li>
+                            <li class="payment-list d-flex">
+                                <input type="radio" name="payment-group">
+                                <span>信用卡/簽帳金融卡</span>
+                                <div class="creditcard-photo d-flex">
+                                    <img class="payment-photo" src="./images/ic_visa.svg" alt="">
+                                    <img class="payment-photo" src="./images/ic_master.svg" alt="">
+                                    <img class="payment-photo" src="./images/ic_jcb.svg" alt="">
+                                </div>
+                                
+                            </li>
+                        </ul>
+
+                        <div class="payment-warning d-flex">
+                            <i class="fa-solid fa-circle-info "></i>
+                            <p>請注意本平台不會向您收取任何平台交易手續費，但你下單時使用的信用卡或第三方支付平台可能會向您收取相關手續費，請參考其相關服務政策和規定，並向你所選的交易服務商取得更多資訊。</p>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 開立發票方式 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+
+                    <span>電子發票、收據</span>
+                            
+                      </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <div class="inputarea invoice-input">
+                            <label class="invoice-title my-3">平台代收轉付電子收據</label>
+                            <select class="pawsday-input" name="" id="select-invoice-type">
+                                <option class="py-4" value="">寄至訂購人E-mail</option>
+                                <option class="my-4" value="">開立統編 / 抬頭</option>
+                            </select>
+
+                            <!-- 隱藏的開立抬頭區域 -->
+                            <div class="title-inputarea">
+                                <label>寄送信箱</label>
+                                <br>
+                                <input class="pawsday-input" type="text" placeholder="請輸入信箱">
+                                <label>統一編號</label>
+                                <br>
+                                <input class="pawsday-input" type="text" placeholder="請輸入統一編號">
+                                <label>抬頭 (買受人)</label>
+                                <br>
+                                <input class="pawsday-input" type="text" placeholder="請輸入抬頭 (買受人)">
+                            </div>
+                            <!-- 隱藏的開立抬頭區域Ends -->
+
+                            <!-- <div class="product-detail">
+                                <p>【即買即用】台北兒童新樂園｜一日票（無限暢玩13項指定設施）</p>
+                                <p>【KKday獨家聯合套票：93折】兒童新樂園一日樂Fun券ｘXpark水生公園成人門票</p>
+                            </div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- 付款明細 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                          <span>付款明細</span>
+                      </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        
+                        <ul>
+                            <li class="payment-productdetail cart-item d-flex flex-wrap align-items-center">
+                                <div class="photo-area ">
+                                    <div class="blocker" id="blocker"></div>
+                                    <a class="d-block item-photo" href=""></a>
+                                </div>
+                                <div class="item-details">
+                                    <div class="details-name">
+                                        <a href="#">阿諭到府服務真親切</a>
+                                        <p>到府照顧</p>
+                                    </div>
+                                    <div class="time-select">
+                                        <span class="">2022-08-20</span>
+                                        <span class="">1700 ~ 1900</span>
+                                    </div>
+                                    <div class="pet-selection">
+                                        <ul class="">
+                                            <li class="w-100">
+                                                <label for="">毛孩1</label>
+                                                <span>狗溝</span>
+                                                <span>中型</span>
+                                            </li>
+                                            <li class="w-100">
+                                                <label for="">毛孩2</label>
+                                                <span>貓喵</span>
+                                                <span>大型</span>
+                                            </li>
+ 
+                                        </ul>
+                                    </div>
+                                    <p class="totalamount">TWD 1,398</p>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                        <div class="cal-total d-flex justify-content-between px-3">
+                            <span class="d-block">支付金額</span>
+                            <span class="d-block">TWD 12,100</span>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              
+
+
+
+    
+            </div>
+            <!-- 手風琴結束 -->
+    
+            <div class="checkout-area d-flex justify-content-end align-items-center">
+    
+                <p class="final-price mx-4 d-block">
+                    <span>1 件商品合計</span>
+                    <span>TWD 12,000</span>
+                </p>
+
+                <a href="./03-orderPlaced.html" class="pawsday-btn text-decoration-none">確認付款</a>
+                
+            </div>
+    
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.7/js/intlTelInput.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/css/intlTelInput.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script>
+        $("#telinput").intlTelInput({
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/8.4.6/js/utils.js"
+        });
+    </script>
+</body>
+
+</html>

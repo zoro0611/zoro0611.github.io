@@ -1,0 +1,165 @@
+/* recommend */
+.more {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 1px 2px 10px 2px var(--clr-primary);
+    opacity: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.recommend {
+    overflow: hidden;
+    margin-top: 20px;
+    position: relative;
+}
+
+.recommend .recommend-container {
+    width: calc(600%);
+    position: relative;
+    right: -1px;
+    transition: 1s;
+}
+
+.recommend .recommend-more {
+    right: calc(100% - 9px);
+}
+
+.recommend .recommend-more-second {
+    right: calc(197%);
+}
+
+.recommend h2 {
+    font-size: 24px;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.recommend .more {
+    top: calc(50% - 12px);
+    right: calc(83.5% - 6px);
+}
+
+.recommend .more-second {
+    right: calc(67% - 15px);
+}
+
+.recommend-image {
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    font-size: 14px;
+    color: #fff;
+}
+
+.recommend img {
+    border-radius: 10px;
+    background-color: var(--clr-bg-y);
+}
+
+.recommend-place {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.recommend-place h3 {
+    padding: 0 3px;
+}
+
+.recommend-collect {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.recommend-top {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--clr-border);
+    color: #fff;
+    border-top-right-radius: var(--radius);
+    padding: 0 5px;
+}
+
+@media screen and (min-width:600px) {
+    .recommend .recommend-container {
+        width: 400%;
+        right: -1px;
+    }
+
+    .recommend .recommend-more {
+        right: calc(100% - 15px);
+    }
+
+    .recommend .more {
+        right: calc(75% - 4px);
+    }
+
+    .recommend .more-second {
+        right: calc(300%);
+    }
+}
+
+@media screen and (min-width:768px) {
+    .recommend .recommend-container {
+        width: 295%;
+        right: -1px;
+    }
+
+    .recommend .recommend-more {
+        right: calc(96%);
+    }
+
+    .recommend .more {
+        right: calc(66.5% - 2px);
+    }
+
+    .recommend .more-second {
+        right: calc(300%);
+    }
+}
+
+.recommend-title {
+    font-size: var(--font);
+    color: var(--crl-font);
+}
+
+.recommend-title h3,
+.recommend-title span {
+    display: inline-block;
+    padding: 0 5px;
+    margin: 3px 0;
+}
+
+.recommend-title h3~h3,
+.recommend-title h3~span {
+    border-left: 1px solid var(--clr-font);
+}
+
+.recommend-evaluation {
+    font-size: 12px;
+    color: var(--clr-bg-g);
+}
+
+.recommend-evaluation span {
+    padding: 0 3px;
+    margin: 3px 0;
+}
+
+.recommend-evaluation span~span {
+    border-left: 1px solid var(--clr-bg-g);
+}
+
+.recommend-price {
+    margin: 8px 3px;
+    font-size: var(--font);
+}

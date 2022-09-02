@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Cart</title>
+    <script src="https://kit.fontawesome.com/17934189c2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/pawsday.css">
+    <link rel="stylesheet" href="./css/01-cart.css">
+    <link rel="stylesheet" href="./css/recommend.css">
+</head>
+
+<body>
+
+    <div class="shoppingcart-page">
+        <div class="container shoppingcart-area">
+            <div class="process py-4">
+                <p>
+                    <span>購物車</span>
+                    <i class="fa-solid fa-angle-right mx-2"></i>
+                    <span>填寫資料與付款</span>
+                    <i class="fa-solid fa-angle-right mx-2"></i>
+                    <span>訂購完成</span>
+                </p>
+            </div>
+    
+            <div class="shoppingcart">
+                <div class="cart-title">
+                    <h2>購物車</h2>
+                </div>
+                <div class="cart-content">
+                    <ul class="cart-itemlist">
+
+                        <!-- 購物車空白begin -->
+                        <li class="null-item flex-wrap align-items-center justify-content-center">
+                            <div class="order-null">
+                                <img src="./images/no order.png" alt="" class="order-null-img">
+                                <p>您的購物車空無一物</p>
+                                <a href="../emily/commodity-search.html" class="pawsday-btn">立馬搜尋保姆</a>
+
+                            </div>
+                        </li>
+                        <!-- 購物車空白end-->
+
+
+                        <li class="cart-item  d-flex flex-wrap align-items-center justify-content-center">
+                            <input type="checkbox" class="checkbox">
+    
+                            <div class="photo-area ">
+                                <div class="blocker" id="blocker"></div>
+                                <a class="d-block item-photo" href=""></a>
+                            </div>
+
+                            <div class="item-details">
+                                <div class="details-name">
+                                    <a href="#">阿諭到府服務真親切</a>
+                                    <p>到府照顧</p>
+                                </div>
+                                <div class="time-select">
+                                    <span class="">2022-08-20</span>
+                                    <span class="">17:00 ~ 19:00</span>
+                                </div>
+
+                                <div class="accordion" id="accordionExample">
+
+                                <div class="accordion-item ">
+                                <h2 class="accordion-header  " id="headingOne">
+                                  <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    類型/體型
+                                  </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                    <div class="pet-selection d-flex flex-wrap">
+                                        <label for="" class="pet-set w-100">毛孩1</label>
+                                        <select name="" id="" class="w-50">
+                                            <option value="">選擇種類</option>
+                                            <option value="">狗溝</option>
+                                            <option value="">貓喵</option>
+                                        </select>
+                                        <select class="w-50" name="" id="">
+                                            <option value="">選擇體型</option>
+                                            <option value="">小型</option>
+                                            <option value="">中型</option>
+                                            <option value="">大型</option>
+                                        </select>
+                                    </div>
+                                    <div class="pet-selection d-flex flex-wrap">
+                                        <label for="" class="pet-set w-100">毛孩2</label>
+                                        <select name="" id="" class="w-50">
+                                            <option value="">選擇種類</option>
+                                            <option value="">狗溝</option>
+                                            <option value="">貓喵</option>
+                                        </select>
+                                        <select class="w-50" name="" id="">
+                                            <option value="">選擇體型</option>
+                                            <option value="">小型</option>
+                                            <option value="">中型</option>
+                                            <option value="">大型</option>
+                                        </select>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                    </div>
+                                </div>
+
+
+                                <p class="totalamount  mt-2">TWD 1,398</p>
+                                <p class="item-icons">
+                                    <button><i class="fa-regular fa-heart"></i></button>
+                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                    
+                                </p>
+                            </div>
+                        </li>
+
+                        <li class="cart-item  d-flex flex-wrap align-items-center justify-content-center">
+                            <input type="checkbox" class="checkbox">
+    
+                            <div class="photo-area ">
+                                <div class="blocker" id="blocker"></div>
+                                <a class="d-block item-photo" href=""></a>
+                            </div>
+
+                            <div class="item-details">
+                                <div class="details-name">
+                                    <a href="#">阿諭到府服務真親切</a>
+                                    <p>到府照顧</p>
+                                </div>
+                                <div class="time-select">
+                                    <span class="">2022-08-20</span>
+                                    <span class="">17:00 ~ 19:00</span>
+                                </div>
+
+                                <div class="accordion" id="accordionExample">
+
+                                <div class="accordion-item ">
+                                <h2 class="accordion-header  " id="headingTwo">
+                                  <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    類型/體型
+                                  </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                  <div class="accordion-body">
+                                    <div class="pet-selection d-flex flex-wrap">
+                                        <label for="" class="pet-set w-100">毛孩1</label>
+                                        <select name="" id="" class="w-50">
+                                            <option value="">選擇種類</option>
+                                            <option value="">狗溝</option>
+                                            <option value="">貓喵</option>
+                                        </select>
+                                        <select class="w-50" name="" id="">
+                                            <option value="">選擇體型</option>
+                                            <option value="">小型</option>
+                                            <option value="">中型</option>
+                                            <option value="">大型</option>
+                                        </select>
+                                    </div>
+                                    <div class="pet-selection d-flex flex-wrap">
+                                        <label for="" class="pet-set w-100">毛孩2</label>
+                                        <select name="" id="" class="w-50">
+                                            <option value="">選擇種類</option>
+                                            <option value="">狗溝</option>
+                                            <option value="">貓喵</option>
+                                        </select>
+                                        <select class="w-50" name="" id="">
+                                            <option value="">選擇體型</option>
+                                            <option value="">小型</option>
+                                            <option value="">中型</option>
+                                            <option value="">大型</option>
+                                        </select>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                    </div>
+                                </div>
+
+
+                                <p class="totalamount  mt-2">TWD 1,398</p>
+                                <p class="item-icons">
+                                    <button><i class="fa-regular fa-heart"></i></button>
+                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                    
+                                </p>
+                            </div>
+                        </li>
+
+                        
+                    </ul>
+                </div>
+    
+                <div class="checkout">
+                    <div class="checkout-actions">
+    
+                        <input type="checkbox">
+                        <label class="mx-2" id="checkout-selectall">全選 <span>(2)</span></label>
+                       
+                        <span class="mx-3">|</span>
+                        <label id="checkout-deleteitem">刪除已選項目</label>
+    
+                    </div>
+    
+                    <div class="checkout-finalize d-flex justify-content-end align-items-center">
+    
+                        <p class="final-price mx-4">
+                            <span>0 件商品合計</span>
+                            <span>TWD 0</span>
+                        </p>
+    
+                        <a href="./02-booking.html" class="pawsday-btn text-decoration-none">前往結帳</a>
+                        
+                    </div>
+    
+                </div>
+            </div>
+    
+            <p class="resume-shopping d-flex justify-content-end py-4">
+                <a href="" class="back-home">
+                    繼續購物
+                    <i class="fa-solid fa-angle-right "></i>
+                </a>
+            </p>
+    
+            <div class="recheck-item my-5">
+                <div class="cart-title">
+                    <h2>已過期的商品</h2>
+                </div>
+                <div class="cart-content">
+                    <ul class="cart-itemlist">
+                        <li class="cart-item d-flex flex-wrap align-items-center">
+    
+                            <div class="photo-area">
+                                <div class="blocker" id="blocker"></div>
+                                <a class="d-block item-photo" href=""></a>
+                            </div>
+                            <div class="item-details">
+                                <div class="details-name">
+
+                                    <a href="#">阿諭到府服務真親切</a>
+                                    <p>到府照顧</p>
+
+                                </div>
+                                <div class="time-select">
+                                    <span class="d-block">2022-08-20</span>
+                                    <span class="d-block">17:00 ~ 19:00</span>
+                                </div>
+                                <div class="remark">
+                                    <p class="select-others">商品已售罄，請選擇其他商品</p>
+                                    <p class="redirection">請至商品頁重新選擇</p>
+                                </div>
+                                <p class="item-icons">
+                                    <button><i class="fa-regular fa-heart"></i></button>
+                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                    
+                                </p>
+                            </div>
+                        </li>
+
+                
+                    </ul>
+                </div>
+    
+                <div class="remove-all">
+                    <div class="remove-actions">
+    
+                        <i class="fa-regular fa-trash-can"></i>
+                        <span>全部移除</span>
+    
+                    </div>
+                </div>
+            </div>
+    
+            <div class="popular-recommend pb-5">
+                <h2>多數客戶選擇了以下商品</h2>
+                <div class="container recommend popular-recommend">
+                    <div class="recommend-container">
+                        <div class="row">
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 1</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <span>
+                                            <i class="fa-solid fa-shield-dog"></i>
+                                            <i class="fa-solid fa-shield-cat"></i>
+                                        </span>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8
+                                            <i class="fa-solid fa-star"></i>
+                                        </span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 2</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <h3>
+    
+                                        </h3>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8★</span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 3</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <h3>
+    
+                                        </h3>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8★</span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 4</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <h3>
+    
+                                        </h3>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8★</span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 5</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <h3>
+    
+                                        </h3>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8★</span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 6</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <h3>
+    
+                                        </h3>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8★</span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 7</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <h3>
+    
+                                        </h3>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8★</span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                            <div class="col-1">
+                                <a href="" class="item">
+                                    <div class="recommend-image">
+                                        <img src="./images/dog2.webp" alt="">
+                                        <span class="recommend-place">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                            <h3>台北市</h3>
+                                        </span>
+                                        <span class="recommend-collect">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="recommend-top">TOP 8</span>
+                                    </div>
+                                    <div class="recommend-title">
+                                        <h3>阿諭</h3>
+                                        <h3>到府照顧</h3>
+                                        <h3>
+    
+                                        </h3>
+                                    </div>
+                                    <div class="recommend-evaluation">
+                                        <span>4.8★</span>
+                                        <span>30+ 已預定</span>
+                                    </div>
+                                    <h4 class="recommend-price">TWD 400 起</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="more recommend-more">
+                            <i class="fa-solid fa-angle-right recommend-arrow"></i>
+                        </div>
+                        <div class="more more-second recommend-more-second">
+                            <i class="fa-solid fa-angle-right recommend-arrow-second"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+    
+
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+        <script>
+
+    
+    
+            const RC = document.querySelector('.recommend-container')
+            const moreRC = document.querySelector('.recommend-more')
+            const IconRC = document.querySelector('.recommend-arrow')
+            const moreSecondRC = document.querySelector('.recommend-more-second')
+            const iconSecondRC = document.querySelector('.recommend-arrow-second')
+            More(moreRC, RC, IconRC, "recommend-more")
+            More(moreSecondRC, RC, iconSecondRC, "recommend-more-second")
+            function More(arrow, container, icon, classname) {
+                arrow.addEventListener('click', () => {
+                    container.classList.toggle(classname)
+                    icon.classList.toggle("fa-angle-right")
+                    icon.classList.toggle("fa-angle-left")
+                })
+            }
+        </script>
+</body>
+
+</html>
