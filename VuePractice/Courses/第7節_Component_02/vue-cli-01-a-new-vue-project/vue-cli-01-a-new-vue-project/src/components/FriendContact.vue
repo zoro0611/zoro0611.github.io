@@ -7,6 +7,7 @@
             <li><strong>Phone:</strong>{{ phoneNumber }}</li>
             <li><strong>Email:</strong>{{ emailAddress }}</li>
         </ul>
+        <button @click="$emit('delete', id)">Delete</button>
     </li>
 </template>
 <script>
@@ -39,7 +40,8 @@ export default {
         },
     },
     emits:[
-        'toggle-favorite'
+        'toggle-favorite',
+        'delete'
     ],
     // emits:{
     //     'toggle-favorite': function(id){
@@ -73,6 +75,9 @@ export default {
             this.$emit('toggle-favorite', this.id); //從子層呼叫父層的eventListener參數(在template裏頭@toggle-favorite方法)
             
             // this.$emit('toggle-favorite'); 
+        },
+        deleteFriend(){
+            this.$emit('delete')
         }
     }
 }
