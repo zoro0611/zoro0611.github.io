@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\pract_html_pdf_MVC.props" />
+</Project>

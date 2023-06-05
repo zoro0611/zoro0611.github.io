@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div id="block">
+    <p>測試網頁:@ViewData["test"]</p>
+    <ul>
+        <li>你好</li>
+        <li>我是</li>
+        <li>Leon</li>
+    </ul>
+
+    <table border="1">
+        <tr>
+            <td>身高</td>
+            <td>180公分</td>
+        </tr>
+        <tr>
+            <td>體重</td>
+            <td>70公斤</td>
+        </tr>
+    </table>
+</div>
+
+</br>
+
+<button id="exportPdf">Export PDF</button>
+
+
+
+
+    <script>
+        let btn = document.getElementById("exportPdf")
+        btn.addEventListener("click", function () {
+            
+            var htmlData = document.getElementById("block").innerHTML;
+
+
+            let uri = window.location.origin + "/Home/ExportPdf";
+            @* let uri = "/Home/ExportPdf"; *@
+            console.log(uri)
+            //encoding htmlData
+            let data = encodeURIComponent(htmlData);
+            //打API
+            var headers = new Headers();
+            headers.append('Content-Type', 'application/x-www-form-urlencoded');
+            headers.append('Accept', 'application/pdf');
+            fetch(uri, {
+                method: 'POST',
+                headers: headers,
+                body: "htmlData=" + data
+            })
+                .then(response => response.blob())
+                .then(blob => {
+                    @* console.log(blob) *@
+                    //在新視窗開啟
+                    var url = window.URL.createObjectURL(blob);
+                    //window.open(url); 
+
+                    
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'file.pdf';
+                    document.body.appendChild(a); 
+                    a.click();
+                    a.remove();
+                    
+
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+            
+        })
+        
+    </script>
