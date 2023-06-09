@@ -1,6 +1,6 @@
-from turtle import Turtle, Screen
+from turtle import Turtle as t, Screen
 
-sherry = Turtle()
+sherry = t()
 sherry.shape("turtle")
 sherry.color("red")
 
@@ -10,3 +10,6 @@ for i in range(4):
 
 my_screen = Screen()
 my_screen.exitonclick()
+
+# import heroes
+# print(heroes.gen())
